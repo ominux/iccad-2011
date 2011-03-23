@@ -6,7 +6,7 @@ boundary conditions, different read/write schemes can be easily evaluated
 at the very early stage of the design.
 
 \subsection{Basic model of Cross-Point Memory}
-Figure.~\ref{fig:modeling} shows the circuit model of the cross point ReRAM array. The horizontal lines are word line and vertical lines represent the bit line. The ReRAM cells are located at each cross point of one word line and one bit line. The resistance of the ReRAM cell at the cross point of the $i^{th}$ word line and $j^{th}$ bit line is indicated as $R_{i,j}$. We assume the resistance of the interconnect nanowires between two adjacent cross point has the same value of $R_{line}$. The input resistance of each word line and bit line is $R_v$ and the resistance of sense amplifier is $R_s$. In order to set up the Kirchhoff's Current Law (KCL) equations, the voltage at each cross point is indicated as $V_{i,j}$ for word line and $V'_{i,j}$ for bit line. A detailed cross point is also shown in Figure.~\ref{fig:modeling}. Besides, the input voltage for the $i^{th}$ word line is $V_{W1}$ and for the $i^{th}$ bit line is $V_{B1}$. In the case of two side 
+Figure.~\ref{fig:modeling} shows the circuit model of the cross point ReRAM array. The horizontal lines are word line and vertical lines represent the bit line. The ReRAM cells are located at each cross point of one word line and one bit line. The resistance of the ReRAM cell at the cross point of the $i^{th}$ word line and $j^{th}$ bit line is indicated as $R_{i,j}$. We assume the resistance of the interconnect nanowires between two adjacent cross point has the same value of $R_{line}$. The input resistance of each word line and bit line is $R_v$ and the resistance of sense amplifier is $R_s$. In order to set up the Kirchhoff's Current Law (KCL) equations, the voltage at each cross point is indicated as $V_{i,j}$ for word line and $V'_{i,j}$ for bit line. A detailed cross point is also shown in Figure.~\ref{fig:modeling}. Besides, the input voltage for the $i^{th}$ word line is $V_{Wi}$ and for the $i^{th}$ bit line is $V_{Bi}$. In the case of two side voltage input of word line, the voltage at the other end of the $i^{th}$ word line is denoted as $V_{W1}$. Finally, the voltage at the sense amplifier is $V'_{Bi}$ during the read operation. 
 
 \begin{figure}
 \centering
@@ -15,5 +15,11 @@ Figure.~\ref{fig:modeling} shows the circuit model of the cross point ReRAM arra
   \caption{The basic model of typical cross point array.}\label{fig:modeling}
 \end{figure}
 \subsection{Edge Conditions for Different Write/Read Schemes}
+Based on the circuit model, the current equation for each cross point can be built following the KCL:
+\begin{equation}
+  {\Sigma}_{I=1}^kI_k=0.
+\end{equation}
+All of the cross points have similar structure and therefore it is easy to set up the KCL equation for each cross point. However, the cross point at the edge of the array may have different condition for different write/read schemes. For example, the unselected word line for write operation can be either half biased or left floating. Thus, the edge conditions should be carefully considered for each write/read schemes. However, generally speaking, the KCL equations can be classified into three major categories: Normal node, Activated node and Floating node. The circuit 
+
 
 \subsection{Analysis of the Computing Complexity}
