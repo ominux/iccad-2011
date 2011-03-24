@@ -31,5 +31,13 @@ R_l^{-1}V'_{i-1,j} -(2R_l^{-1}+R_{i,j}^{-1})V'_{i,j}+ R_l^{-1}V'_{i,j+1}+R_{i,j}
 \end{equation}
 for the node at bit line layer.
 
-Besides, the activated point and floating point represent the node at the edge of cross point array with different condition: a point, which have been directly connected to the voltage input or the ground, can be considered as a activated mode. Take the cross point connected to word line voltage 
+Besides, the activated point and floating point represent the node at the edge of cross point array with different conditions: a edge point, which have been directly connected to the voltage input or the ground, can be considered as a activated mode. Otherwise, it is floating node. Take the point located at the intersection of $i_{th}$ word line and $1_{st}$ bit line for example. If the $i_{th}$ word line is activated by a voltage input of $V_{Wi}$, then this cross point is activated point, and the KCL equation for this point is:
+\begin{equation}
+-(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=-R_v^{-1}V_{Wi},
+\end{equation}
+otherwise, it is left floating and has the KCL equation take the form of 
+\begin{equation}
+-(R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=0.
+\end{equation}
+
 \subsection{Analysis of the Computing Complexity}
