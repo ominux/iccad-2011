@@ -8,10 +8,10 @@ at the very early stage of the design.
 \subsection{Basic model of Cross-Point Memory}
 Figure.~\ref{fig:modeling} shows the circuit model of the $M$ by $N$ cross point ReRAM array. The horizontal lines are word line and vertical lines represent the bit line. The ReRAM cells are located at each cross point of one word line and one bit line. The resistance of the ReRAM cell at the cross point of the $i^{th}$ word line and $j^{th}$ bit line is indicated as $R_{i,j}$. We assume the resistance of the interconnect nanowires between two adjacent cross point has the same value of $R_{line}$. The input resistance of each word line and bit line is $R_v$ and the resistance of sense amplifier is $R_s$. In order to set up the Kirchhoff's Current Law (KCL) equations, the voltage at each cross point is indicated as $V_{i,j}$ for word line and $V'_{i,j}$ for bit line. A detailed cross point is also shown in Figure.~\ref{fig:modeling}. Besides, the input voltage for the $i^{th}$ word line is $V_{Wi}$ and for the $i^{th}$ bit line is $V_{Bi}$. In the case of two side voltage input of word line, the voltage at the other end of the $i^{th}$ word line is denoted as $V_{W1}$. Finally, the voltage at the sense amplifier is $V'_{Bi}$ during the read operation.
 
-\begin{figure}
+\begin{figure}[!b]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.47\textwidth]{./figures/model.pdf}\\
+  \includegraphics[width=0.45\textwidth]{./figures/model.pdf}\\
   \caption{The basic model of typical cross point array.}\label{fig:modeling}
 \end{figure}
 \subsection{Edge Conditions for Different Write/Read Schemes}
@@ -19,13 +19,13 @@ Based on the circuit model, the current equation for each cross point can be bui
 \begin{equation}
   {\Sigma}_{I=1}^kI_k=0.
 \end{equation}
-All of the cross points have similar structure and therefore it is easy to set up the KCL equation for each cross point. However, the cross point at the edge of the array may have different condition for different write/read schemes. For example, the unselected word line for write operation can be either half biased or left floating. Thus, the edge conditions should be carefully considered for each write/read schemes. However, generally speaking, all of the cross points can be classified into three major categories: Normal point, Activated point and Floating point. 
+All of the cross points have similar structure and therefore it is easy to set up the KCL equation for each cross point. However, the cross point at the edge of the array may have different condition for different write/read schemes. For example, the unselected word line for write operation can be either half biased or left floating. Thus, the edge conditions should be carefully considered for each write/read schemes. However, generally speaking, all of the cross points can be classified into three major categories: Normal point, Activated point and Floating point.
 
-The normal point located insides the memory array. In other words, for all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form of 
+The normal point located insides the memory array. In other words, for all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form of
 \begin{equation}
 R_l^{-1}V_{i,j-1} -(2R_l^{-1}+R_{i,j}^{-1})V_{i,j}+ R_l^{-1}V_{i,j+1}+R_{i,j}^{-1}V'_{i,j}=0,
 \end{equation}
-for the node at word line layer and 
+for the node at word line layer and
 \begin{equation}
 R_l^{-1}V'_{i-1,j} -(2R_l^{-1}+R_{i,j}^{-1})V'_{i,j}+ R_l^{-1}V'_{i,j+1}+R_{i,j}^{-1}V_{i,j}=0,
 \end{equation}
@@ -35,7 +35,7 @@ Besides, the activated point and floating point represent the node at the edge o
 \begin{equation}
 -(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=-R_v^{-1}V_{Wi},
 \end{equation}
-otherwise, it is left floating and has the KCL equation take the form of 
+otherwise, it is left floating and has the KCL equation take the form of
 \begin{equation}
 -(R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=0.
 \end{equation}
