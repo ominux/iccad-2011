@@ -1,11 +1,59 @@
 \vspace{10pt}
 \section{Analysis of Design Constraints}\label{sec:wr}
 \subsection{Overview}
+As shown in Figure.~\ref{fig:modeling}, in order to write or read the cross point array, the external voltages should be applied at the end of the word line and the bit line. Although there are several potential read/write schemes can be used to program the memory array, it is difficult to point out which schemes is the most proper choice under given design constraints of area/energy/reliability. Therefore, in this section, studies on different operation schemes and present are conducted. The results of this study can be very useful to guide the design of the cross point array. Since it is impossible to consider all of the data pattern stored in the array, in this work, the best and worst cases are studied.
+
+Table~\ref{table:parameter} shows the circuit parameter of our baseline design. The data is consistent to the recently published studies on ReRAM~\cite{crossbar_TED_2010}\cite{memristor:Cong}.
+
+\begin{table}[!b]
+  \centering
+  \scriptsize
+    \scriptsize
+  \caption{Comparison of Non-Volatile Memory Technologies}\label{table:parameter}
+  \vspace{-5pt}
+%  \begin{tabular}{|cccccp{3.5cm}|}
+  \begin{tabular}{c|c|c}
+    \hline    \hline
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+    \textbf{Metric} & \textbf{Description} & \textbf{Values} \\
+    \hline
+    \textbf{$S_{cell}$} & Cell Size & \textbf{$4F^2$} \\
+    \textbf{$R_l$} &  Interconnection Resistance&\textbf{$1.25\Omega$} \\
+    \textbf{$R_s$} &  Resistance of SA&\textbf{$100\Omega$} \\
+    \textbf{$V_{RESET}$} & Reset Voltage of Cell&\textbf{$2.0V$} \\
+    \textbf{$V_{SET}$} & Set Voltage of Cell&\textbf{$-2.0V$} \\
+    \textbf{$V_{READ}$} & Read Voltage of Cell&\textbf{$0.5V$} \\
+    \textbf{$R_{off}$} & HRS Resistance &\textbf{$500K\Omega$} \\
+    \textbf{$R_{on}$} & LRS Resistance &\textbf{$10K\Omega$} \\
+    \textbf{$V_{W}(R)$} & Word Line Voltage during Read &\textbf{$\pm 1V ???$} \\
+    \textbf{$V_{W}(W)$} & Word Line Voltage during Write  &\textbf{$0 / 2V$} \\
+    \textbf{$V_{W}(H)$} & Half Selected Word Line Voltage &\textbf{$1V$} \\
+    \textbf{$V_{B}(R)$} & Bit Line Voltage during Read  &\textbf{$10K\Omega ????$} \\
+    \textbf{$V_{B}(W)$} & Bit Line Voltage during Write  &\textbf{$0 / 2V$} \\
+    \textbf{$V_{B}(H)$} & Half Selected Bit Line Voltage &\textbf{$1V$} \\
+
+    \hline
+  \end{tabular}
+  \vspace{-10pt}
+\end{table}
+ 
+
+
+compared different design schemes to program the cross point array.
 \subsection{Write Operation}
+To write a ReRAM cell, a external voltage is required to applied across the cell for a certain duration. In general, there are four possible schemes for the write operation:
+\begin{enumerate}
+  \item According the location of the target cell, activate one word line and one bit line and leave all of the other lines floating.
+  \item Activate the targeted word line and bit line. Left all the other word line floating and half bias the other bit line.
+  \item In contrast with the scheme 2, activate the targeted word line and bit line. Left all the other bit line floating and half bias the other wold line.
+  \item Activate the targeted word line and bit line. Half bias all of the other bit line.
+\end{enumerate}
+
+
 1. Only consider the one-side scheme
 Consider 1/2 1/3 and floating?
 Energy Issue? Define Energy Efficient Parameter?
-Reliable Issue: Any possibility of write disturbance 
+Reliable Issue: Any possibility of write disturbance
 
 
 
