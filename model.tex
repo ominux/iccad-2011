@@ -8,7 +8,7 @@ at the very early stage of the design.
 \subsection{Basic model of Cross-Point Memory}
 Figure.~\ref{fig:modeling} shows the circuit model of the $M$ by $N$ cross point ReRAM array. The horizontal lines are word line and vertical lines represent the bit line. The ReRAM cells are located at each cross point of one word line and one bit line. The resistance of the ReRAM cell at the cross point of the $i^{th}$ word line and $j^{th}$ bit line is indicated as $R_{i,j}$. We assume the resistance of the interconnect nanowires between two adjacent cross point has the same value of $R_{line}$. The input resistance of each word line and bit line is $R_v$ and the resistance of sense amplifier is $R_s$. In order to set up the Kirchhoff's Current Law (KCL) equations, the voltage at each cross point is indicated as $V_{i,j}$ for word line and $V'_{i,j}$ for bit line. A detailed cross point is also shown in Figure.~\ref{fig:modeling}. Besides, the input voltage for the $i^{th}$ word line is $V_{Wi}$ and for the $i^{th}$ bit line is $V_{Bi}$. In the case of two side voltage input of word line, the voltage at the other end of the $i^{th}$ word line is denoted as $V_{W1}$. Finally, the voltage at the sense amplifier is $V'_{Bi}$ during the read operation.
 
-\begin{figure}[!b]
+\begin{figure}%[!hb]
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/model.pdf}\\
@@ -22,22 +22,54 @@ Based on the circuit model, the current equation for each cross point can be bui
 All of the cross points have similar structure and therefore it is easy to set up the KCL equation for each cross point. However, the cross point at the edge of the array may have different condition for different write/read schemes. For example, the unselected word line for write operation can be either half biased or left floating. Thus, the edge conditions should be carefully considered for each write/read schemes. However, generally speaking, all of the cross points can be classified into three major categories: Normal point, Activated point and Floating point.
 
 The normal point located insides the memory array. In other words, for all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form of
-\begin{equation}
+\begin{equation}\label{equ:KCL1}
 R_l^{-1}V_{i,j-1} -(2R_l^{-1}+R_{i,j}^{-1})V_{i,j}+ R_l^{-1}V_{i,j+1}+R_{i,j}^{-1}V'_{i,j}=0,
 \end{equation}
 for the node at word line layer and
-\begin{equation}
+\begin{equation}\label{equ:KCL2}
 R_l^{-1}V'_{i-1,j} -(2R_l^{-1}+R_{i,j}^{-1})V'_{i,j}+ R_l^{-1}V'_{i,j+1}+R_{i,j}^{-1}V_{i,j}=0,
 \end{equation}
 for the node at bit line layer.
 
 Besides, the activated point and floating point represent the node at the edge of cross point array with different conditions: a edge point, which have been directly connected to the voltage input or the ground, can be considered as a activated mode. Otherwise, it is floating node. Take the point located at the intersection of $i_{th}$ word line and $1_{st}$ bit line for example. If the $i_{th}$ word line is activated by a voltage input of $V_{Wi}$, then this cross point is activated point, and the KCL equation for this point is:
-\begin{equation}
+\begin{equation}\label{equ:KCL3}
 -(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=-R_v^{-1}V_{Wi},
 \end{equation}
 otherwise, it is left floating and has the KCL equation take the form of
-\begin{equation}
+\begin{equation}\label{equ:KCL4}
 -(R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=0.
 \end{equation}
+
+For the reasons of clarity, a vector ${V}_{2mn\times 1}$ is used to represent all of the variables in the KCL equations:
+\begin{equation}\label{equ:V1}
+{V}=[{V_1}^T,{V_2}^T...{V_m}^T,{V'_1}^T,{V'_2}^T...{V'_m}^T]^T,
+\end{equation}
+where,
+\begin{equation}\label{equ:V2}
+{V_i} = [V_{i,1},V_{i,2}...V_{i,n}]^T,\\
+\end{equation}
+\begin{equation}\label{equ:V3}
+{V'_i} = [V'_{i,1},V'_{i,2}...V'_{i,n}]^T.
+\end{equation}
+
+Then the KCL equations can be considered as a system of linear equations and has the form of 
+\begin{equation}\label{equ:matrix}
+A_{2mn\times{2mn}}\cdot V_{2mn\times{1}} = C_{2mn\times{1}},
+\end{equation}
+where $A$ is the coefficient matrix of and $C$ contained the constant terms. As shown in Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}), the KCL equations for each node have very simple structure and are very similar to each other. Therefore, the system of linear equations has a relatively fixed format and simple structure, which will be very easy to establish the questions and to adjust the coefficient according to different design schemes. As shown in Equation~(ref{equ:blockedmatrix}), the coefficient matrix $A$ can be partitioned into 4 smaller blocks. 
+\begin{equation}\label{equ:blockedmatrix}
+    \mathbf{A} = \left[
+    \begin{array}{cc}
+        A1 & A2  \\
+        A3 & A4  \\
+    \end{array} \right]
+\end{equation}
+All of the submatrix has the same size of $m\times n$. $A2$ and $A3$ are diagonal matrixes and have the form of: $A2_{i,j} = A3_{i,j} = R_{i,j}^{-1}$. $A1$ and $A4$ are a little bit more complex than $A2$ and $A3$. $A1$ can be further divided into 
+
+
+is a tridiagonal matrix and only has nonzero elements at the location in the main diagonal, and the first line below and above diagonal. Similarly, the $A_4$ is a special tridiagonal matrix, which has nonzero elements in the main diagonal, and the $n^th$ line below and above diagonal, where $n$ is the number of bit line in the cross point model.
+The value of the elements in $A_1$ and $A_4$ can be easily derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}). However, as mentioned, the edge condition varies with different program schemes. Therefore, the coefficients related to the edge condition should be update according to the program scheme as follow:
+  
+\textbf{detailed discuss on the mathematic}
 
 \subsection{Analysis of the Computing Complexity}
