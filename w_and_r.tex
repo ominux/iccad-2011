@@ -9,7 +9,7 @@ Table~\ref{table:parameter} shows the circuit parameter of our baseline design. 
   \centering
   \scriptsize
     \scriptsize
-  \caption{Comparison of Non-Volatile Memory Technologies}\label{table:parameter}
+  \caption{Parameters of the baseline Cross Point Array}\label{table:parameter}
   \vspace{-5pt}
 %  \begin{tabular}{|cccccp{3.5cm}|}
   \begin{tabular}{c|c|c}
@@ -20,8 +20,8 @@ Table~\ref{table:parameter} shows the circuit parameter of our baseline design. 
     \textbf{$S_{cell}$} & Cell Size & \textbf{$4F^2$} \\
     \textbf{$R_l$} &  Interconnection Resistance&\textbf{$1.25\Omega$} \\
     \textbf{$R_s$} &  Resistance of SA&\textbf{$100\Omega$} \\
-    \textbf{$V_{RESET}$} & Reset Voltage of Cell&\textbf{$2.0V$} \\
-    \textbf{$V_{SET}$} & Set Voltage of Cell&\textbf{$-2.0V$} \\
+    \textbf{$V_{RESET}$} & Threshold voltage for RESET&\textbf{$2.0V$} \\
+    \textbf{$V_{SET}$} & Threshold voltage for SET&\textbf{$-2.0V$} \\
     \textbf{$V_{READ}$} & Read Voltage of Cell&\textbf{$0.5V$} \\
     \textbf{$R_{off}$} & HRS Resistance &\textbf{$500K\Omega$} \\
     \textbf{$R_{on}$} & LRS Resistance &\textbf{$10K\Omega$} \\
@@ -31,23 +31,47 @@ Table~\ref{table:parameter} shows the circuit parameter of our baseline design. 
     \textbf{$V_{B}(R)$} & Bit Line Voltage during Read  &\textbf{$10K\Omega ????$} \\
     \textbf{$V_{B}(W)$} & Bit Line Voltage during Write  &\textbf{$0 / 2V$} \\
     \textbf{$V_{B}(H)$} & Half Selected Bit Line Voltage &\textbf{$1V$} \\
+    \textbf{$M$} & Number of Word Line &\textbf{$64$} \\
+    \textbf{$N$} & Number of Bit Line &\textbf{$64$} \\
 
     \hline
   \end{tabular}
   \vspace{-10pt}
 \end{table}
- 
 
+Considering that program schemes for write and read operation are different and the the requirement for write and read are also dissimilar, in the following section we carefully study the write and read operation separately. And then the results are combined together to provide a design methodology for the cross point array.
 
-compared different design schemes to program the cross point array.
 \subsection{Write Operation}
-To write a ReRAM cell, a external voltage is required to applied across the cell for a certain duration. In general, there are four possible schemes for the write operation:
+To write a ReRAM cell, a external voltage is required to applied across the cell for a certain duration. Intuitively, there are four possible schemes for the write operation:
 \begin{enumerate}
-  \item According the location of the target cell, activate one word line and one bit line and leave all of the other lines floating.
-  \item Activate the targeted word line and bit line. Left all the other word line floating and half bias the other bit line.
-  \item In contrast with the scheme 2, activate the targeted word line and bit line. Left all the other bit line floating and half bias the other wold line.
-  \item Activate the targeted word line and bit line. Half bias all of the other bit line.
+  \item According the location of the target cell, activate one word line and one bit line and leave all of the other lines floating (FWFB shemes).
+  \item Activate the targeted word line and bit line. Left all the other word line floating and half bias the other bit line (FWHB shemes).
+  \item In contrast with the scheme 2, activate the targeted word line and bit line. Left all the other bit line floating and half bias the other wold line (HWFB shemes).
+  \item Activate the targeted word line and bit line. Half bias all of the other bit line (HWHB shemes).
 \end{enumerate}
+
+In the ideal condition, all of these four schemes can provide enough voltage drop across the specified cell. However, the realistic circuit is not perfect and the electronic behavior of the array will deviate from the ideal scenario. In this section, the reliability, energy consumption and area overhead for the four write schemes based on our basic circuit parameter as shown in Table.~\ref{table:parameter}. Then the sensitivities of these schemes to resistance values of HRS and LRS ReRAM cell, and interconnect wire are studied.
+
+\vspace{10pt}
+\textbf{Reliable Write Operation.}
+\vspace{8pt}
+
+The most important issue for the write operation is the reliability concern. A reliable write operation can be defined as: switching the selected cells into required states without disturbing the states of unselected cells. Therefore, there exist two potential write error:
+\textbf{write failure} and \textbf{write disturbance}. All of the write schemes should at least meet the reliability requirement at the worst case. On the other word, the designer should make sure there is not any write failure and write failure disturbance occur even in the worst case. 
+First of all, we will show the inherent problem of FWFB scheme, which may result in severs write disturbance. The worse case scenario for FWFB write disturbance can be defined as: all of unselected cells in the activated word line (or all of unselected cells in the activated bit line) are at HRS and other cells are in LRS. In this case, as shown in Figure. 
+\begin{figure}%[!hb]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.45\textwidth]{./figures/FWFB.pdf}\\
+  \caption{Write Disturbance for FWFB Schemes.}\label{fig:FWFR}
+\end{figure}
+
+
+
+  
+The worst case scenario of write disturbance for each each schemes can be 
+
+
 
 
 1. Only consider the one-side scheme
