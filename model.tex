@@ -11,7 +11,7 @@ Figure.~\ref{fig:modeling} shows the circuit model of the $M$ by $N$ cross point
 \begin{figure}%[!hb]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/model.pdf}\\
+  \includegraphics[width=0.45\textwidth]{./figures/model_reverse.pdf}\\
   \caption{The basic model of typical cross point array.}\label{fig:modeling}
 \end{figure}
 \subsection{Edge Conditions for Different Write/Read Schemes}
@@ -52,11 +52,11 @@ where,
 {V'_i} = [V'_{i,1},V'_{i,2}...V'_{i,n}]^T.
 \end{equation}
 
-Then the KCL equations can be considered as a system of linear equations and has the form of 
+Then the KCL equations can be considered as a system of linear equations and has the form of
 \begin{equation}\label{equ:matrix}
 A_{2mn\times{2mn}}\cdot V_{2mn\times{1}} = C_{2mn\times{1}},
 \end{equation}
-where $A$ is the coefficient matrix of and $C$ contained the constant terms. As shown in Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}), the KCL equations for each node have very simple structure and are very similar to each other. Therefore, the system of linear equations has a relatively fixed format and simple structure, which will be very easy to establish the questions and to adjust the coefficient according to different design schemes. As shown in Equation~(ref{equ:blockedmatrix}), the coefficient matrix $A$ can be partitioned into 4 smaller blocks. 
+where $A$ is the coefficient matrix of and $C$ contained the constant terms. As shown in Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}), the KCL equations for each node have very simple structure and are very similar to each other. Therefore, the system of linear equations has a relatively fixed format and simple structure, which will be very easy to establish the questions and to adjust the coefficient according to different design schemes. As shown in Equation~(ref{equ:blockedmatrix}), the coefficient matrix $A$ can be partitioned into 4 smaller blocks.
 \begin{equation}\label{equ:blockedmatrix}
     \mathbf{A} = \left[
     \begin{array}{cc}
@@ -64,12 +64,12 @@ where $A$ is the coefficient matrix of and $C$ contained the constant terms. As 
         A3 & A4  \\
     \end{array} \right]
 \end{equation}
-All of the submatrix has the same size of $m\times n$. $A2$ and $A3$ are diagonal matrixes and have the form of: $A2_{i,j} = A3_{i,j} = R_{i,j}^{-1}$. $A1$ and $A4$ are a little bit more complex than $A2$ and $A3$. $A1$ can be further divided into 
+All of the submatrix has the same size of $m\times n$. $A2$ and $A3$ are diagonal matrixes and have the form of: $A2_{i,j} = A3_{i,j} = R_{i,j}^{-1}$. $A1$ and $A4$ are a little bit more complex than $A2$ and $A3$. $A1$ can be further divided into
 
 
 is a tridiagonal matrix and only has nonzero elements at the location in the main diagonal, and the first line below and above diagonal. Similarly, the $A_4$ is a special tridiagonal matrix, which has nonzero elements in the main diagonal, and the $n^th$ line below and above diagonal, where $n$ is the number of bit line in the cross point model.
 The value of the elements in $A_1$ and $A_4$ can be easily derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}). However, as mentioned, the edge condition varies with different program schemes. Therefore, the coefficients related to the edge condition should be update according to the program scheme as follow:
-  
+
 \textbf{detailed discuss on the mathematic}
 
 \subsection{Analysis of the Computing Complexity}
