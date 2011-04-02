@@ -84,10 +84,11 @@ behavior of the array will deviate from the ideal scenario with different
 data pattern stored. A reliable write operation can be defined as:
 switching the selected cells into required states without disturbing the
 states of unselected cells. Therefore, there exist two potential write
-errors: \textbf{write failure} and \textbf{write disturbance}. All of the
-write schemes should at least meet the reliability requirement at the
-worst case. On the other word, the designer should make sure there is not
-any write failure and write disturbance even in the worst case.
+errors: \textbf{write failure}, an unsuccessful write on selected cell,
+and \textbf{write disturbance}, an undesirable write on unselected cell.
+All of the write schemes should at least meet the reliability requirement
+at the worst case. On the other word, the designer should make sure there
+is not any write failure and write disturbance even in the worst case.
 
 First of all, we will discuss the inherent problem of FWFB scheme, which
 may result in severs write disturbance. A worse case scenario for FWFB
@@ -113,25 +114,30 @@ results of FWHB, HWFB and HWHB schemes.
   \caption{Write Disturbance for FWFB Schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
 \end{figure}
 
-The write failure results from the voltage drop at the interconnect
-resistance along the word line and bit line. It has been shown that the
-worst case of this scenario is:
+The write failure results from the voltage drop at the interconnect wires
+along the word line and bit line It has been shown that the worst case of
+voltage drop is:
 \begin{equation}
 \left\{
 \begin{array}{l}
 R_{i,j}=R_{on}\\
 V_{WM}=V_W(W)\\
-V_{BN}=V_B(W)
+V_{BN}=V_B(W).
 \end{array} \right.
 \end{equation}
+In order to avoid the write failure and successful program the selected
+ReRAM cell, the driven voltage should be increased to a higher level,
+making sure the voltage across the cell exceed the threshold voltage at
+the worst case. Figure.~\ref{fig:worst_v} shows the lower bound of the
+driven voltage for different size of cross point array. The drive
 
-In order to make sure the required
+%Clearly, the magnitude of the voltage drop increases with the array size and the resistance of interconnect wires.
 
 \begin{figure}%[!hb]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/worst_v.pdf}\\
-  \caption{Write Voltage Requirement. }\label{fig:worst_v}
+  \includegraphics[width=0.45\textwidth]{./figures/worst_v2.pdf}\\
+  \caption{Write Voltage Requirement (Threshold Voltage = 2V). }\label{fig:worst_v}
 \end{figure}
 
 
@@ -144,8 +150,8 @@ In order to make sure the required
 
 
 However, with the increase of the driven voltage, the voltage drop across
-the unselected cell will also increase. Therefore, a write disturbance
-will occur when the voltage applied at the half select cell exceeds the
+the unselected cell also increases. Therefore, a write disturbance will
+occur when the voltage applied at the half select cell exceeds the
 threshold voltage for SET and RESET operation. Figure.~\ref{fig:half}
 shows the worst case (maximum) voltage applied at the unselected cell.
 
