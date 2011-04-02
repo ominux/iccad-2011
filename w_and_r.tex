@@ -1,5 +1,6 @@
 \vspace{10pt}
 \section{Analysis of Design Constraints}\label{sec:wr}
+
 \subsection{Overview}
 As shown in Figure.~\ref{fig:modeling}, in order to write or read the
 cross point array, the external voltages should be applied at the end of
@@ -75,30 +76,29 @@ guideline for write operation.
 \vspace{10pt} \textbf{Reliable Write Operation.} \vspace{8pt}
 
 The most important issue for the write operation is the reliability
-concern. In the ideal condition, the resistances of interconnection wires
-and the sneak currents at unselected cells are negligible. Therefore, all
-of these four schemes can provide enough voltage drop across the specified
+concern. In the ideal condition, the resistances of interconnect wires and
+the sneak currents at unselected cells are negligible. Therefore, all of
+these four schemes can provide enough voltage drop across the specified
 cell. However, the realistic circuit is not perfect and the electronic
 behavior of the array will deviate from the ideal scenario with different
 data pattern stored. A reliable write operation can be defined as:
 switching the selected cells into required states without disturbing the
 states of unselected cells. Therefore, there exist two potential write
-error: \textbf{write failure} and \textbf{write disturbance}. All of the
+errors: \textbf{write failure} and \textbf{write disturbance}. All of the
 write schemes should at least meet the reliability requirement at the
 worst case. On the other word, the designer should make sure there is not
-any write failure and write failure disturbance occur even in the worst
-case.
+any write failure and write disturbance even in the worst case.
 
 First of all, we will discuss the inherent problem of FWFB scheme, which
 may result in severs write disturbance. A worse case scenario for FWFB
 write disturbance can be defined as: all of unselected cells in the
 activated word line (or all of unselected cells in the activated bit line)
 are at HRS and other cells are in LRS. In this case, the voltage drop at
-unselected cells are mainly applied at the HRS cell at the word line (or
-bit line). Figure.~\ref{fig:FWFR} shows a example of this case at a $64
+unselected cells are mainly applied at the HRS cells at the word line (or
+bit line). Figure.~\ref{fig:FWFR} shows an example of this case for a $64
 \times 64$ cross point array. It clearly that all of the unselected cells
-at the activated bit line will be disturbed. This inherent problem exist
-at all of the FWFB schemes and become very serious with the large On-OFF
+at the activated bit line will be disturbed. This inherent problem exists
+at all of the FWFB schemes and becomes very serious with the large On-OFF
 resistance ratio. Considering that the reported On-OFF resistance ratio of
 ReRAM cell is always $>50$
 ~\cite{ReRAM_IEDM2010_Ho,ReRAM_IEDM2010_Chien,ReRAM_IEDM2010_Lee_Diode,ReRAM_IEDM2010_Lee_Evidence,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka},
@@ -106,17 +106,26 @@ it is impossible to build a cross point structure ReRAM with the FWFB
 scheme. Therefore, in the following discussion, we only compare the
 results of FWHB, HWFB and HWHB schemes.
 
-\begin{figure}%[!hb]
+\begin{figure}[!b]
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/FWFB2.pdf}\\
   \caption{Write Disturbance for FWFB Schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
 \end{figure}
 
-The write failure results from the voltage drop along the word line and
-bit line. It has been shown that the worst case of this scenario is:
+The write failure results from the voltage drop at the interconnect
+resistance along the word line and bit line. It has been shown that the
+worst case of this scenario is:
+\begin{equation}
+\left\{
+\begin{array}{l}
+R_{i,j}=R_{on}\\
+V_{WM}=V_W(W)\\
+V_{BN}=V_B(W)
+\end{array} \right.
+\end{equation}
 
-In order to make sure
+In order to make sure the required
 
 \begin{figure}%[!hb]
 \centering
@@ -126,14 +135,13 @@ In order to make sure
 \end{figure}
 
 
-
-
-\begin{figure}%[!hb]
+\begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/shape.pdf}\\
-  \caption{Write Voltage Requirement with Different Memory Shape. }\label{fig:shape}
+  \includegraphics[width=0.45\textwidth]{./figures/shape2.pdf}\\
+  \caption{Write Voltage Requirement with Different Memory Shape. (Array Capacity = 4Kbits)}\label{fig:shape}
 \end{figure}
+
 
 However, with the increase of the driven voltage, the voltage drop across
 the unselected cell will also increase. Therefore, a write disturbance
