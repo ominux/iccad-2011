@@ -107,7 +107,7 @@ it is impossible to build a cross point structure ReRAM with the FWFB
 scheme. Therefore, in the following discussion, we only compare the
 results of FWHB, HWFB and HWHB schemes.
 
-\begin{figure}[!b]
+\begin{figure}%[!b]
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/FWFB2.pdf}\\
@@ -125,11 +125,7 @@ V_{WM}=V_W(W)\\
 V_{BN}=V_B(W).
 \end{array} \right.
 \end{equation}
-In order to avoid the write failure and successful program the selected
-ReRAM cell, the driven voltage should be increased to a higher level,
-making sure the voltage across the cell exceed the threshold voltage at
-the worst case. Figure.~\ref{fig:worst_v} shows the lower bound of the
-driven voltage for different size of cross point array. The drive
+In order to avoid the \textbf{write failure} and successful program the selected ReRAM cell, the driven voltage should be increased to a higher level, making sure the voltage across the cell exceed the threshold voltage at the worst case. Figure.~\ref{fig:worst_v} shows the lower bound of the driven voltage for different size of cross point array. The minimum word/bit line voltage increases from 2.01 V for a $8 \times 8$ array to 4.47 V for a $128 \times 128$ cross point array. Besides, for a given memory capability, the cross point can be organized with different number of word line and bit line. For example, a 4K bits cross point array can be implemented either by a $64 \times 64$ array or by a $32 \times 128$ array. In the latter case, the voltage drops along the word line and bit line are different with each other. Therefore, Figure.~\ref{fig:shape} exams the voltage requirement for different array organization. The results show that from the reliability point of view, the cross point array with same numbers of word line and bit line is the best choice.
 
 %Clearly, the magnitude of the voltage drop increases with the array size and the resistance of interconnect wires.
 
@@ -145,31 +141,19 @@ driven voltage for different size of cross point array. The drive
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/shape2.pdf}\\
-  \caption{Write Voltage Requirement with Different Memory Shape. (Array Capacity = 4Kbits)}\label{fig:shape}
+  \caption{Write Voltage Requirement with Different Memory Shape. (Array Capacity = 4Kbits, Activated Word Line Voltage = 2V, Activated Bit Line Voltage = 0V.)}\label{fig:shape}
 \end{figure}
 
+However, in the other hand, the increasing of the driven voltage also increases the voltage applied at the unselected cell. Therefore, a \textbf{write disturbance} will occur when the voltage applied at the unselected cell exceeds the threshold voltage for SET or RESET operation. Figure.~\ref{fig:half} shows the worst case (maximum) voltage applied at unselected cells with the minimum driven voltage shown in Figure~\ref{fig:worst_v}. Since the threshold voltage of the cell is 2V, all of the word/bit line combinations at the region with worst case voltage more than 2V are unreliable and can not meet the avoid write failure and write disturbance at the same time.
 
-However, with the increase of the driven voltage, the voltage drop across
-the unselected cell also increases. Therefore, a write disturbance will
-occur when the voltage applied at the half select cell exceeds the
-threshold voltage for SET and RESET operation. Figure.~\ref{fig:half}
-shows the worst case (maximum) voltage applied at the unselected cell.
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.3\textwidth]{./figures/Theoretical_bound.pdf}\\
+  \caption{The }\label{fig:half}
+\end{figure}
 
+\vspace{10pt} \textbf{Power Consumption of Write Operation.} \vspace{8pt}
 
-
-
-
-1. Only consider the one-side scheme
-Consider 1/2 1/3 and floating?
-Energy Issue? Define Energy Efficient Parameter?
-Reliable Issue: Any possibility of write disturbance
-
-
-
-
-2. Present the voltage drop problem
-Reliability Issue
-
-3. Two Way Scheme
 
 \subsection{Read Operation}
