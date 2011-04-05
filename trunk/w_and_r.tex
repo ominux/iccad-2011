@@ -105,7 +105,11 @@ ReRAM cell is always $>50$
 ~\cite{ReRAM_IEDM2010_Ho,ReRAM_IEDM2010_Chien,ReRAM_IEDM2010_Lee_Diode,ReRAM_IEDM2010_Lee_Evidence,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka},
 it is impossible to build a cross point structure ReRAM with the FWFB
 scheme. Therefore, in the following discussion, we only compare the
-results of FWHB, HWFB and HWHB schemes.
+results of FWHB, HWFB and HWHB schemes. For each of these three schemes,
+we can either write one word line at the same time or only write one bit
+per access and separate the write operation to several arrays. In the
+following discussion, we start from one bit per access write operation.
+And then the results of one word line per access method are compared.
 
 \begin{figure}%[!b]
 \centering
@@ -115,8 +119,8 @@ results of FWHB, HWFB and HWHB schemes.
 \end{figure}
 
 The write failure results from the voltage drop at the interconnect wires
-along the word line and bit line It has been shown that the worst case of
-voltage drop is:
+along the word line and bit line It has been shown that, for one bit per
+access write operation, the worst case of voltage drop is:
 \begin{equation}
 \left\{
 \begin{array}{l}
@@ -125,7 +129,21 @@ V_{WM}=V_W(W)\\
 V_{BN}=V_B(W).
 \end{array} \right.
 \end{equation}
-In order to avoid the \textbf{write failure} and successful program the selected ReRAM cell, the driven voltage should be increased to a higher level, making sure the voltage across the cell exceed the threshold voltage at the worst case. Figure.~\ref{fig:worst_v} shows the lower bound of the driven voltage for different size of cross point array. The minimum word/bit line voltage increases from 2.01 V for a $8 \times 8$ array to 4.47 V for a $128 \times 128$ cross point array. Besides, for a given memory capability, the cross point can be organized with different number of word line and bit line. For example, a 4K bits cross point array can be implemented either by a $64 \times 64$ array or by a $32 \times 128$ array. In the latter case, the voltage drops along the word line and bit line are different with each other. Therefore, Figure.~\ref{fig:shape} exams the voltage requirement for different array organization. The results show that from the reliability point of view, the cross point array with same numbers of word line and bit line is the best choice.
+In order to avoid the \textbf{write failure} and successful program the
+selected ReRAM cell, the driven voltage should be increased to a higher
+level, making sure the voltage across the cell exceed the threshold
+voltage at the worst case. Figure.~\ref{fig:worst_v} shows the lower bound
+of the driven voltage for different size of cross point array. The minimum
+word/bit line voltage increases from 2.01 V for a $8 \times 8$ array to
+4.47 V for a $128 \times 128$ cross point array. Besides, for a given
+memory capability, the cross point can be organized with different number
+of word line and bit line. For example, a 4K bits cross point array can be
+implemented either by a $64 \times 64$ array or by a $32 \times 128$
+array. In the latter case, the voltage drops along the word line and bit
+line are different with each other. Therefore, Figure.~\ref{fig:shape}
+exams the voltage requirement for different array organization. The
+results show that from the reliability point of view, the cross point
+array with same numbers of word line and bit line is the best choice.
 
 %Clearly, the magnitude of the voltage drop increases with the array size and the resistance of interconnect wires.
 
@@ -144,7 +162,18 @@ In order to avoid the \textbf{write failure} and successful program the selected
   \caption{Write Voltage Requirement with Different Memory Shape. (Array Capacity = 4Kbits, Activated Word Line Voltage = 2V, Activated Bit Line Voltage = 0V.)}\label{fig:shape}
 \end{figure}
 
-However, in the other hand, the increasing of the driven voltage also increases the voltage applied at the unselected cell. Therefore, a \textbf{write disturbance} will occur when the voltage applied at the unselected cell exceeds the threshold voltage for SET or RESET operation. Figure.~\ref{fig:half} shows the worst case (maximum) voltage applied at unselected cells with the minimum driven voltage shown in Figure~\ref{fig:worst_v}. Since the threshold voltage of the cell is 2V, all of the word/bit line combinations at the region with worst case voltage more than 2V are unreliable and can not meet the avoid write failure and write disturbance at the same time.
+However, in the other hand, the increasing of the driven voltage also
+increases the voltage applied at the unselected cell. Therefore, a
+\textbf{write disturbance} will occur when the voltage applied at the
+unselected cell exceeds the threshold voltage for SET or RESET operation.
+Figure.~\ref{fig:half} shows the worst case (maximum) voltage applied at
+unselected cells with the minimum driven voltage shown in
+Figure~\ref{fig:worst_v}. Since the threshold voltage of the cell is 2V,
+all of the word/bit line combinations at the region with worst case
+voltage more than 2V are unreliable and can not avoid write failure and
+write disturbance at the same time. Thus, Figure.~\ref{fig:half} provides
+the hard constraint of array size, and all of the following energy and
+area tradeoffs should be bounded by this constraint.
 
 \begin{figure}%[!t]
 \centering
@@ -153,7 +182,37 @@ However, in the other hand, the increasing of the driven voltage also increases 
   \caption{The }\label{fig:half}
 \end{figure}
 
-\vspace{10pt} \textbf{Power Consumption of Write Operation.} \vspace{8pt}
+
+
+\vspace{10pt} \textbf{Energy Consumption of Write Operation.} \vspace{8pt}
+
+The energy consumption of a write operation for a cross point array can be
+calculated as:
+\begin{equation}
+E_{write} = E_{select} + E_{unselect} + E_{line},
+\end{equation}
+where the $P_{select}$ is the energy consumed to change the state of the
+selected cell, the $E_{unselect}$ and $E_{line}$ are the undesired energy
+wasted at the unselected cell and the interconnect wires. The write
+operation can
+
+First of all, Figure~\?? shows the energy consumption for
+
+\vspace{10pt} \textbf{Area cost of Write Operation.} \vspace{8pt}
+
+The write operation requires $m+n$ access device for a $m{\times}n$ array.
+Therefore, the average number of ReRAM cells per access device can be
+calculated as $mn/(m+n)$. By given a array capacity $C_{array}$, it is
+easy to find that the optimal array organization can be achieved when
+$m=n=\sqrt{C_{array}}$ and the maximum number of cells per access device
+is: $\sqrt{C_{array}}/2$. However, the area overhead of the access device
+also related to the driven current. Figure ?? shows the required driven
+current for different
 
 
 \subsection{Read Operation}
+
+
+
+\subsection{Discussion on Non-linearity of the ReRAM}
+An
