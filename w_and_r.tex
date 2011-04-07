@@ -1,16 +1,15 @@
 \vspace{10pt}
-\section{Analysis of Design Constraints}\label{sec:wr}
+\section{Analysis of Design Constraints}\label{sec:w_and_r}
 
 \subsection{Overview}
 As shown in Figure.~\ref{fig:modeling}, in order to write or read the
-cross point array, the external voltages should be applied at the end of
+cross-point array, the external voltages should be applied at the end of
 the word line and the bit line. Although there are several potential
 read/write schemes can be used to program the memory array, it is
 difficult to point out which schemes is the most proper choice under given
 design constraints of area/energy/reliability. Therefore, in this section,
 studies on different operation schemes and present are conducted. The
-results of this study can be very useful to guide the design of the cross
-point array. Since it is impossible to consider all of the data pattern
+results of this study can be very useful to guide the design of the cross-point array. Since it is impossible to consider all of the data pattern
 stored in the array, in this work, the best and worst cases are studied.
 
 Table~\ref{table:parameter} shows the circuit parameter of our baseline
@@ -24,7 +23,7 @@ pattern of HRS and LRS ReRAM cells, and interconnect wires are studied.
   \centering
   \scriptsize
     \scriptsize
-  \caption{Parameters of the baseline Cross Point Array}\label{table:parameter}
+  \caption{Parameters of the baseline Cross-Point Array}\label{table:parameter}
   \vspace{-5pt}
 %  \begin{tabular}{|cccccp{3.5cm}|}
   \begin{tabular}{c|c|c}
@@ -58,7 +57,7 @@ Considering that program schemes for write and read operation are
 different and the the requirement for write and read are also dissimilar,
 in the following section we carefully study the write and read operation
 separately. And then the results are combined together to provide a design
-methodology for the cross point array.
+methodology for the cross-point array.
 
 \subsection{Write Operation}
 To write a ReRAM cell, a external voltage is required to applied across the cell for a certain duration. Intuitively, there are four possible schemes for the write operation:
@@ -97,13 +96,13 @@ activated word line (or all of unselected cells in the activated bit line)
 are at HRS and other cells are in LRS. In this case, the voltage drop at
 unselected cells are mainly applied at the HRS cells at the word line (or
 bit line). Figure.~\ref{fig:FWFR} shows an example of this case for a $64
-\times 64$ cross point array. It clearly that all of the unselected cells
+\times 64$ cross-point array. It clearly that all of the unselected cells
 at the activated bit line will be disturbed. This inherent problem exists
 at all of the FWFB schemes and becomes very serious with the large On-OFF
 resistance ratio. Considering that the reported On-OFF resistance ratio of
 ReRAM cell is always $>50$
 ~\cite{ReRAM_IEDM2010_Ho,ReRAM_IEDM2010_Chien,ReRAM_IEDM2010_Lee_Diode,ReRAM_IEDM2010_Lee_Evidence,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka},
-it is impossible to build a cross point structure ReRAM with the FWFB
+it is impossible to build a cross-point structure ReRAM with the FWFB
 scheme. Therefore, in the following discussion, we only compare the
 results of FWHB, HWFB and HWHB schemes. For each of these three schemes,
 we can either write one word line at the same time or only write one bit
@@ -133,16 +132,16 @@ In order to avoid the \textbf{write failure} and successful program the
 selected ReRAM cell, the driven voltage should be increased to a higher
 level, making sure the voltage across the cell exceed the threshold
 voltage at the worst case. Figure.~\ref{fig:worst_v} shows the lower bound
-of the driven voltage for different size of cross point array. The minimum
+of the driven voltage for different size of cross-point array. The minimum
 word/bit line voltage increases from 2.01 V for a $8 \times 8$ array to
-4.47 V for a $128 \times 128$ cross point array. Besides, for a given
-memory capability, the cross point can be organized with different number
-of word line and bit line. For example, a 4K bits cross point array can be
+4.47 V for a $128 \times 128$ cross-point array. Besides, for a given
+memory capability, the cross-point can be organized with different number
+of word line and bit line. For example, a 4K bits cross-point array can be
 implemented either by a $64 \times 64$ array or by a $32 \times 128$
 array. In the latter case, the voltage drops along the word line and bit
 line are different with each other. Therefore, Figure.~\ref{fig:shape}
 exams the voltage requirement for different array organization. The
-results show that from the reliability point of view, the cross point
+results show that from the reliability point of view, the cross-point
 array with same numbers of word line and bit line is the best choice.
 
 %Clearly, the magnitude of the voltage drop increases with the array size and the resistance of interconnect wires.
@@ -186,7 +185,7 @@ area tradeoffs should be bounded by this constraint.
 
 \vspace{10pt} \textbf{Energy Consumption of Write Operation.} \vspace{8pt}
 
-The energy consumption of a write operation for a cross point array can be
+The energy consumption of a write operation for a cross-point array can be
 calculated as:
 \begin{equation}
 E_{write} = E_{select} + E_{unselect} + E_{line},
