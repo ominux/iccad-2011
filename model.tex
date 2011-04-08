@@ -27,7 +27,7 @@ R_l^{-1}V_{i,j-1} -(2R_l^{-1}+R_{i,j}^{-1})V_{i,j}+ R_l^{-1}V_{i,j+1}+R_{i,j}^{-
 \end{equation}
 for the node at word line layer and
 \begin{equation}\label{equ:KCL2}
-R_l^{-1}V'_{i-1,j} -(2R_l^{-1}+R_{i,j}^{-1})V'_{i,j}+ R_l^{-1}V'_{i,j+1}+R_{i,j}^{-1}V_{i,j}=0,
+R_l^{-1}V'_{i-1,j} -(2R_l^{-1}+R_{i,j}^{-1})V'_{i,j}+ R_l^{-1}V'_{i+1,j}+R_{i,j}^{-1}V_{i,j}=0,
 \end{equation}
 for the node at bit line layer.
 
@@ -59,7 +59,7 @@ A_{2mn\times{2mn}}\cdot V_{2mn\times{1}} = C_{2mn\times{1}},
 where $A$ is the coefficient matrix which is determined by Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}) and $C$ contained the constant terms of these equations. As shown, the KCL equations for each node have very simple structure and are very similar to each other. Therefore, the system of linear equations has a relatively fixed format and simple structure, which will be very easy to establish the equations and to adjust the coefficients according to different design schemes. The characteristics of the linear system can be summarized as:
 
 \begin{enumerate}
-  \item 
+  \item
   As shown in Equation~(\ref{equ:blockedmatrix}), coefficient matrix $A$ can be further partitioned into 4 smaller subblocks :
     \begin{equation}\label{equ:blockedmatrix}
         \mathbf{A} = \left[
@@ -68,13 +68,35 @@ where $A$ is the coefficient matrix which is determined by Equation(\ref{equ:KCL
             A3 & A4  \\
         \end{array} \right].
     \end{equation}
-All of these subblocks have the same size of $m\times n$. $A2$ and $A3$ are diagonal matrixes and have the value of: $A2_{i,i} = A3_{i,i} = R_{i,i}^{-1}$. Besides, $A2$ and $A3$ do not change their values with different schemas. $A1$ and $A4$ are a little bit more complex than $A2$ and $A3$. $A1$ is a tridiagonal matrix and only has nonzero elements at the location in the main diagonal, and the first line below and above diagonal. Similarly, the $A_4$ is a special tridiagonal matrix, which has nonzero elements in the main diagonal, the $n^th$ line below and above diagonal, where $n$ is the number of bit line in the cross point model.
-The value of the elements in $A_1$ and $A_4$ can be easily derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}). However, as mentioned, the edge condition varies with different program schemes. 
-Therefore, the coefficients related to the edge condition should be update according to the program scheme as follow:
-\textbf{?????}
-  
-  \item The constant terms $C$ is a $2mn{\times}1$ vector. Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}) show that only KCL equations of the activated points have the constant term. Therefore, only the following elements in $C$ may have non-zero value. All of the other elements are always zero.
-      \textbf{?????}
+All of these subblocks have the same size of $m\times n$. $A2$ and $A3$ are diagonal matrixes and have the value of: $A2_{i,i} = A3_{i,i} = R_{i,i}^{-1}$. Besides, $A2$ and $A3$ do not change their values with different schemas. $A1$ and $A4$ are a little bit more complex than $A2$ and $A3$. $A1$ is a tridiagonal matrix and only has nonzero elements at the location in the main diagonal, and the first line below and above diagonal. Similarly, the $A_4$ is a special tridiagonal matrix, which has nonzero elements in the main diagonal, the $n^{th}$ line below and above diagonal, where $n$ is the number of bit line in the cross point model.
+The value of the elements in $A1$ and $A4$ can be easily derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}). However, as mentioned, the edge condition varies with different program schemes. Therefore, the coefficients related to the edge condition should be update according to the program schemes. Clearly, the four edges shown in Figure.~\ref{fig:modeling} correspond to different coefficients in $A1$ and $A4$. Due to the space limitations, we take the nodes at the left edge of the array for example. Coefficients of other edge nodes can be initiated by the same way. The coefficients of nodes at the left edge of the array ($V_{i,1}$) can be set as:
+%    \begin{equation}\label{equ:A1}
+%        \A1((n-1)i+1,(n-1)i+1) = \left{
+%        \begin{array}{cc}
+%            A1 & A2  \\
+%            A3 & A4  \\
+%        \end{array}.
+%    \end{equation}
+    
+    \begin{equation}
+    A1(k,k) = \left\{
+    \begin{array}{ll}
+    -(R_l^{-1}+R_{i,1}^{-1})   & \text{if } floating\\
+    -(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})& \text{if } activated
+    \end{array} \right.
+    \end{equation}
+    where $k=(n-1)i+1$ for $i=1,2...m$.
+    
+  \item The constant terms $C$ is a $2mn{\times}1$ vector. Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}) show that only KCL equations of the activated points have the constant term. Therefore, only the following elements in $C$ may have non-zero value: $C((i-1)n+1)$, $C(in)$, $C(mn+i)$ and $C((2m-1)n+i)$ for $i=1,2...m$, correspond to the nodes at the four edges respectively. Likewise, we take nodes $V_{i,1}$ for example. The constant correspond to these node can be defined as:
+
+    \begin{equation}
+    C((i-1)n+1) = \left\{
+    \begin{array}{ll}
+    0   & \text{if } floating\\
+    -R_v^{-1}V_{Wi}& \text{if } activated
+    \end{array} \right.
+    \end{equation}
+    for $i=1,2...m$.
 \end{enumerate}
 
-By given all of the required parameters, including the resistance of ReRAM cell, interconnect wires, program voltage and write/read schemes, the voltage at each point of the cross point array can be obtained by solving the Equation~(\ref{equ:matrix}) with simple matrix computations. With the voltage map, $V_{2mn{\times}1}$, we can analyzed the array at a very fine granularity. Also, these information can be very useful to evaluate the reliability, energy consumption, driven current density and area overhead of the cross point array.
+Therefore, by given all of the required parameters, including the resistance of ReRAM cell, interconnect wires, program voltage and write/read schemes, the voltage at each point of the cross point array can be obtained by solving the Equation~(\ref{equ:matrix}) with simple matrix computations. With the voltage map, $V_{2mn{\times}1}$, we can analyzed the array at a very fine granularity. Also, these information can be very useful to evaluate the reliability, energy consumption, driven current density and area overhead of the cross point array.
