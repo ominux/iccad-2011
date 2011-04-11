@@ -190,14 +190,14 @@ The energy consumption of a write operation for a cross-point array can be calcu
 E_{write} = E_{select} + E_{unselect} + E_{halfselect} + E_{line},
 \end{equation}
 where the $E_{select}$ is the energy consumed to change the state of the
-selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy wasted at the half selected and unselected cells. The energy consumed by the interconnect lines are represented by $E_{line}$. Figure.~\ref{fig:energy} shows each part's energy consumption for the cross-point array. Firstly, the $E_{line}$ and $E_{halfselect}$ take a large amount of the total energy consumption. Besides, the energy wasted during the write operation is much larger than the energy required to program the ReRAM cell. For example, the energy consumption for writing a $128{\times}128$ array is more than 100 times larger than the $8{\times}8$ array. We also notice that, since the impact of sneak paths for floating schemes (FWHB and HWFB) is much serious, the energy consumed at unselected cells for the floating schemes are much larger than the half-biased scheme. Therefore, the total energy consumptions for FWHB and HWFB schemes are at least 10\% larger than that of HWHB scheme.
+selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy wasted at the half selected and unselected cells. The energy consumed by the interconnect lines are represented by $E_{line}$. Figure.~\ref{fig:energy} shows each part's energy consumption for the cross-point array. Firstly, the $E_{line}$ and $E_{halfselect}$ take a large amount of the total energy consumption. Besides, the energy wasted during the write operation is much larger than the energy required to program the ReRAM cell. For example, the energy consumption for writing a $128{\times}128$ array is more than 1000 times larger than the $8{\times}8$ array. We also notice that, since the impact of sneak paths for floating schemes (FWHB and HWFB) is much serious, the energy consumed at unselected cells for the floating schemes are much larger than the half-biased scheme. Therefore, the total energy consumptions for FWHB and HWFB schemes are at least 10\% larger than that of HWHB scheme.
 
 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/Energy2.pdf}\\
-  \caption{The Normalized Energy Consumption. (a): HWHB scheme (b): FWHB and HBFW Schemes.}\label{fig:energy}
+  \includegraphics[width=0.55\textwidth]{./figures/Energy3.pdf}\\
+  \caption{The Normalized Energy Consumption. (a): HWHB scheme (b): FWHB and HWFB schemes.}\label{fig:energy}
 \end{figure}
 
 \vspace{10pt} \textbf{Area cost of Write Operation.} \vspace{8pt}
@@ -218,7 +218,8 @@ is: $\sqrt{C_{array}}/2$. However, the area overhead of the voltage driver also 
 
 \vspace{10pt} \textbf{Discussion on Multi-Bits Write Operation.} \vspace{8pt}
 
-So far, we only discuss the one bit per access write operation. It has been show that, in order to write several bits in a word line at the same time, a two step write operation should be adopted~\cite{memristor:Cong}. There are 4 potential write methods: SET-before-RESET,  RESET-before-SET, ERASE-before-SET and ERASE-before-RESET. First of all, the worst case of the voltage drop is not related to the write methods. As shown in Figure.~\ref{fig:reliable_region}, the reliable size of the cross-point array will further reduced. The maximum array size reduces from $116{\times}116$ to $100{\times}100$. 
+So far, we only discuss the one bit per access write operation. At this section, the difference between one bit per access and one word line per are discussed. Firstly, writing a word line at the same time will worsen the voltage drop along the word line. Therefore, as shown in Figure.~\ref{fig:reliable_region}, the reliable size of the cross-point array will be further reduced. The maximum array size reduces from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes. For the energy consumption point of view, the one word line write operation is more efficient. 
+
 
 \begin{figure}%[!t]
 \centering
@@ -227,7 +228,25 @@ So far, we only discuss the one bit per access write operation. It has been show
   \caption{The Array Size Requirement for the Cross-Point Array with Different Write Schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one word line per access. }\label{fig:reliable_region}
 \end{figure}
 
-The energy consumption is..
+In order to fairly compared the energy consumption, Figure.~\ref{fig:multi_energy}
+
+
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.55\textwidth]{./figures/multi_energy.pdf}\\
+  \caption{The Normalized Energy Consumption per Bit for Multi-Bits Write Operation. (a): HWHB and  FWHB schemes (b): HWFB scheme. }\label{fig:multi_energy}
+\end{figure}
+
+It has been shown that, in order to write several bits in a word line at the same time, a two step write operation should be adopted~\cite{memristor:Cong}. There are 4 potential write methods: SET-before-RESET,  RESET-before-SET, ERASE-before-SET and ERASE-before-RESET.
+
+
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.4\textwidth]{./figures/multi_I.pdf}\\
+  \caption{The }\label{fig:multi_I}
+\end{figure}
 
 \vspace{10pt} \textbf{Non-linearity of the ReRAM Cell.} \vspace{8pt}
 \subsection{Read Operation}
