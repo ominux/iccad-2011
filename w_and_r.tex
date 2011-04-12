@@ -252,7 +252,14 @@ $E_{ave}=E_{total}/128/2$. The energy shown in Figure.~\ref{fig:multi_energy} is
 One of the most distinct feature of ReRAM is it non-linearity. Take the memristor based ReRAM for example, the non-linearity can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
 $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 5, meaning that the resistance of half-biased  cell is 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure ~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements. Due to the space limitation, only the results for one bit writing with HWHB scheme are shown. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10. 
 
-On the other hand, the non-linearity can also benefit the energy consumption and area overhead as well. Take the $128 \times 128$ array for example. 
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.4\textwidth]{./figures/non_linear}\\
+  \caption{The Maximum Array Size with Different Non-linearity}\label{fig:non_linear}
+\end{figure}
+
+On the other hand, the non-linearity can also benefit the energy consumption and area overhead as well. Take the $128 \times 128$ array for example.    
 
 
 
