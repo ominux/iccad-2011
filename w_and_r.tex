@@ -218,7 +218,7 @@ is: $\sqrt{C_{array}}/2$. However, the area overhead of the voltage driver also 
 
 \vspace{10pt} \textbf{Discussion on Multi-Bits Write Operation.} \vspace{8pt}
 
-So far, we only discuss the one bit per access write operation. At this section, the difference between one bit per access and one word line per are discussed. Firstly, writing a word line at the same time will worsen the voltage drop along the word line. Therefore, as shown in Figure.~\ref{fig:reliable_region}, the reliable size of the cross-point array will be further reduced. The maximum array size reduces from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes. For the energy consumption point of view, the one word line write operation is more efficient. 
+So far, we only discuss the one bit per access write operation. At this section, the difference between one bit per access and one word line per are discussed. Firstly, writing a word line at the same time will worsen the voltage drop along the word line. Therefore, as shown in Figure.~\ref{fig:reliable_region}, the reliable size of the cross-point array will be further reduced. The maximum array size reduces from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes. For the energy consumption point of view, the one word line write operation is more efficient.
 
 
 \begin{figure}%[!t]
@@ -228,7 +228,8 @@ So far, we only discuss the one bit per access write operation. At this section,
   \caption{The Array Size Requirement for the Cross-Point Array with Different Write Schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one word line per access. }\label{fig:reliable_region}
 \end{figure}
 
-In order to fairly compared the energy consumption, Figure.~\ref{fig:multi_energy}
+In order to fairly compared the energy consumption, Figure.~\ref{fig:multi_energy} shows the average energy for writing one bit during the multi-bit write operation. For example, in order to write a word line with size of 128, the average energy can be calculated as:
+$E_{ave}=E_{total}/128/2$. The energy shown in Figure.~\ref{fig:multi_energy} is normalized to the same unit as Figure.~\ref{fig:energy}. The results show that for large size of the cross point array, the multi-bit write operation is much more energy efficiency. The reason is that the energy wasted at the unselected and half-selected cells are shared by multi bits and the average energy for one each bit is therefore reduced. However, even the multi-bit write operation has the advantage on energy consumption, the driven current requirement for each word line also increases. As shown in Figure.~\ref{fig:multi_I}, although the maximum driven current for bit line is almost the same as one bit writing, the drive capability for wold line is doubled for multi-bit writing. Since the area of the voltage driver increases proportional with its driven capability, the area overhead for multi-bit writing is about 50\% larger than one bit writing.
 
 
 \begin{figure}%[!t]
@@ -238,19 +239,27 @@ In order to fairly compared the energy consumption, Figure.~\ref{fig:multi_energ
   \caption{The Normalized Energy Consumption per Bit for Multi-Bits Write Operation. (a): HWHB and  FWHB schemes (b): HWFB scheme. }\label{fig:multi_energy}
 \end{figure}
 
-It has been shown that, in order to write several bits in a word line at the same time, a two step write operation should be adopted~\cite{memristor:Cong}. There are 4 potential write methods: SET-before-RESET,  RESET-before-SET, ERASE-before-SET and ERASE-before-RESET.
-
 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/multi_I.pdf}\\
+  \includegraphics[width=0.5\textwidth]{./figures/multi_I.pdf}\\
   \caption{The }\label{fig:multi_I}
 \end{figure}
 
 \vspace{10pt} \textbf{Non-linearity of the ReRAM Cell.} \vspace{8pt}
-\subsection{Read Operation}
 
+One of the most distinct feature of ReRAM is it non-linearity. Take the memristor based ReRAM for example, the non-linearity can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
+$K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 5, meaning that the resistance of half-biased  cell is 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure ~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements. Due to the space limitation, only the results for one bit writing with HWHB scheme are shown. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10. 
+
+On the other hand, the non-linearity can also benefit the energy consumption and area overhead as well. Take the $128 \times 128$ array for example. 
+
+
+
+\subsection{Read Operation}
+The design constraints for read operation can be analyzed by the same way as the write operation, including the reliability, energy consumption and the area overhead. Note that the read voltage/current is much lower than the write voltage, therefore we believe the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Thus in this section, we only shows the results of reliability issue and read energy. Also, since the difference    
+
+The reliability issue of the read operation of the cross bar array are well studied in previous researches. 
 
 
 \subsection{Discussion on Non-linearity of the ReRAM}
