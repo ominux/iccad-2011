@@ -196,7 +196,7 @@ selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.55\textwidth]{./figures/Energy3.pdf}\\
+  \includegraphics[width=0.45\textwidth]{./figures/energy4.pdf}\\
   \caption{The Normalized Energy Consumption. (a): HWHB scheme (b): FWHB and HWFB schemes.}\label{fig:energy}
 \end{figure}
 
@@ -212,7 +212,7 @@ is: $\sqrt{C_{array}}/2$. However, the area overhead of the voltage driver also 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/w_current.pdf}\\
+  \includegraphics[width=0.4\textwidth]{./figures/w_current2.pdf}\\
   \caption{The }\label{fig:w_current}
 \end{figure}
 
@@ -235,7 +235,7 @@ $E_{ave}=E_{total}/128/2$. The energy shown in Figure.~\ref{fig:multi_energy} is
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.55\textwidth]{./figures/multi_energy.pdf}\\
+  \includegraphics[width=0.45\textwidth]{./figures/multi_energy2.pdf}\\
   \caption{The Normalized Energy Consumption per Bit for Multi-Bits Write Operation. (a): HWHB and  FWHB schemes (b): HWFB scheme. }\label{fig:multi_energy}
 \end{figure}
 
@@ -243,14 +243,14 @@ $E_{ave}=E_{total}/128/2$. The energy shown in Figure.~\ref{fig:multi_energy} is
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/multi_I.pdf}\\
+  \includegraphics[width=0.4\textwidth]{./figures/multi_I2.pdf}\\
   \caption{The }\label{fig:multi_I}
 \end{figure}
 
 \vspace{10pt} \textbf{Non-linearity of the ReRAM Cell.} \vspace{8pt}
 
 One of the most distinct feature of ReRAM is it non-linearity. Take the memristor based ReRAM for example, the non-linearity can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
-$K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 5, meaning that the resistance of half-biased  cell is 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure ~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements. Due to the space limitation, only the results for one bit writing with HWHB scheme are shown. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10. 
+$K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 5, meaning that the resistance of half-biased  cell is 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure ~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements. Due to the space limitation, only the results for one bit writing with HWHB scheme are shown. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10.
 
 \begin{figure}%[!t]
 \centering
@@ -259,14 +259,33 @@ $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resi
   \caption{The Maximum Array Size with Different Non-linearity}\label{fig:non_linear}
 \end{figure}
 
-On the other hand, the non-linearity can also benefit the energy consumption and area overhead as well. Take the $128 \times 128$ array for example.    
+On the other hand, the non-linearity can also benefit the energy consumption and area overhead as well. Take the $128 \times 128$ array for example.
 
 
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.4\textwidth]{./figures/non_linear_I.pdf}\\
+  \caption{The}\label{fig:non_linear_I}
+\end{figure}
 
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.4\textwidth]{./figures/non_linear_energy.pdf}\\
+  \caption{The}\label{fig:non_linear_E}
+\end{figure}
+
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.4\textwidth]{./figures/non_linear_ara.pdf}\\
+  \caption{The}\label{fig:non_linear_A}
+\end{figure}
 \subsection{Read Operation}
-The design constraints for read operation can be analyzed by the same way as the write operation, including the reliability, energy consumption and the area overhead. Note that the read voltage/current is much lower than the write voltage, therefore we believe the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Thus in this section, we only shows the results of reliability issue and read energy. Also, since the difference    
+The design constraints for read operation can be analyzed by the same way as the write operation, including the reliability, energy consumption and the area overhead. Note that the read voltage/current is much lower than the write voltage, therefore we believe the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Thus in this section, we only shows the results of reliability issue and read energy. Also, since the difference
 
-The reliability issue of the read operation of the cross bar array are well studied in previous researches. 
+The reliability issue of the read operation of the cross bar array are well studied in previous researches.
 
 
 \subsection{Discussion on Non-linearity of the ReRAM}
