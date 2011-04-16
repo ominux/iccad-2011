@@ -8,15 +8,15 @@ As shown in Figure.~\ref{fig:modeling}, in order to write or read the
 cross-point array, the external voltages should be applied at the end of
 the word line and the bit line. Since there are several potential
 read/write schemes can be used to program the memory array, it is
-quite difficult to point out which scheme is the most proper choice under given design constraints of area/energy/reliability. Therefore, in this section, studies on different operation schemes and present are conducted. The results of this study can be very useful to guide the design of the cross-point array. Since it is impossible to consider all of the data pattern stored in the array, in this work, the worst cases scenario are studied. 
-%Also, we assumes that the in the case of worst scenario, the ReRAM cells at the selected word line, th
+quite difficult to point out which scheme is the most proper choice under given design constraints of area/energy/reliability. Therefore, in this section, studies on different operation schemes and present are conducted. The requirement for array size, energy consumption and area overhead are analyzed in the worst cases scenario. The results of this study can be very useful to guide the design of the cross-point array.
 
-Table~\ref{table:parameter} shows the circuit parameter of our baseline
-design. The data is consistent to the recently published studies on
-ReRAM~\cite{crossbar_TED_2010}\cite{memristor:Cong}. In this section, the
+%Also, we assumes that the in the case of worst scenario, the ReRAM cells at the selected word line, th
+%Since it is impossible to consider all of the data pattern stored in the array,
+
+Table~\ref{table:parameter} shows the circuit parameter of our baseline 32nm design. The data is consistent to the recently published studies on ReRAM~\cite{crossbar_TED_2010}\cite{memristor:Cong}. In the following the
 reliability, energy consumption and area overhead for the four write
 schemes are detailed. Then the sensitivities of these schemes to the data
-pattern of HRS and LRS ReRAM cells, and interconnect wires are studied.
+pattern of HRS and LRS ReRAM cells, and non-linearity are studied.
 
 \begin{table}[!b]
   \centering
@@ -32,31 +32,25 @@ pattern of HRS and LRS ReRAM cells, and interconnect wires are studied.
     \hline
     \textbf{$S_{cell}$} & Cell Size & \textbf{$4F^2$} \\
     \textbf{$R_l$} &  Interconnection Resistance&\textbf{$1.25\Omega$} \\
-    \textbf{$R_s$} &  Resistance of SA&\textbf{$100\Omega$} \\
     \textbf{$V_{RESET}$} & Threshold voltage for RESET&\textbf{$2.0V$} \\
     \textbf{$V_{SET}$} & Threshold voltage for SET&\textbf{$-2.0V$} \\
     \textbf{$V_{READ}$} & Read Voltage of Cell&\textbf{$0.5V$} \\
     \textbf{$R_{off}$} & HRS Resistance &\textbf{$500K\Omega$} \\
     \textbf{$R_{on}$} & LRS Resistance &\textbf{$10K\Omega$} \\
-    \textbf{$V_{W}(R)$} & Word Line Voltage during Read &\textbf{$\pm 1V ???$} \\
-    \textbf{$V_{W}(W)$} & Word Line Voltage during Write  &\textbf{$0 / 2V$} \\
+    \textbf{$V_{W}(R)$} & Word Line Voltage during Read &\textbf{$0.4V$} \\
+    \textbf{$V_{W}(W)$} & Word Line Voltage during Write  &\textbf{$\pm2V$} \\
     \textbf{$V_{W}(H)$} & Half Selected Word Line Voltage &\textbf{$1V$} \\
-    \textbf{$V_{B}(R)$} & Bit Line Voltage during Read  &\textbf{$10K\Omega ????$} \\
-    \textbf{$V_{B}(W)$} & Bit Line Voltage during Write  &\textbf{$0 / 2V$} \\
+    \textbf{$V_{B}(R)$} & Bit Line Voltage during Read  &\textbf{$0V$} \\
+    \textbf{$V_{B}(W)$} & Bit Line Voltage during Write  &\textbf{$0V$} \\
     \textbf{$V_{B}(H)$} & Half Selected Bit Line Voltage &\textbf{$1V$} \\
     \textbf{$M$} & Number of Word Line &\textbf{$64$} \\
     \textbf{$N$} & Number of Bit Line &\textbf{$64$} \\
-
     \hline
   \end{tabular}
   \vspace{-10pt}
 \end{table}
 
-Considering that program schemes for write and read operation are
-different and the the requirement for write and read are also dissimilar,
-in the following section we carefully study the write and read operation
-separately. And then the results are combined together to provide a design
-methodology for the cross-point array.
+Although the purposes of read and write operation are different, both of them are realized by full biasing selected cell and floating (or half biasing) the unselected cell. Thus, the set up of the coefficient matrix $A$ and constant vector $C$ are very similar for the read and write operation. In addition, the energy consumption and area overhear also have similar trends for them. Therefore, in the next section, we start from a comprehensive study of the write operation. After that, for the read operation, we mainly focus on the read margin analysis since it is unique to the read operation.
 
 \subsection{Write Operation}
 To write a ReRAM cell, a external voltage is required to applied across the cell for a certain duration. Intuitively, there are four possible schemes for the write operation:
