@@ -107,7 +107,7 @@ In order to avoid the \textbf{write failure} and successfully program the
 selected ReRAM cell, the driven voltage should be boosted to a higher
 level, making sure that the voltage across the cell exceed the threshold
 voltage even at the worst case. Figure.~\ref{fig:worst_v} shows the lower bound of the driven voltage for different size of cross-point array. The minimum word/bit line voltage increases from 2.01 V for a $8 \times 8$ array to 4.47 V for a $128 \times 128$ cross-point array. Besides, for a  memory capability, the cross-point array can be organized with different number of word line and bit line. For example, a 4K bits cross-point array can be implemented either by a $64 \times 64$ array or by a $32 \times 128$ array. In the latter case, the voltage drops along the word line will be much serious than along the bit line. Figure.~\ref{fig:shape}
-exams the voltage requirement for different array organizations with different write schemes. The result shows that from the reliability point of view, the cross-point array with same numbers of word line and bit line is the best choice. Besides, we also notice that the worst case voltage
+exams the voltage requirement for different array organizations with different write schemes. The result shows that from the reliability point of view, the cross-point array with same numbers of word line and bit line is the best choice. Besides, we also notice that when the array has the same number of word line and bit line, FWFB, HWFB and FWHB schemes have the same minimum driven voltage.
 
 %Clearly, the magnitude of the voltage drop increases with the array size and the resistance of interconnect wires.
 
@@ -126,24 +126,17 @@ exams the voltage requirement for different array organizations with different w
   \caption{Write Voltage Requirement with Different Memory Shape. (Array Capacity = 4Kbits, Activated Word Line Voltage = 2V, Activated Bit Line Voltage = 0V.)}\label{fig:shape}
 \end{figure}
 
-However, in the other hand, the increasing of the driven voltage also
-increases the voltage applied at the unselected cell. Therefore, a
-\textbf{write disturbance} will occur when the voltage applied at the
-unselected cell exceeds the threshold voltage for SET or RESET operation.
-Figure.~\ref{fig:half} shows the worst case (maximum) voltage applied at
+However, boosting the driven voltage also brings in other potential problems for the array. Especially, the increasing of the driven voltage also increases the voltage applied at the unselected cell. Therefore, a
+\textbf{write disturbance} may occur when the voltage applied at the
+unselected cell exceeds the threshold voltage for SET or RESET operation. Figure.~\ref{fig:half} shows the worst case (maximum) voltage applied at
 unselected cells with the minimum driven voltage shown in
-Figure~\ref{fig:worst_v}. Since the threshold voltage of the cell is 2V,
-all of the word/bit line combinations at the region with worst case
-voltage more than 2V are unreliable and can not avoid write failure and
-write disturbance at the same time. Thus, Figure.~\ref{fig:half} provides
-the hard constraint of array size, and all of the following energy and
-area tradeoffs should be bounded by this constraint.
+Figure~\ref{fig:worst_v}. Since the threshold voltage of the ReRAM cell is 2V, only the array size with worst case voltage less than 2V are allowable. Otherwise, the array is unreliable because it can not avoid write failure and write disturbance at the same time. Therefore, Figure.~\ref{fig:half} provides the hard constraint of array size, and all of the following energy and area tradeoffs should be bounded by this constraint.
 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.3\textwidth]{./figures/Theoretical_bound.pdf}\\
-  \caption{The }\label{fig:half}
+  \includegraphics[width=0.25\textwidth]{./figures/Theoretical_bound2.pdf}\\
+  \caption{The Maximum Voltage Applied at Unselected Cells with the Minimum Driven Voltage.}\label{fig:half}
 \end{figure}
 
 
@@ -155,7 +148,7 @@ The energy consumption of a write operation for a cross-point array can be calcu
 E_{write} = E_{select} + E_{unselect} + E_{halfselect} + E_{line},
 \end{equation}
 where the $E_{select}$ is the energy consumed to change the state of the
-selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy wasted at the half selected and unselected cells. The energy consumed by the interconnect lines are represented by $E_{line}$. Figure.~\ref{fig:energy} shows each part's energy consumption for the cross-point array. Firstly, the $E_{line}$ and $E_{halfselect}$ take a large amount of the total energy consumption. Besides, the energy wasted during the write operation is much larger than the energy required to program the ReRAM cell. For example, the energy consumption for writing a $128{\times}128$ array is more than 1000 times larger than the $8{\times}8$ array. We also notice that, since the impact of sneak paths for floating schemes (FWHB and HWFB) is much serious, the energy consumed at unselected cells for the floating schemes are much larger than the half-biased scheme. Therefore, the total energy consumptions for FWHB and HWFB schemes are at least 10\% larger than that of HWHB scheme.
+selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy wasted at the half selected and unselected cells. The energy consumed by the interconnect lines are represented by $E_{line}$. Figure.~\ref{fig:energy} shows the decomposed energy consumption for the cross-point array. Note that, the $E_{line}$ and $E_{halfselect}$ take a large amount of the total energy consumption. Besides, the energy wasted during the write operation takes a great part of the total energy for large array size. For example, the undesired energy consumption for writing a $128{\times}128$ array is more than 1000 times larger than the $8{\times}8$ array. We also notice that, since the impact of sneak paths for floating schemes (FWHB and HWFB) is more serious, the energy consumed at unselected cells for floating schemes are larger than the half-biased scheme. Due to this reason, the total energy consumptions for FWHB and HWFB schemes are at least 10\% larger than that of HWHB scheme.
 
 
 \begin{figure}%[!t]
@@ -167,12 +160,7 @@ selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy 
 
 \vspace{10pt} \textbf{Area cost of Write Operation.} \vspace{8pt}
 
-The write operation requires $m+n$ voltage driver to provide enough current for each word line and bit line for a $m{\times}n$ array.
-Therefore, the average number of ReRAM cells per voltage driver can be
-calculated as $mn/(m+n)$. By given an array capacity $C_{array}$, it is
-easy to find that the optimal array organization can be achieved when
-$m=n=\sqrt{C_{array}}$ and the maximum number of cells per voltage driver
-is: $\sqrt{C_{array}}/2$. However, the area overhead of the voltage driver also related to the driven current. Figure.~\ref{fig:w_current} shows the required driven current for different size of ReRAM array. According to the current requirement, the area of the voltage driver can be directly calculated, which will be shown in the following discussion.
+The write operation for a $M \times N$ array requires totaly $M+V$ voltage drivers. Therefore, the average number of ReRAM cells per voltage driver can be calculated as $mn/(m+n)$. Given the array capacity of $C_{array}$, it is easy to find that the optimal array organization can be achieved when $M=N=\sqrt{C_{array}}$ and the maximum number of cells per voltage driver is: $\sqrt{C_{array}}/2$. However, the area overhead of a voltage driver is also related to its current drive capability. Figure.~\ref{fig:w_current} shows the maximum write current with different ReRAM array size. According to the current requirement, the area of the voltage driver can be directly calculated, which will be shown in the following discussion.
 
 \begin{figure}%[!t]
 \centering
@@ -183,8 +171,9 @@ is: $\sqrt{C_{array}}/2$. However, the area overhead of the voltage driver also 
 
 \vspace{10pt} \textbf{Discussion on Multi-Bits Write Operation.} \vspace{8pt}
 
-So far, we only discuss the one bit per access write operation. At this section, the difference between one bit per access and one word line per are discussed. Firstly, writing a word line at the same time will worsen the voltage drop along the word line. Therefore, as shown in Figure.~\ref{fig:reliable_region}, the reliable size of the cross-point array will be further reduced. The maximum array size reduces from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes. For the energy consumption point of view, the one word line write operation is more efficient.
+So far, we only discuss the one bit per access write operation. At this section, the difference between one bit per access and one word line per access write operations are discussed. Firstly, writing a word line at the same time will worsen the voltage drop along the word line. Therefore, as shown in Figure.~\ref{fig:reliable_region}, the reliable size of the cross-point array will be further reduced. The maximum array size reduces from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes. 
 
+%For the energy consumption point of view, the one word line write operation is more efficient.
 
 \begin{figure}%[!t]
 \centering
@@ -193,8 +182,8 @@ So far, we only discuss the one bit per access write operation. At this section,
   \caption{The Array Size Requirement for the Cross-Point Array with Different Write Schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one word line per access. }\label{fig:reliable_region}
 \end{figure}
 
-In order to fairly compared the energy consumption, Figure.~\ref{fig:multi_energy} shows the average energy for writing one bit during the multi-bit write operation. For example, in order to write a word line with size of 128, the average energy can be calculated as:
-$E_{ave}=E_{total}/128/2$. The energy shown in Figure.~\ref{fig:multi_energy} is normalized to the same unit as Figure.~\ref{fig:energy}. The results show that for large size of the cross point array, the multi-bit write operation is much more energy efficiency. The reason is that the energy wasted at the unselected and half-selected cells are shared by multi bits and the average energy for one each bit is therefore reduced. However, even the multi-bit write operation has the advantage on energy consumption, the driven current requirement for each word line also increases. As shown in Figure.~\ref{fig:multi_I}, although the maximum driven current for bit line is almost the same as one bit writing, the drive capability for wold line is doubled for multi-bit writing. Since the area of the voltage driver increases proportional with its driven capability, the area overhead for multi-bit writing is about 50\% larger than one bit writing.
+In order to fairly compared the energy consumption, we compared the energy-per-bit instead of the total energy. For example, in order to write a word line with size of 128, the energy-per-bit can be calculated as:
+$E_{ave}=E_{total}/128/2$. Figure.~\ref{fig:multi_energy} shows the energy-per-bit of the multi-bit write operation. The energy shown in this figure is normalized to the same unit as Figure.~\ref{fig:energy} for easier comparison. The results show that for large size of the cross point array, the multi-bit write operation is much more energy efficiency. This is because the energy wasted at the unselected and half-selected cells are shared by multi bits and the average energy for one each bit is therefore reduced. However, although the multi bit write operation has the advantage on energy consumption, the maximum current requirement for each word line also increases. As shown in Figure.~\ref{fig:multi_I}, the maximum driven current for bit line is almost the same as one bit writing, the drive capability for wold line is almost doubled for multi-bit writing. Since the area of the voltage driver increases proportional with its driven capability, the area overhead for multi-bit writing is about 50\% larger than one bit writing.
 
 
 \begin{figure}%[!t]
