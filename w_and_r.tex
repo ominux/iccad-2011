@@ -1,16 +1,15 @@
 \vspace{10pt}
-\section{Analysis of Design Constraints}\label{sec:w_and_r}
+\section{Analysis of Design Constraints - A Case Study}\label{sec:w_and_r}
+
+In this section, a typical case of the ReRAM based cross-point array is detailed analyzed by using the proposed mathematical model. 
 
 \subsection{Overview}
 As shown in Figure.~\ref{fig:modeling}, in order to write or read the
 cross-point array, the external voltages should be applied at the end of
-the word line and the bit line. Although there are several potential
+the word line and the bit line. Since there are several potential
 read/write schemes can be used to program the memory array, it is
-difficult to point out which schemes is the most proper choice under given
-design constraints of area/energy/reliability. Therefore, in this section,
-studies on different operation schemes and present are conducted. The
-results of this study can be very useful to guide the design of the cross-point array. Since it is impossible to consider all of the data pattern
-stored in the array, in this work, the best and worst cases are studied.
+quite difficult to point out which scheme is the most proper choice under given design constraints of area/energy/reliability. Therefore, in this section, studies on different operation schemes and present are conducted. The results of this study can be very useful to guide the design of the cross-point array. Since it is impossible to consider all of the data pattern stored in the array, in this work, the worst cases scenario are studied. 
+%Also, we assumes that the in the case of worst scenario, the ReRAM cells at the selected word line, th
 
 Table~\ref{table:parameter} shows the circuit parameter of our baseline
 design. The data is consistent to the recently published studies on
@@ -113,7 +112,7 @@ And then the results of one word line per access method are compared.
 \begin{figure}%[!b]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/FWFB2.pdf}\\
+  \includegraphics[width=0.4\textwidth]{./figures/FWFB2.pdf}\\
   \caption{Write Disturbance for FWFB Schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
 \end{figure}
 
@@ -149,7 +148,7 @@ array with same numbers of word line and bit line is the best choice.
 \begin{figure}%[!hb]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/worst_v2.pdf}\\
+  \includegraphics[width=0.4\textwidth]{./figures/worst_v2.pdf}\\
   \caption{Write Voltage Requirement (Threshold Voltage = 2V). }\label{fig:worst_v}
 \end{figure}
 
