@@ -1,7 +1,7 @@
-\vspace{10pt}
+%\vspace{10pt}
 \section{Modeling of the Cross-Point Memory}\label{sec:model}
 
-In this section, a detailed mathematical model of the cross-point memory array is built. By using the proposed model with specific parameters and
+In this section, a detailed mathematical model of the cross-point array is built. By using the proposed model with specific parameters and
 edge conditions, the reliability, energy consumption and area overhear of different read/write schemes can be easily evaluated.
 
 \subsection{Basic model of Cross-Point Memory}
@@ -12,7 +12,9 @@ Figure.~\ref{fig:modeling} shows the circuit model of a $M$ by $N$ cross-point R
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/model_reverse.pdf}\\
   \caption{The basic model of typical cross-point array.}\label{fig:modeling}
+  \vspace{-12pt}
 \end{figure}
+
 \subsection{Mathematical Model of the Cross-Point Array}
 Based on the circuit model shown in Figure.~\ref{fig:modeling}, the current equations for each cross point can be set following the KCL:
 \begin{equation}
@@ -44,11 +46,14 @@ For the reasons of clarity, a ${2mn\times 1}$ vector ${V}$ is defined to represe
 {V}=[{V_1}^T,{V_2}^T...{V_m}^T,{V'_1}^T,{V'_2}^T...{V'_m}^T]^T,
 \end{equation}
 where,
+%\begin{equation}\label{equ:V2}
+%{V_i} = [V_{i,1},V_{i,2}...V_{i,n}]^T,\\
+%\end{equation}
+%\begin{equation}\label{equ:V3}
+%{V'_i} = [V'_{i,1},V'_{i,2}...V'_{i,n}]^T,
+%\end{equation}
 \begin{equation}\label{equ:V2}
-{V_i} = [V_{i,1},V_{i,2}...V_{i,n}]^T,\\
-\end{equation}
-\begin{equation}\label{equ:V3}
-{V'_i} = [V'_{i,1},V'_{i,2}...V'_{i,n}]^T,
+{V_i} = [V_{i,1},V_{i,2}...V_{i,n}]^T,~~{V'_i} = [V'_{i,1},V'_{i,2}...V'_{i,n}]^T,
 \end{equation}
 for $i=1,2...m$. Then all of the KCL equations can be considered as a system of linear equations, which has the form of
 \begin{equation}\label{equ:matrix}
@@ -86,7 +91,6 @@ The value of the elements in $A1$ and $A4$ can be easily derived from Equation (
     where $k=(n-1)i+1$ for $i=1,2...m$.
 
   \item The constant terms $C$ is a $2mn{\times}1$ vector. Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}) show that only KCL equations of the activated points have the constant terms. Therefore, only the following elements in $C$ may have non-zero value: $C((i-1)n+1)$, $C(in)$, $C(mn+i)$ and $C((2m-1)n+i)$ for $i=1,2...m$, correspond to the nodes at the four edges respectively. Likewise, we take nodes $V_{i,1}$ for example. The constant correspond to these node can be defined as:
-
     \begin{equation}
     C((i-1)n+1) = \left\{
     \begin{array}{ll}
@@ -94,7 +98,6 @@ The value of the elements in $A1$ and $A4$ can be easily derived from Equation (
     -R_v^{-1}V_{Wi}& \text{if } activated
     \end{array} \right.
     \end{equation}
-    for $i=1,2...m$.
 \end{enumerate}
 
 Therefore, with all of the required parameters, including the resistance of ReRAM cell, resistance of interconnect wires, program voltages and write/read schemes, the voltage at each cross point of the array can be obtained by solving the Equation~(\ref{equ:matrix}) with simple matrix computations. With the detailed voltage values, $V_{2mn{\times}1}$, we can analyzed the array at a very fine granularity. Also, these information can be very useful to evaluate the reliability, energy consumption, driven current density and area overhead of the cross-point array. 

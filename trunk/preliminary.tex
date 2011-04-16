@@ -1,4 +1,4 @@
-\vspace{10pt}
+%\vspace{10pt}
 \section{Preliminaries}\label{sec:preliminary}
 
 This section provides preliminaries of the ReRAM technology and the cross-point architecture. Then the limitations of cross-point architecture are discussed, which motivates the work in this paper.
@@ -49,9 +49,9 @@ On the contrary, the cross-point structure is more area-efficient for the ReRAM 
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/crossbar_array2.pdf}\\
+  \includegraphics[width=0.45\textwidth]{./figures/crossbar_array2.pdf}\\\vspace{-10pt}
   \caption{A schematic view of typical cross-point architecture. (a): Over view of the cross-point architecture. (b): The layout of the cell size of $4F^2$. }\label{fig:array}
-\vspace{-10pt}
+\vspace{-12pt}
 \end{figure}
 
 For the cross-point structure, the write operation can either write one bit per access or write several bits at the same word line at the same time. Although the second scheme is more efficient, it required a two-step writing operation to prevent the unintended writing~\cite{memristor:Cong}. Therefore, the write latency for the multi bit write operation is much larger than the one bit operation. Besides, the unselected word lines and bit lines can be either left floating or half biased. On the other hand, in order to read a ReRAM cell, the selected word line should be biased at a read voltage and the other word lines and bit lines are grounded. During the read operation, the current at each bit line is sensed and compared to the reference current. Then the resistance stored at the selected cell is read out. However, due to the sneak current existed at the cross-point array, the actual current is impacted significantly by the data pattern of the unselected cells in the array. This phenomenon of read disturbance will directly restrict the size of the cross-point array. In order to mitigate the impact of sneak current, a two-step write operation can be performed: First of all, the background current of the cross-point array  will be sensed. Then the total current, comprised of both the background current and current at the selected cell, will be read out. The state of the selected cell can then be determined by computing the difference between the total current and background current. Since there are different read/write schemes as well as the array size can be chosen for the cross-point array, it is not a easy way to figure out how to design a workable memory array with the minimum energy consumption and area overhead. Thus, following sections will proposed a worst case based methodology to help designer make the choice at the early step of the design.

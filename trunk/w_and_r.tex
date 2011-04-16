@@ -1,7 +1,7 @@
-\vspace{10pt}
+%\vspace{10pt}
 \section{Analysis of Design Constraints - A Case Study}\label{sec:w_and_r}
 
-In this section, a typical case of the ReRAM based cross-point array is detailed analyzed by using the proposed mathematical model. 
+In this section, a typical case of the ReRAM based cross-point array is detailed analyzed by using the proposed mathematical model.
 
 \subsection{Overview}
 As shown in Figure.~\ref{fig:modeling}, in order to write or read the
@@ -65,7 +65,7 @@ schemes are different from each other. We will address these problem
 separately and then combine all of the constraints to provide a design
 guideline for write operation.
 
-\vspace{10pt} \textbf{Reliable Write Operation.} \vspace{8pt}
+\vspace{6pt} \textbf{Reliable Write Operation.} \vspace{6pt}
 
 The most important issue for the write operation is the reliability
 concern. In the ideal condition, the resistances of interconnect wires and the sneak currents at unselected cells are negligible. In this case, all of these write schemes can make sure that the write voltage $V_W(W)-V_B(W)$ is fully applied across the specified cell. However, the realistic circuit is not perfect and the electronic behavior of the cross-point array will deviate from the ideal case with different
@@ -84,8 +84,8 @@ And then the results of one word line per access method are discussed.
 
 
 %as long all of unselected cells in the activated word line (or all of unselected cells in the activated bit line) are at HRS and other cells are in LRS, the voltage drop at unselected cells are mainly applied at the HRS cells at the word line (or bit line).
-%The worse case scenario for FWFB write disturbance can be defined as: all of unselected cells in the activated word line (or all of unselected cells in the activated bit line) are at HRS and other cells are in LRS. In this case, the voltage drop at unselected cells are mainly applied at the HRS cells at the word line (or bit line).  
- 
+%The worse case scenario for FWFB write disturbance can be defined as: all of unselected cells in the activated word line (or all of unselected cells in the activated bit line) are at HRS and other cells are in LRS. In this case, the voltage drop at unselected cells are mainly applied at the HRS cells at the word line (or bit line).
+
 
 \begin{figure}%[!b]
 \centering
@@ -116,6 +116,7 @@ exams the voltage requirement for different array organizations with different w
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.4\textwidth]{./figures/worst_v3.pdf}\\
   \caption{Write Voltage Requirement (Threshold Voltage = 2V). }\label{fig:worst_v}
+  \vspace{-10pt}
 \end{figure}
 
 
@@ -137,11 +138,12 @@ Figure~\ref{fig:worst_v}. Since the threshold voltage of the ReRAM cell is 2V, o
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.25\textwidth]{./figures/Theoretical_bound2.pdf}\\
   \caption{The Maximum Voltage Applied at Unselected Cells with the Minimum Driven Voltage.}\label{fig:half}
+  \vspace{-10pt}
 \end{figure}
 
 
 
-\vspace{10pt} \textbf{Energy Consumption of Write Operation.} \vspace{8pt}
+\vspace{6pt} \textbf{Energy Consumption of Write Operation.} \vspace{6pt}
 
 The energy consumption of a write operation for a cross-point array can be calculated as:
 \begin{equation}
@@ -154,11 +156,11 @@ selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/energy4.pdf}\\
+  \includegraphics[width=0.40\textwidth]{./figures/energy4.pdf}\\
   \caption{The Normalized Energy Consumption. (a): HWHB scheme (b): FWHB and HWFB schemes.}\label{fig:energy}
 \end{figure}
 
-\vspace{10pt} \textbf{Area cost of Write Operation.} \vspace{8pt}
+\vspace{6pt} \textbf{Area cost of Write Operation.} \vspace{6pt}
 
 The write operation for a $M \times N$ array requires totaly $M+V$ voltage drivers. Therefore, the average number of ReRAM cells per voltage driver can be calculated as $mn/(m+n)$. Given the array capacity of $C_{array}$, it is easy to find that the optimal array organization can be achieved when $M=N=\sqrt{C_{array}}$ and the maximum number of cells per voltage driver is: $\sqrt{C_{array}}/2$. However, the area overhead of a voltage driver is also related to its current drive capability. Figure.~\ref{fig:w_current} shows the maximum write current with different ReRAM array size. According to the current requirement, the area of the voltage driver can be directly calculated, which will be shown in the following discussion.
 
@@ -169,9 +171,9 @@ The write operation for a $M \times N$ array requires totaly $M+V$ voltage drive
   \caption{The }\label{fig:w_current}
 \end{figure}
 
-\vspace{10pt} \textbf{Discussion on Multi-Bits Write Operation.} \vspace{8pt}
+\vspace{6pt} \textbf{Discussion on Multi-Bits Write Operation.} \vspace{6pt}
 
-So far, we only discuss the one bit per access write operation. At this section, the difference between one bit per access and one word line per access write operations are discussed. Firstly, writing a word line at the same time will worsen the voltage drop along the word line. Therefore, as shown in Figure.~\ref{fig:reliable_region}, the reliable size of the cross-point array will be further reduced. The maximum array size reduces from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes. 
+So far, we only discuss the one bit per access write operation. At this section, the difference between one bit per access and one word line per access write operations are discussed. Firstly, writing a word line at the same time will worsen the voltage drop along the word line. Therefore, as shown in Figure.~\ref{fig:reliable_region}, the reliable size of the cross-point array will be further reduced. The maximum array size reduces from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes.
 
 %For the energy consumption point of view, the one word line write operation is more efficient.
 
@@ -201,7 +203,7 @@ $E_{ave}=E_{total}/128/2$. Figure.~\ref{fig:multi_energy} shows the energy-per-b
   \caption{The }\label{fig:multi_I}
 \end{figure}
 
-\vspace{10pt} \textbf{Non-linearity of the ReRAM Cell.} \vspace{8pt}
+\vspace{6pt} \textbf{Non-linearity of the ReRAM Cell.} \vspace{6pt}
 
 One of the most distinct feature of ReRAM is it non-linearity. Take the memristor based ReRAM for example, the non-linearity can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
 $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 5, meaning that the resistance of half-biased  cell is 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure ~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements. Due to the space limitation, only the results for one bit writing with HWHB scheme are shown. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10.
@@ -275,5 +277,3 @@ The reliability issue of the read operation of the cross bar array are well stud
   \includegraphics[width=0.5\textwidth]{./figures/sense_margin2}\\
   \caption{The}\label{fig:sense_margin}
 \end{figure}
-\subsection{Discussion on Non-linearity of the ReRAM}
-An
