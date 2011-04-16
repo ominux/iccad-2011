@@ -50,15 +50,15 @@ pattern of HRS and LRS ReRAM cells, and non-linearity are studied.
   \vspace{-10pt}
 \end{table}
 
-Although the purposes of read and write operation are different, both of them are realized by full biasing selected cell and floating (or half biasing) the unselected cell. Thus, the set up of the coefficient matrix $A$ and constant vector $C$ are very similar for the read and write operation. In addition, the energy consumption and area overhear also have similar trends for them. Therefore, in the next section, we start from a comprehensive study of the write operation. After that, for the read operation, we mainly focus on the read margin analysis since it is unique to the read operation.
+Although the purposes of read and write operation are different, both of them are realized by full biasing selected cell and floating (or half biasing) the unselected cell. Thus, the set up of the coefficient matrix $A$ and constant vector $C$ are very similar for the read and write operation. In addition, the energy consumption and area overhear also have similar trends for them. Therefore, in the next section,  we first study the writing operation comprehensively.  After that, for the read operation, we mainly focus on the read margin analysis since it is unique to the read operation.
 
 \subsection{Write Operation}
-To write a ReRAM cell, a external voltage is required to applied across the cell for a certain duration. Intuitively, there are four possible schemes for the write operation:
+To write a ReRAM cell, a external voltage is applied across the cell for a certain duration. Intuitively, there are four possible schemes for the write operation:
 \begin{enumerate}
-  \item According the location of the target cell, activate one word line and one bit line and leave all of the other lines floating (FWFB shemes).
-  \item Activate the targeted word line and bit line. Left all the other word line floating and half bias the other bit line (FWHB shemes).
-  \item In contrast with the scheme 2, activate the targeted word line and bit line. Left all the other bit line floating and half bias the other wold line (HWFB shemes).
-  \item Activate the targeted word line and bit line. Half bias all of the other bit line (HWHB shemes).
+  \item According the location of the selected cell, activate one word line and one bit line and leave all of the other lines floating (FWFB shemes).
+  \item Activate the selected word line and bit line. Left all the unselected word lines floating and half bias the unselected bit lines (FWHB shemes).
+  \item In contrast with the scheme 2, activate the selected word line and bit line. Left all the other bit lines floating and half bias the other wold lines (HWFB shemes).
+  \item Activate the selected word line and bit line. Then half bias all of the other word lines and bit lines (HWHB shemes).
 \end{enumerate}
 Since the reliability, energy consumption and area overhead for these
 schemes are different from each other. We will address these problem
@@ -68,8 +68,7 @@ guideline for write operation.
 \vspace{10pt} \textbf{Reliable Write Operation.} \vspace{8pt}
 
 The most important issue for the write operation is the reliability
-concern. In the ideal condition, the resistances of interconnect wires and
-the sneak currents at unselected cells are negligible. Therefore, all of
+concern. In the ideal condition, the resistances of interconnect wires and the sneak currents at unselected cells are negligible. Therefore, all of
 these four schemes can provide enough voltage drop across the specified
 cell. However, the realistic circuit is not perfect and the electronic
 behavior of the array will deviate from the ideal scenario with different
