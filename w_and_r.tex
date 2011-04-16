@@ -68,80 +68,53 @@ guideline for write operation.
 \vspace{10pt} \textbf{Reliable Write Operation.} \vspace{8pt}
 
 The most important issue for the write operation is the reliability
-concern. In the ideal condition, the resistances of interconnect wires and the sneak currents at unselected cells are negligible. Therefore, all of
-these four schemes can provide enough voltage drop across the specified
-cell. However, the realistic circuit is not perfect and the electronic
-behavior of the array will deviate from the ideal scenario with different
-data pattern stored. A reliable write operation can be defined as:
-switching the selected cells into required states without disturbing the
-states of unselected cells. Therefore, there exist two potential write
-errors: \textbf{write failure}, an unsuccessful write on selected cell,
-and \textbf{write disturbance}, an undesirable write on unselected cell.
-All of the write schemes should at least meet the reliability requirement
-at the worst case. On the other word, the designer should make sure there
-is not any write failure and write disturbance even in the worst case.
+concern. In the ideal condition, the resistances of interconnect wires and the sneak currents at unselected cells are negligible. In this case, all of these write schemes can make sure that the write voltage $V_W(W)-V_B(W)$ is fully applied across the specified cell. However, the realistic circuit is not perfect and the electronic behavior of the cross-point array will deviate from the ideal case with different
+data pattern stored in the ReRAM cells. A reliable write operation can be defined as: switching the selected cells into required states without disturbing the states of unselected cells. Therefore, there are two potential problems of a write operation: \textbf{write failure}, an unsuccessful write on selected cell, and \textbf{write disturbance}, an undesirable write on unselected cell. All of the write schemes should meet the reliability requirement all the time. On the other word, the designer should make sure there is not any write failure and write disturbance exist even in the worst case. Otherwise, after several unreliable write operation, the data stored at the cross-point array will become unpredictable.
 
-First of all, we will discuss the inherent problem of FWFB scheme, which
-may result in severs write disturbance. A worse case scenario for FWFB
-write disturbance can be defined as: all of unselected cells in the
-activated word line (or all of unselected cells in the activated bit line)
-are at HRS and other cells are in LRS. In this case, the voltage drop at
-unselected cells are mainly applied at the HRS cells at the word line (or
-bit line). Figure.~\ref{fig:FWFR} shows an example of this case for a $64
-\times 64$ cross-point array. It clearly that all of the unselected cells
-at the activated bit line will be disturbed. This inherent problem exists
-at all of the FWFB schemes and becomes very serious with the large On-OFF
-resistance ratio. Considering that the reported On-OFF resistance ratio of
-ReRAM cell is always $>50$
-~\cite{ReRAM_IEDM2010_Ho,ReRAM_IEDM2010_Chien,ReRAM_IEDM2010_Lee_Diode,ReRAM_IEDM2010_Lee_Evidence,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka},
-it is impossible to build a cross-point structure ReRAM with the FWFB
-scheme. Therefore, in the following discussion, we only compare the
-results of FWHB, HWFB and HWHB schemes. For each of these three schemes,
-we can either write one word line at the same time or only write one bit
-per access and separate the write operation to several arrays. In the
+First of all, we use an example to show the inherent problem of FWFB scheme, which may result in severs write disturbance.
+Figure.~\ref{fig:FWFR} shows the voltage drop across each ReRAM cell of a $64 \times 64$ cross-point array. In this example, in order to write the cell at the cross point of the $32^{th}$ word line and the $32^{th}$ bit line, the selected word line and bit line are biased at 2V and 0V, respectively. All of the other word lines and bit lines are biased at 1V. The ReRAM cells at the selected bit line are in the HRS, while all of the other cells are in the LRS. It clearly that the voltage drop across the selected cell ($V_{32,32}$) almost has the same magnitude as the unselected cell at the same bit line, resulting the write disturbance to all of the unselected cells at the selected bit line. Actually, for a $M \times N$ matrix ($M>N$), the worst case voltage drop of the unselected cell can be calculated as:
+\begin{equation}\label{worst_FWFB}
+V_{worst}=V_{select} \cdot [1-\frac{1}{M+(N-1)R_{off}/R_{on}}].
+\end{equation}
+Considering that the reported On-OFF resistance ratio of
+ReRAM cell is always $>50$ ~\cite{ReRAM_IEDM2010_Ho,ReRAM_IEDM2010_Chien,ReRAM_IEDM2010_Lee_Diode,ReRAM_IEDM2010_Lee_Evidence,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka},
+, the worst case voltage drop at the unselected cell is larger than $98\%$ of the voltage at the selected cell, making it is impossible to build a reliable cross-point structure ReRAM with the FWFB scheme. Therefore, in the following discussion, we only compare the results of FWHB, HWFB and HWHB schemes. For each of these three schemes, we can either write the cells at one word line at the same time or only write one bit per access and separate the write operation to several arrays. In the
 following discussion, we start from one bit per access write operation.
-And then the results of one word line per access method are compared.
+And then the results of one word line per access method are discussed.
+
+
+%as long all of unselected cells in the activated word line (or all of unselected cells in the activated bit line) are at HRS and other cells are in LRS, the voltage drop at unselected cells are mainly applied at the HRS cells at the word line (or bit line).
+%The worse case scenario for FWFB write disturbance can be defined as: all of unselected cells in the activated word line (or all of unselected cells in the activated bit line) are at HRS and other cells are in LRS. In this case, the voltage drop at unselected cells are mainly applied at the HRS cells at the word line (or bit line).  
+ 
 
 \begin{figure}%[!b]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/FWFB2.pdf}\\
+  \includegraphics[width=0.4\textwidth]{./figures/FWFB4.pdf}\\
   \caption{Write Disturbance for FWFB Schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
 \end{figure}
 
-The write failure results from the voltage drop at the interconnect wires
-along the word line and bit line It has been shown that, for one bit per
-access write operation, the worst case of voltage drop is:
+The write failure mainly results from the voltage drop at the interconnect wires along the word line and bit line It has been shown that~\cite{crossbar_TED_2010}, for one bit per access write operation, the worst case voltage drop occurs when
 \begin{equation}
 \left\{
 \begin{array}{l}
-R_{i,j}=R_{on}\\
+R_{M.N}=R_{on}\\
 V_{WM}=V_W(W)\\
 V_{BN}=V_B(W).
 \end{array} \right.
 \end{equation}
-In order to avoid the \textbf{write failure} and successful program the
-selected ReRAM cell, the driven voltage should be increased to a higher
-level, making sure the voltage across the cell exceed the threshold
-voltage at the worst case. Figure.~\ref{fig:worst_v} shows the lower bound
-of the driven voltage for different size of cross-point array. The minimum
-word/bit line voltage increases from 2.01 V for a $8 \times 8$ array to
-4.47 V for a $128 \times 128$ cross-point array. Besides, for a given
-memory capability, the cross-point can be organized with different number
-of word line and bit line. For example, a 4K bits cross-point array can be
-implemented either by a $64 \times 64$ array or by a $32 \times 128$
-array. In the latter case, the voltage drops along the word line and bit
-line are different with each other. Therefore, Figure.~\ref{fig:shape}
-exams the voltage requirement for different array organization. The
-results show that from the reliability point of view, the cross-point
-array with same numbers of word line and bit line is the best choice.
+In order to avoid the \textbf{write failure} and successfully program the
+selected ReRAM cell, the driven voltage should be boosted to a higher
+level, making sure that the voltage across the cell exceed the threshold
+voltage even at the worst case. Figure.~\ref{fig:worst_v} shows the lower bound of the driven voltage for different size of cross-point array. The minimum word/bit line voltage increases from 2.01 V for a $8 \times 8$ array to 4.47 V for a $128 \times 128$ cross-point array. Besides, for a  memory capability, the cross-point array can be organized with different number of word line and bit line. For example, a 4K bits cross-point array can be implemented either by a $64 \times 64$ array or by a $32 \times 128$ array. In the latter case, the voltage drops along the word line will be much serious than along the bit line. Figure.~\ref{fig:shape}
+exams the voltage requirement for different array organizations with different write schemes. The result shows that from the reliability point of view, the cross-point array with same numbers of word line and bit line is the best choice. Besides, we also notice that the worst case voltage
 
 %Clearly, the magnitude of the voltage drop increases with the array size and the resistance of interconnect wires.
 
 \begin{figure}%[!hb]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/worst_v2.pdf}\\
+  \includegraphics[width=0.4\textwidth]{./figures/worst_v3.pdf}\\
   \caption{Write Voltage Requirement (Threshold Voltage = 2V). }\label{fig:worst_v}
 \end{figure}
 
@@ -149,7 +122,7 @@ array with same numbers of word line and bit line is the best choice.
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/shape2.pdf}\\
+  \includegraphics[width=0.45\textwidth]{./figures/shape3.pdf}\\
   \caption{Write Voltage Requirement with Different Memory Shape. (Array Capacity = 4Kbits, Activated Word Line Voltage = 2V, Activated Bit Line Voltage = 0V.)}\label{fig:shape}
 \end{figure}
 
