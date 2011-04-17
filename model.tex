@@ -1,7 +1,7 @@
 %\vspace{10pt}
 \section{Modeling of the Cross-Point Memory}\label{sec:model}
 
-In this section, a detailed mathematical model of the cross-point array is built. By using the proposed model with specific parameters and
+In this section, a detailed mathematical model of the cross-point array is proposed. By using the proposed model with specific parameters and
 edge conditions, the reliability, energy consumption, and area overheads of different read/write schemes can be easily evaluated.
 
 \subsection{Basic model of Cross-Point Memory}
@@ -20,7 +20,7 @@ Based on the circuit model shown in Figure~\ref{fig:modeling}, the current equat
 \begin{equation}
   {\Sigma}_{I=1}^kI_k=0.
 \end{equation}
-Fortunately, all of the cross points have similar structure with no more than three current branches and therefore it is very easy to set up the KCL equations for each cross point. However, we should treat the cross points at the edges of the array specially because there are different conditions for different write/read schemes. For example, the unselected word line for write operation can be either half biased or left floating. Thus, the edge conditions should be adjusted according to each write/read schemes. In particular, all of the cross points in the array can be classified into three major categories: Normal point, Activated point and Floating point.
+ All of the cross points have similar structure with no more than three current branches and therefore it is very easy to set up the KCL equations for each cross point. However, we should treat the cross points at the edges of the array specially because there are different conditions for different write/read schemes. For example, the unselected word line for write operation can be either half biased or left floating. Thus, the edge conditions should be adjusted according to each write/read schemes. In particular, all of the cross points in the array can be classified into three major categories: Normal point, Activated point and Floating point.
 
 The normal points locate inside the memory array. In other words, for all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form of
 \begin{equation}\label{equ:KCL1}
