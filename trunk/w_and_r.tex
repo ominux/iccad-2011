@@ -106,7 +106,7 @@ V_{BN}=V_B(W).
 In order to avoid the \textbf{write failure} and successfully program the
 selected ReRAM cell, the driven voltage should be boosted to a higher
 level, making sure that the voltage across the cell exceed the threshold
-voltage even at the worst case. Figure~\ref{fig:worst_v} shows the lower bound of the driven voltage for different sizes of cross-point array. The minimum word/bit line voltage increases from 2.01 V for a $8 \times 8$ array to 4.47 V for a $128 \times 128$ cross-point array. Besides, for a  memory capability, the cross-point array can be organized with different number of word lines and bit lines. For example, a 4K bits cross-point array can be implemented either by a $64 \times 64$ array or by a $32 \times 128$ array. In the latter case, the voltage drops along the word line will be much more serious than along the bit line. Figure~\ref{fig:shape}
+voltage even at the worst case. Figure~\ref{fig:worst_v} shows the lower bound of the driven voltage for different sizes of cross-point array. The minimum word/bit line voltage increases from 2.01~V for a $8 \times 8$ array to 4.47~V for a $128 \times 128$ cross-point array. Besides, for a  memory capability, the cross-point array can be organized with different number of word lines and bit lines. For example, a 4K bits cross-point array can be implemented either by a $64 \times 64$ array or by a $32 \times 128$ array. In the latter case, the voltage drops along the word line will be much more serious than along the bit line. Figure~\ref{fig:shape}
 exams the voltage requirement for different array organizations with different write schemes. The result shows that from the reliability point of view, the cross-point array with same numbers of word line and bit line is the best choice. Besides, we also notice that when the array has the same number of word line and bit line, FWFB, HWFB and FWHB schemes have the same minimum driven voltage.
 
 %Clearly, the magnitude of the voltage drop increases with the array size and the resistance of interconnect wires.
@@ -156,7 +156,7 @@ selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.40\textwidth]{./figures/energy4.pdf}\\
+  \includegraphics[width=0.5\textwidth]{./figures/energy4.pdf}\\
   \caption{The Normalized Energy Consumption. (a): HWHB scheme (b): FWHB and HWFB schemes.}\label{fig:energy}
 \end{figure}
 
@@ -206,17 +206,26 @@ $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bi
 \vspace{6pt} \textbf{Non-linearity of the ReRAM Cell.} \vspace{6pt}
 
 One of the most distinct feature of ReRAM is its non-linearity. Take the memristor based ReRAM for example, the non-linearity can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
-$K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 5, meaning that the resistance of half-biased  cell is 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements. Due to the space limitation, only the results for one bit writing with HWHB scheme are shown. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10.
+$K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 20, meaning that the resistance of half-biased  cell is at least 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements for one bit HWHB writing scheme. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10. Similarly, the non-linearity can also increase the maximum array size for other write schemes.
 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.4\textwidth]{./figures/non_linear}\\
-  \caption{The Maximum Array Size with Different Non-linearity}\label{fig:non_linear}
+  \caption{The Maximum Array Size with Different Non-linearity Coefficient.}\label{fig:non_linear}
 \end{figure}
 
-On the other hand, the non-linearity can also reduce the energy consumption and area overheads. Take the $128 \times 128$ array for example.
+On the other hand, the non-linearity can also reduce the energy consumption of the cross-point array. Take the $128 \times 128$ array for example. As shown in Figure~\ref{fig:non_linear_energy}, the energy consumption for the write operation decreases dramatically with the increase of non-linearity coefficient $K_r$. As $K_r$ increases from 1 to 40, the write energy is reduced by 98..\%.
 
+
+The write energy with $K_r=20$ is only $3.6\%$ of the energy consumption
+
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.4\textwidth]{./figures/non_linear_energy.pdf}\\
+  \caption{The}\label{fig:non_linear_energy}
+\end{figure}
 
 \begin{figure}%[!t]
 \centering
@@ -225,12 +234,7 @@ On the other hand, the non-linearity can also reduce the energy consumption and 
   \caption{The}\label{fig:non_linear_I}
 \end{figure}
 
-\begin{figure}%[!t]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/non_linear_energy.pdf}\\
-  \caption{The}\label{fig:non_linear_energy}
-\end{figure}
+
 
 \begin{figure}%[!t]
 \centering
