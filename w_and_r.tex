@@ -83,7 +83,7 @@ V_{worst}=V_{select} \cdot [1-\frac{1}{M+(N-1)R_{off}/R_{on}}].
 \begin{figure}[!b]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/FWFB4.pdf}\\
+  \includegraphics[width=0.4\textwidth]{./figures/FWFB_f.pdf}\\
   \caption{Write disturbance for FWFB schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
 \end{figure}
 Considering that the reported On-OFF resistance ratio of
@@ -116,7 +116,7 @@ examines the voltage requirement for different array organizations with differen
 \begin{figure}%[!hb]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/worst_v3.pdf}\\
+  \includegraphics[width=0.4\textwidth]{./figures/worst_v_f.pdf}\\
   \caption{Write voltage requirement (Threshold voltage = 2V). }\label{fig:worst_v}
   \vspace{-10pt}
 \end{figure}
@@ -125,8 +125,8 @@ examines the voltage requirement for different array organizations with differen
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/shape3.pdf}\\
-  \caption{Write voltage requirement with different memory shape. (Array capacity = 4Kbits, Activated wordline voltage = 2V, Activated bitline voltage = 0V.)}\label{fig:shape}
+  \includegraphics[width=0.45\textwidth]{./figures/shape_f.pdf}\\
+  \caption{Write voltage requirement with different memory shape. (Array capacity = 4Kbits, Activated wordline voltage = 2V, Activated bitline voltage = 0V.)}\label{fig:shape_f}
     \vspace{-10pt}
 \end{figure}
 
@@ -138,7 +138,7 @@ Figure~\ref{fig:worst_v}. Since the threshold voltage of the ReRAM cell is 2V, o
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.28\textwidth]{./figures/Theoretical_bound2.pdf}\\
+  \includegraphics[width=0.28\textwidth]{./figures/Theoretical_bound_f.pdf}\\
   \caption{The maximum voltage applied at unselected cells with the minimum driven voltage.}\label{fig:half}
   \vspace{-10pt}
 \end{figure}
@@ -158,7 +158,7 @@ selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/energy4.pdf}\\
+  \includegraphics[width=0.5\textwidth]{./figures/energy_f.pdf}\\
   \caption{The normalized energy consumption. (a): HWHB scheme (b): FWHB and HWFB schemes.}\label{fig:energy}
     \vspace{-10pt}
 \end{figure}
@@ -176,7 +176,7 @@ The write operation for a $M \times N$ array requires totaly $M+N$ voltage drive
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/drive_i_double.pdf}\\
+  \includegraphics[width=0.5\textwidth]{./figures/drive_i_f.pdf}\\
   \caption{The driven current requirements for wordlines and bitlines. (a) One bit writing; (B) Multi bit writing.}\label{fig:drive_i}
 \end{figure}
 
@@ -190,7 +190,7 @@ So far, we have only discussed the write operation with one bit per access. In t
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/multiwrite.pdf}\\
+  \includegraphics[width=0.4\textwidth]{./figures/multiwrite_f.pdf}\\
   \caption{The array size requirement for the cross-point array with different write schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one wordline per access. }\label{fig:reliable_region}
     \vspace{-10pt}
 \end{figure}
@@ -201,7 +201,7 @@ $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bi
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/multi_energy2.pdf}\\
+  \includegraphics[width=0.5\textwidth]{./figures/multi_energy_f.pdf}\\
   \caption{The normalized energy consumption per bit for multi-bits write operation. (a): HWHB and  FWHB schemes; (b): HWFB scheme. }\label{fig:multi_energy}
     \vspace{-10pt}
 \end{figure}
@@ -220,7 +220,7 @@ $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bi
 \begin{figure}[!b]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/non_linear}\\
+  \includegraphics[width=0.4\textwidth]{./figures/non_linear_f}\\
   \caption{The maximum array size with different non-linearity coefficient.}\label{fig:non_linear}
 \end{figure}
 One of the most distinct features of ReRAM is its non-linearity. For example, the non-linearity of memristor-based ReRAM is observed at LRS when the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
@@ -262,7 +262,7 @@ Moreover, the non-linearity can also reduce the energy consumption and area over
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.35\textwidth]{./figures/Area_kr20.pdf}\\
+  \includegraphics[width=0.35\textwidth]{./figures/Area_kr20_f.pdf}\\
   \caption{The normalized area overhead of voltage drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
 \end{figure}
 \subsection{Read Operation}
@@ -293,6 +293,6 @@ In this section, the current sensing scheme is used to determine the current in 
 \begin{figure}[!b]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/sense_margin2}\\
+  \includegraphics[width=0.5\textwidth]{./figures/sense_margin_f}\\
   \caption{Relationships among the voltage swing, array size and non-linearity. (a) Normal sensing scheme; (b) Two-step sensing scheme}\label{fig:sense_margin}
 \end{figure}
