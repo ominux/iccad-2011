@@ -76,6 +76,13 @@ Figure~\ref{fig:FWFR} shows the voltage drop across each ReRAM cell of a $64 \ti
 \begin{equation}\label{worst_FWFB}
 V_{worst}=V_{select} \cdot [1-\frac{1}{M+(N-1)R_{off}/R_{on}}].
 \end{equation}
+
+\begin{figure}[!b]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.35\textwidth]{./figures/FWFB4.pdf}\\
+  \caption{Write Disturbance for FWFB Schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
+\end{figure}
 Considering that the reported On-OFF resistance ratio of
 ReRAM cell is always $>50$ ~\cite{ReRAM_IEDM2010_Ho,ReRAM_IEDM2010_Chien,ReRAM_IEDM2010_Lee_Diode,ReRAM_IEDM2010_Lee_Evidence,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka},
 , the worst case voltage drop at the unselected cell is larger than $98\%$ of the voltage at the selected cell, making it is impossible to build a reliable cross-point structure ReRAM with the FWFB scheme. Therefore, in the following discussion, we only compare the results of FWHB, HWFB and HWHB schemes. For each of these three schemes, we can either write the cells at one word line at the same time or only write one bit per access and separate the write operation to several arrays. In the
@@ -85,14 +92,6 @@ And then the results of one word line per access method are discussed.
 
 %as long all of unselected cells in the activated word line (or all of unselected cells in the activated bit line) are at HRS and other cells are in LRS, the voltage drop at unselected cells are mainly applied at the HRS cells at the word line (or bit line).
 %The worse case scenario for FWFB write disturbance can be defined as: all of unselected cells in the activated word line (or all of unselected cells in the activated bit line) are at HRS and other cells are in LRS. In this case, the voltage drop at unselected cells are mainly applied at the HRS cells at the word line (or bit line).
-
-
-\begin{figure}%[!b]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.35\textwidth]{./figures/FWFB4.pdf}\\
-  \caption{Write Disturbance for FWFB Schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
-\end{figure}
 
 The write failure mainly results from the voltage drop at the interconnect wires along the word line and bit line. It has been shown that~\cite{crossbar_TED_2010}, for one bit per access write operation, the worst case voltage drop occurs when
 \begin{equation}
@@ -125,6 +124,7 @@ exams the voltage requirement for different array organizations with different w
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/shape3.pdf}\\
   \caption{Write Voltage Requirement with Different Memory Shape. (Array Capacity = 4Kbits, Activated Word Line Voltage = 2V, Activated Bit Line Voltage = 0V.)}\label{fig:shape}
+    \vspace{-10pt}
 \end{figure}
 
 However, boosting the driven voltage also introduces other potential problems for the array. Especially, the increasing of the driven voltage also increases the voltage applied at the unselected cell. Therefore, a
@@ -158,6 +158,7 @@ selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy 
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/energy4.pdf}\\
   \caption{The Normalized Energy Consumption. (a): HWHB scheme (b): FWHB and HWFB schemes.}\label{fig:energy}
+    \vspace{-10pt}
 \end{figure}
 
 \vspace{6pt} \textbf{Area cost of Write Operation.} \vspace{6pt}
@@ -189,6 +190,7 @@ So far, we only discuss the one bit per access write operation. In this section,
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.4\textwidth]{./figures/multiwrite.pdf}\\
   \caption{The Array Size Requirement for the Cross-Point Array with Different Write Schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one word line per access. }\label{fig:reliable_region}
+    \vspace{-10pt}
 \end{figure}
 
 In order to fairly compared the energy consumption, we compared the energy-per-bit instead of the total energy. For example, in order to write a word line with size of 128, the energy-per-bit can be calculated as:
@@ -200,7 +202,9 @@ $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bi
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/multi_energy2.pdf}\\
   \caption{The Normalized Energy Consumption per Bit for Multi-Bits Write Operation. (a): HWHB and  FWHB schemes (b): HWFB scheme. }\label{fig:multi_energy}
+    \vspace{-10pt}
 \end{figure}
+
 
 
 %\begin{figure}%[!t]
@@ -212,15 +216,15 @@ $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bi
 
 \vspace{6pt} \textbf{Non-linearity of the ReRAM Cell.} \vspace{6pt}
 
-One of the most distinct feature of ReRAM is its non-linearity. Take the memristor based ReRAM for example, the non-linearity is observed at LRS and can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
-$K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 20, meaning that the resistance of half-biased  cell is at least 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements for one bit HWHB writing scheme. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10. Similarly, the non-linearity can also increase the maximum array size for other write schemes.
-
-\begin{figure}%[!t]
+\begin{figure}[!b]
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.4\textwidth]{./figures/non_linear}\\
   \caption{The Maximum Array Size with Different Non-linearity Coefficient.}\label{fig:non_linear}
 \end{figure}
+One of the most distinct feature of ReRAM is its non-linearity. Take the memristor based ReRAM for example, the non-linearity is observed at LRS and can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
+$K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 20, meaning that the resistance of half-biased  cell is at least 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements for one bit HWHB writing scheme. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10. Similarly, the non-linearity can also increase the maximum array size for other write schemes.
+
 
 On the other hand, the non-linearity can also reduce the energy consumption and area overheads of the cross-point array. Take the $128 \times 128$ array for example. As shown in Figure~\ref{fig:non_linear_energy}, the energy consumption for the write operation decreases dramatically with the increase of non-linearity coefficient $K_r$. As $K_r$ increases from 1 to 40, the write energy is reduced by 98.3\%. The driven current requirement is shown in Figure~\ref{fig:area_all}(a), and the corresponding area overheads of the voltage drivers are compared to the array size at Figure~\ref{fig:area_all}(b). The baseline design is unacceptable because the area of voltage drivers is about 11.6 times larger than the area of cross-point array. In this case, the area efficiency of ReRAM's $4F^2$ cell size will be offset by the extreme huge area overhead of the voltage drivers. However, with the increase of non-linearity, the area of voltage drivers becomes comparable to the array area. Therefore, we can conclude that, the ReRAM cells with small non-linearity coefficient are not suitable for the cross-point structure based memory array. Besides, we also study the area overhead of multi bit write. Figure~\ref{fig:Area_kr20} shows the normalized areas of the voltage drivers for one bit and multi bit write operations. As mentioned, multi bit write operation requires larger driven current. Therefore, the area of voltage driver for multi bit write operation is much larger than that of one bit write operation. Besides, normalized areas of the one bit and multi bit write operations have opposite trends as the array size increases. Normalized area for one bit write operation increases with the array size. On the contrary, normalized area for multi bit write decreases as the array size increase.
 
@@ -248,7 +252,9 @@ On the other hand, the non-linearity can also reduce the energy consumption and 
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/area_all.pdf}\\
+  \vspace{-5pt}
   \caption{The}\label{fig:area_all}
+ \vspace{-15pt}
 \end{figure}
 
 
@@ -283,7 +289,7 @@ In this section, the current sensing scheme is used to determine the current in 
 %  \caption{The}\label{fig:sense_margin}
 %\end{figure}
 
-\begin{figure}%[!t]
+\begin{figure}[!b]
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/sense_margin2}\\
