@@ -21,9 +21,9 @@ Based on the circuit model shown in Figure~\ref{fig:modeling}, the current equat
 \begin{equation}
   {\Sigma}_{I=1}^kI_k=0.
 \end{equation}
- All of the cross-points have similar structure with no more than three current branches and therefore it is very easy to set up the KCL equations for each cross-point. However, we should treat the cross-points at the edges of the array specially because there are different conditions for different write/read schemes. For example, the unselected wordline for write operation can be either half biased or left floating. Thus, the edge conditions should be adjusted according to each write/read schemes. In particular, all of the cross-points in the array can be classified into three major categories: Normal point, Activated point and Floating point.
+ All of the cross-points have similar structure with no more than three current branches and therefore it is very easy to set up the KCL equations for each cross-point. However, we should treat the cross-points at the edges of the array specially because there are different conditions for different write/read schemes. For example, the unselected wordline for write operation can be either half biased or left floating. Thus, the edge conditions should be adjusted according to each write/read schemes. In particular, all of the cross-points in an array can be classified into three major categories: Normal point, Activated point and Floating point.
 
-The normal points locate inside the memory array. In other words, for all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form of
+The normal points are located inside the memory array. In other words, for all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form of
 \begin{equation}\label{equ:KCL1}
 R_l^{-1}V_{i,j-1} -(2R_l^{-1}+R_{i,j}^{-1})V_{i,j}+ R_l^{-1}V_{i,j+1}+R_{i,j}^{-1}V'_{i,j}=0,
 \end{equation}
@@ -33,16 +33,16 @@ R_l^{-1}V'_{i-1,j} -(2R_l^{-1}+R_{i,j}^{-1})V'_{i,j}+ R_l^{-1}V'_{i+1,j}+R_{i,j}
 \end{equation}
 for the node at bitline layer.
 
-The activated point and floating point represent the nodes at the edge of cross-point array with different conditions: an edge point, which is directly connected to the voltage input or to the ground, can be considered as an activated point. Otherwise, it is a floating point. Take the point located at the intersection of $i^{th}$ wordline and $1^{st}$ bitline for example. If the $i^{th}$ wordline is activated by a voltage input of $V_{Wi}$, this cross-point is an activated point, and the KCL equation for this point is:
+The activated point and floating point represent the nodes at the edge of cross-point array with different conditions: an edge point, which is directly connected to the voltage input or to the ground, can be considered as an activated point. Otherwise, it is a floating point. For example, consider the point located at the intersection of $i^{th}$ wordline and $1^{st}$ bitline. If the $i^{th}$ wordline is activated by an input voltage of $V_{Wi}$, this cross-point is an activated point, and the KCL equation for this point is:
 \begin{equation}\label{equ:KCL3}
 -(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=-R_v^{-1}V_{Wi}.
 \end{equation}
-Otherwise, it is floating and has the KCL equation take the form of
+Otherwise, it is floating and its KCL equation is,
 \begin{equation}\label{equ:KCL4}
 -(R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=0.
 \end{equation}
 
-For the reasons of clarity, a ${2mn\times 1}$ vector ${V}$ is defined to represent all of the variables in the KCL equations:
+For clarity,  ${2mn\times 1}$ vector ${V}$ is defined to represent all of the variables in the KCL equations:
 \begin{equation}\label{equ:V1}
 {V}=[{V_1}^T,{V_2}^T...{V_m}^T,{V'_1}^T,{V'_2}^T...{V'_m}^T]^T,
 \end{equation}
@@ -56,7 +56,7 @@ where,
 \begin{equation}\label{equ:V2}
 {V_i} = [V_{i,1},V_{i,2}...V_{i,n}]^T,~~{V'_i} = [V'_{i,1},V'_{i,2}...V'_{i,n}]^T,
 \end{equation}
-for $i=1,2...m$. Then all of the KCL equations can be considered as a system of linear equations, which has the form of
+for $i=1,2...m$. Then all of the KCL equations can be considered as a system of linear equations, which has the form, 
 \begin{equation}\label{equ:matrix}
 A\cdot V = C.
 \end{equation}
@@ -72,8 +72,8 @@ $A$ is a ${2mn\times{2mn}}$ coefficient matrix, which is determined by Equation(
             A3 & A4  \\
         \end{array} \right].
     \end{equation}
-All of these subblocks have the same size of $m\times n$. Subblock $A2$ and $A3$ are diagonal matrixes and have the value of: $A2_{i,i} = A3_{i,i} = R_{i,i}^{-1}$. Besides, $A2$ and $A3$ do not change their values with different schemas. However, $A1$ and $A4$ are a little bit more complex than $A2$ and $A3$. $A1$ is a tridiagonal matrix and only has nonzero elements at the location in the main diagonal, and the first line below and above the diagonal. Similarly, the $A_4$ is a special tridiagonal matrix, which has nonzero elements in the main diagonal, the $n^{th}$ line below and above the diagonal, where $n$ is the number of bitline in the cross-point model.
-The value of the elements in $A1$ and $A4$ can be easily derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}). However, as mentioned, the edge condition varies with different program schemes. Therefore, the coefficients related to the edge condition should be update according to the program schemes. Clearly, the four edges shown in Figure~\ref{fig:modeling} correspond to different coefficients in $A1$ and $A4$. Due to the space limitations, we take the nodes at the left edge of the array for example. Coefficients of other edge nodes can be initiated by the same way. The coefficients of nodes at the left edge of the array ($V_{i,1}$) can be set as:
+All of these subblocks have the same size of $m\times n$. Subblock $A2$ and $A3$ are diagonal matrixes and have the value of: $A2_{i,i} = A3_{i,i} = R_{i,i}^{-1}$. Besides, $A2$ and $A3$ do not change their values with different schemas. However, $A1$ and $A4$ are a little more complex than $A2$ and $A3$. $A1$ is a tridiagonal matrix and has nonzero elements only in the main diagonal, and the first line below and above the diagonal. Similarly, $A_4$ is a special tridiagonal matrix, which has nonzero elements in the main diagonal, the $n^{th}$ line below and above the diagonal, where $n$ is the number of bitline in the cross-point model.
+The value of the elements in $A1$ and $A4$ can be easily derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}). However, the edge condition varies with different program schemes. Therefore, the coefficients related to the edge condition should be update according to the program schemes. Clearly, the four edges shown in Figure~\ref{fig:modeling} correspond to different coefficients in $A1$ and $A4$. Due to the space limitations, we consider the nodes at the left edge of the array as an example. A similar procedure can be followed to initiate the coefficients of other edge. The coefficients of nodes at the left edge of the array ($V_{i,1}$) can be set as:
 
 %    \begin{equation}\label{equ:A1}
 %        \A1((n-1)i+1,(n-1)i+1) = \left{
@@ -92,7 +92,7 @@ The value of the elements in $A1$ and $A4$ can be easily derived from Equation (
     \end{equation}
     where $k=(n-1)i+1$ for $i=1,2...m$.
 
-  \item The constant terms $C$ is a $2mn{\times}1$ vector. Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}) show that only KCL equations of the activated points have the constant terms. Therefore, only the following elements in $C$ may have non-zero value: $C((i-1)n+1)$, $C(in)$, $C(mn+i)$ and $C((2m-1)n+i)$ for $i=1,2...m$, correspond to the nodes at the four edges respectively. Likewise, we take nodes $V_{i,1}$ for example. The constant correspond to these node can be defined as:
+  \item The constant terms $C$ is a $2mn{\times}1$ vector. Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}) show that only KCL equations of the activated points have constant terms. Therefore, only the following elements in $C$ may have non-zero value: $C((i-1)n+1)$, $C(in)$, $C(mn+i)$ and $C((2m-1)n+i)$ for $i=1,2...m$, corresponding to the nodes at the four edges respectively. Likewise, we consider nodes $V_{i,1}$ for example. The constant corresponding to these nodes can be defined as:
     \begin{equation}
     C((i-1)n+1) = \left\{
     \begin{array}{ll}
@@ -102,4 +102,5 @@ The value of the elements in $A1$ and $A4$ can be easily derived from Equation (
     \end{equation}
 \end{enumerate}
 
-Therefore, with all of the required parameters, including the resistance of ReRAM cell, resistance of interconnect wires, program voltages and write/read schemes, the voltage at each cross-point of the array can be obtained by solving the Equation~(\ref{equ:matrix}) with simple matrix computations. With the detailed voltage values, $V_{2mn{\times}1}$, we can analyzed the array at a very fine granularity. Also, these information can be very useful to evaluate the reliability, energy consumption, driven current density, and area overheads of the cross-point array. 
+Thus, with input parameters such as resistance of ReRAM cell, resistance of interconnect wires, program voltages, and write/read schemes, voltages at various cross points can be obtained by solving the Equation~(\ref{equ:matrix}).
+With detailed voltage values, $V_{2mn{\times}1}$, we can analyzed the array at a fine granularity. Also, these values are critical to evaluate reliability, energy consumption, driven current density, and area overheads of a cross-point array. 
