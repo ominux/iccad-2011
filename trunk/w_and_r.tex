@@ -90,7 +90,7 @@ And then the results of one word line per access method are discussed.
 \begin{figure}%[!b]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/FWFB4.pdf}\\
+  \includegraphics[width=0.35\textwidth]{./figures/FWFB4.pdf}\\
   \caption{Write Disturbance for FWFB Schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
 \end{figure}
 
@@ -136,7 +136,7 @@ Figure~\ref{fig:worst_v}. Since the threshold voltage of the ReRAM cell is 2V, o
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.25\textwidth]{./figures/Theoretical_bound2.pdf}\\
+  \includegraphics[width=0.28\textwidth]{./figures/Theoretical_bound2.pdf}\\
   \caption{The Maximum Voltage Applied at Unselected Cells with the Minimum Driven Voltage.}\label{fig:half}
   \vspace{-10pt}
 \end{figure}
@@ -162,14 +162,21 @@ selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy 
 
 \vspace{6pt} \textbf{Area cost of Write Operation.} \vspace{6pt}
 
-The write operation for a $M \times N$ array requires totaly $M+V$ voltage drivers. Therefore, the average number of ReRAM cells per voltage driver can be calculated as $mn/(m+n)$. Given the array capacity of $C_{array}$, it is easy to find that the optimal array organization can be achieved when $M=N=\sqrt{C_{array}}$ and the maximum number of cells per voltage driver is: $\sqrt{C_{array}}/2$. However, the area overhead of a voltage driver is also related to its current drive capability. Figure~\ref{fig:w_current} shows the maximum write current with different ReRAM array size. According to the current requirement, the area of the voltage driver can be directly calculated, which will be shown in the following discussion.
+The write operation for a $M \times N$ array requires totaly $M+V$ voltage drivers. Therefore, the average number of ReRAM cells per voltage driver can be calculated as $mn/(m+n)$. Given the array capacity of $C_{array}$, it is easy to find that the optimal array organization can be achieved when $M=N=\sqrt{C_{array}}$ and the maximum number of cells per voltage driver is: $\sqrt{C_{array}}/2$. However, the area overhead of a voltage driver is also related to its current drive capability. Figure~\ref{fig:drive_i}(a) shows the maximum write current with different ReRAM array size. According to the current requirement, the area of the voltage driver can be directly calculated, which will be shown in the following discussion.
 
+%\begin{figure}%[!t]
+%\centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=0.4\textwidth]{./figures/w_current2.pdf}\\
+%  \caption{The }\label{fig:w_current}
+%\end{figure}
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/w_current2.pdf}\\
-  \caption{The }\label{fig:w_current}
+  \includegraphics[width=0.5\textwidth]{./figures/drive_i_double.pdf}\\
+  \caption{The }\label{fig:drive_i}
 \end{figure}
+
 
 \vspace{6pt} \textbf{Discussion on Multi-Bits Write Operation.} \vspace{6pt}
 
@@ -185,27 +192,27 @@ So far, we only discuss the one bit per access write operation. In this section,
 \end{figure}
 
 In order to fairly compared the energy consumption, we compared the energy-per-bit instead of the total energy. For example, in order to write a word line with size of 128, the energy-per-bit can be calculated as:
-$E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bit of the multi-bit write operation. The energy shown in this figure is normalized to the same unit as Figure~\ref{fig:energy} for easier comparison. The results show that for large size of the cross point array, the multi-bit write operation is much more energy efficient. This is because the energy wasted at the unselected and half-selected cells are shared by multi bits and the average energy for one each bit is therefore reduced. However, although the multi bit write operation has the advantage of energy consumption, the maximum current requirement for each word line also increases. As shown in Figure~\ref{fig:multi_I}, the maximum driven current for bit line is almost the same as one bit writing, the drive capability for wold line is almost doubled for multi-bit writing. Since the area of the voltage driver increases proportional with its driven capability, the area overhead for multi-bit writing is about 50\% larger than one bit writing.
+$E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bit of the multi-bit write operation. The energy shown in this figure is normalized to the same unit as Figure~\ref{fig:energy} for easier comparison. The results show that for large size of the cross point array, the multi-bit write operation is much more energy efficient. This is because the energy wasted at the unselected and half-selected cells are shared by multi bits and the average energy for one each bit is therefore reduced. However, although the multi bit write operation has the advantage of energy consumption, the maximum current requirement for each word line also increases. As shown in Figure~\ref{fig:drive_i}(b), the maximum driven current for bit line is almost the same as one bit writing, the drive capability for wold line is almost doubled for multi-bit writing. Since the area of the voltage driver increases proportional with its driven capability, the area overhead for multi-bit writing is about 50\% larger than one bit writing.
 
 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/multi_energy2.pdf}\\
+  \includegraphics[width=0.5\textwidth]{./figures/multi_energy2.pdf}\\
   \caption{The Normalized Energy Consumption per Bit for Multi-Bits Write Operation. (a): HWHB and  FWHB schemes (b): HWFB scheme. }\label{fig:multi_energy}
 \end{figure}
 
 
-\begin{figure}%[!t]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/multi_I2.pdf}\\
-  \caption{The }\label{fig:multi_I}
-\end{figure}
+%\begin{figure}%[!t]
+%\centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=0.4\textwidth]{./figures/multi_I2.pdf}\\
+%  \caption{The }\label{fig:multi_I}
+%\end{figure}
 
 \vspace{6pt} \textbf{Non-linearity of the ReRAM Cell.} \vspace{6pt}
 
-One of the most distinct feature of ReRAM is its non-linearity. Take the memristor based ReRAM for example, the non-linearity can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
+One of the most distinct feature of ReRAM is its non-linearity. Take the memristor based ReRAM for example, the non-linearity is observed at LRS and can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
 $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 20, meaning that the resistance of half-biased  cell is at least 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated word line and bit line. Figure~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements for one bit HWHB writing scheme. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10. Similarly, the non-linearity can also increase the maximum array size for other write schemes.
 
 \begin{figure}%[!t]
@@ -215,39 +222,45 @@ $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resi
   \caption{The Maximum Array Size with Different Non-linearity Coefficient.}\label{fig:non_linear}
 \end{figure}
 
-On the other hand, the non-linearity can also reduce the energy consumption and area overheads of the cross-point array. Take the $128 \times 128$ array for example. As shown in Figure~\ref{fig:non_linear_energy}, the energy consumption for the write operation decreases dramatically with the increase of non-linearity coefficient $K_r$. As $K_r$ increases from 1 to 40, the write energy is reduced by 98.3\%. The driven current requirement is shown in Figure~\ref{fig:non_linear_I}, and the corresponding area overheads of the voltage drivers are compared to the array size at Figure~\ref{fig:non_linear_ara}. The baseline design is unacceptable because the area of voltage drivers is about 11.6 times larger than the area of cross-point array. In this case, the area efficiency of ReRAM's $4F^2$ cell size will be offset by the extreme huge area overhead of the voltage drivers. However, with the increase of non-linearity, the area of voltage drivers becomes comparable to the array area. Therefore, we can conclude that, the ReRAM cells with small non-linearity coefficient are not suitable for the cross-point structure based memory array. Besides, we also study the area overhead of multi bit write. Figure~\ref{fig:Area_kr20} shows the normalized areas of the voltage drivers for one bit and multi bit write operations. As mentioned, multi bit write operation requires larger driven current. Therefore, the area of voltage driver for multi bit write operation is much larger than that of one bit write operation. Besides, normalized areas of the one bit and multi bit write operations have opposite trends as the array size increases. Normalized area for one bit write operation increases with the array size. On the contrary, normalized area for multi bit write decreases as the array size increase.
+On the other hand, the non-linearity can also reduce the energy consumption and area overheads of the cross-point array. Take the $128 \times 128$ array for example. As shown in Figure~\ref{fig:non_linear_energy}, the energy consumption for the write operation decreases dramatically with the increase of non-linearity coefficient $K_r$. As $K_r$ increases from 1 to 40, the write energy is reduced by 98.3\%. The driven current requirement is shown in Figure~\ref{fig:area_all}(a), and the corresponding area overheads of the voltage drivers are compared to the array size at Figure~\ref{fig:area_all}(b). The baseline design is unacceptable because the area of voltage drivers is about 11.6 times larger than the area of cross-point array. In this case, the area efficiency of ReRAM's $4F^2$ cell size will be offset by the extreme huge area overhead of the voltage drivers. However, with the increase of non-linearity, the area of voltage drivers becomes comparable to the array area. Therefore, we can conclude that, the ReRAM cells with small non-linearity coefficient are not suitable for the cross-point structure based memory array. Besides, we also study the area overhead of multi bit write. Figure~\ref{fig:Area_kr20} shows the normalized areas of the voltage drivers for one bit and multi bit write operations. As mentioned, multi bit write operation requires larger driven current. Therefore, the area of voltage driver for multi bit write operation is much larger than that of one bit write operation. Besides, normalized areas of the one bit and multi bit write operations have opposite trends as the array size increases. Normalized area for one bit write operation increases with the array size. On the contrary, normalized area for multi bit write decreases as the array size increase.
 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/non_linear_energy.pdf}\\
+  \includegraphics[width=0.38\textwidth]{./figures/non_linear_energy.pdf}\\
   \caption{The Normalized Energy Consumption with Non-linear ReRAM Cells.}\label{fig:non_linear_energy}
 \end{figure}
 
+%\begin{figure}%[!t]
+%\centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=0.4\textwidth]{./figures/non_linear_I.pdf}\\
+%  \caption{The}\label{fig:non_linear_I}
+%\end{figure}
+%
+%\begin{figure}%[!t]
+%\centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=0.4\textwidth]{./figures/non_linear_ara.pdf}\\
+%  \caption{The}\label{fig:non_linear_ara}
+%\end{figure}
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/non_linear_I.pdf}\\
-  \caption{The}\label{fig:non_linear_I}
+  \includegraphics[width=0.5\textwidth]{./figures/area_all.pdf}\\
+  \caption{The}\label{fig:area_all}
 \end{figure}
+
 
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/non_linear_ara.pdf}\\
-  \caption{The}\label{fig:non_linear_ara}
-\end{figure}
-
-\begin{figure}%[!t]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/Area_kr20.pdf}\\
+  \includegraphics[width=0.35\textwidth]{./figures/Area_kr20.pdf}\\
   \caption{The Normalized Area Overhead of Voltage Drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
 \end{figure}
 \subsection{Read Operation}
-The design constraints for read operation can be analyzed by the same way as the write operation, including the reliability, energy consumption and the area overhead. Since the read voltage/current is much lower than the write, we believe the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Thus in this section, we only shows the results of reliability issue and read energy. Also, since the difference
+In this section, the current sensing scheme is used to determine the current in each bit line. In order to read cell $R_{i,j}$, the $i^{th}$ word line is biased at $V_{READ}$ and all of the other word lines and bit lines are grounded. Then the state of the selected cell is read out by measuring the voltage across $R_s$. The energy consumption for read operation can be analyzed by the same way as that of the write operation. Considering the read voltage is much smaller than write voltage, the read energy is expected at least one order smaller than write operation. Besides, since the read voltage/current is much lower than the write, we believe that the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Therefore, we can conclude that the area overhead of voltage drivers is determined by the write current. However, the reliability of read operation is different from the write operation. The read reliability is determined by the voltage swing for reading HRS and LRS cells. Figure~\ref{fig:sense_margin} (a) shows the voltage swing with different array sizes and $K_r$ values. Large array sizes and large non-linearity are harmful to the voltage swing: on the one hand, larger array has more sneak paths,making the output voltage very sensitive to the data pattern of unselected cells; on the other hand, the non-linearity increases the resistance of LRS and therefore reduces the ON-OFF resistance ratio. In order to improve the reliability of the read operation, a two steps sensing scheme can be applied, which senses the current of unselected cell first, then the overall current is sensed, and after that the current difference is converted to the output voltage. The voltage swing of this two step sensing scheme is shown in Figure~\ref{fig:sense_margin} (b). By using the two steps sensing schemes, the voltage swing is doubled for the array with same size and non-linearity coefficient.
 
-The reliability issue of the read operation of the cross bar array are well studied in previous researches.
 %\begin{figure}%[!t]
 %\centering
 %  % Requires \usepackage{graphicx}
