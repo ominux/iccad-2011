@@ -5,20 +5,20 @@ In this section, a typical ReRAM cross-point array is analyzed in detail by usin
 
 \subsection{Overview}
 As shown in Figure~\ref{fig:modeling}, in order to write or read a
-cross-point array, proper voltages should be applied to 
+cross-point array, proper voltages should be applied to
 wordlines and bitlines. Since several potential
 read/write schemes can be used to program a memory array, it is
-difficult to identify the ideal scheme that meets the design constraints in terms of area, energy, and reliability. In this section, we study the effect of various schemes on cross-point size and reliability. 
+difficult to identify the ideal scheme that meets the design constraints in terms of area, energy, and reliability. In this section, we study the effect of various schemes on cross-point size and reliability.
 The constraints on array size, energy and area overheads are analyzed in the worst cases scenario. The results of this study will be a useful guide in designing a cross-point array. %can be very useful to guide the design of the cross-point array.
 
 %Also, we assumes that the in the case of worst scenario, the ReRAM cells at the selected wordline, th
 %Since it is impossible to consider all of the data pattern stored in the array,
 
-Table~\ref{table:parameter} shows the circuit parameters of our baseline 32nm design. The data is derived from the recently published studies on ReRAM~\cite{crossbar_TED_2010}\cite{memristor:Cong}. 
+Table~\ref{table:parameter} shows the circuit parameters of our baseline 32nm design. The data is derived from the recently published studies on ReRAM~\cite{crossbar_TED_2010}\cite{memristor:Cong}.
 We study %In the following the
 reliability, energy consumption, and area overheads for four different write
 schemes, and discuss the sensitivities of these schemes to the data
-pattern of HRS and LRS ReRAM cells and cell non-linearity. 
+pattern of HRS and LRS ReRAM cells and cell non-linearity.
 
 \begin{table}[!b]
   \centering
@@ -69,9 +69,9 @@ guideline for write operations.
 
 \vspace{6pt} \textbf{Reliable Write Operation.} \vspace{6pt}
 
-Write reliability is a serious concern in cross-point arrays. In an ideal condition, the resistance of wires and the sneak currents in unselected cells are negligible. In such a scenario, all the write schemes discussed above will make sure that the write voltage $V_W(W)-V_B(W)$ is fully applied across the specified cell. However, in reality, both wire resistance and sneak current are non-trivial. Hence, the operation of cross-point array will vary based on the data pattern stored in ReRAM cells. 
-A write is considered reliable if it modifies the content of the selected cells to the new value without disturbing other unselected cells. 
-%A reliable write operation can be defined as: switching the selected cells into required states without disturbing the states of unselected cells. 
+Write reliability is a serious concern in cross-point arrays. In an ideal condition, the resistance of wires and the sneak currents in unselected cells are negligible. In such a scenario, all the write schemes discussed above will make sure that the write voltage $V_W(W)-V_B(W)$ is fully applied across the specified cell. However, in reality, both wire resistance and sneak current are non-trivial. Hence, the operation of cross-point array will vary based on the data pattern stored in ReRAM cells.
+A write is considered reliable if it modifies the content of the selected cells to the new value without disturbing other unselected cells.
+%A reliable write operation can be defined as: switching the selected cells into required states without disturbing the states of unselected cells.
 There are two potential problems with writes: \textbf{write failure}, an unsuccessful write on selected cell, and \textbf{write disturbance}, an undesirable write on unselected cell. It is necessary to ensure that a write scheme guarantees reliable operation even in the worst case (w.r.t the location of cells to written and pattern stored in the cross-point array). Otherwise, after several unreliable write operation, the data stored in the cross-point array will become unpredictable.
 
 We first use an example to show the problem with FWFB scheme, which may result in severe write disturbance.
@@ -84,7 +84,7 @@ V_{worst}=V_{select} \cdot [1-\frac{1}{M+(N-1)R_{off}/R_{on}}].
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.35\textwidth]{./figures/FWFB4.pdf}\\
-  \caption{Write Disturbance for FWFB Schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
+  \caption{Write disturbance for FWFB schemes. ( $V_{W32} = 2V$, $V_{B32} = 0V$. $R_{x,32}$ at HRS, others at LRS.) }\label{fig:FWFR}
 \end{figure}
 Considering that the reported On-OFF resistance ratio of
 ReRAM cell is always $>50$ ~\cite{ReRAM_IEDM2010_Ho,ReRAM_IEDM2010_Chien,ReRAM_IEDM2010_Lee_Diode,ReRAM_IEDM2010_Lee_Evidence,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka},
@@ -126,7 +126,7 @@ exams the voltage requirement for different array organizations with different w
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/shape3.pdf}\\
-  \caption{Write Voltage Requirement with Different Memory Shape. (Array Capacity = 4Kbits, Activated wordline Voltage = 2V, Activated bitline Voltage = 0V.)}\label{fig:shape}
+  \caption{Write voltage requirement with different memory shape. (Array capacity = 4Kbits, Activated word line voltage = 2V, Activated bit line voltage = 0V.)}\label{fig:shape}
     \vspace{-10pt}
 \end{figure}
 
@@ -140,7 +140,7 @@ Figure~\ref{fig:worst_v}. Since the threshold voltage of the ReRAM cell is 2V, o
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.28\textwidth]{./figures/Theoretical_bound2.pdf}\\
-  \caption{The Maximum Voltage Applied at Unselected Cells with the Minimum Driven Voltage.}\label{fig:half}
+  \caption{The maximum voltage applied at unselected cells with the minimum driven voltage.}\label{fig:half}
   \vspace{-10pt}
 \end{figure}
 
@@ -160,7 +160,7 @@ selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy 
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/energy4.pdf}\\
-  \caption{The Normalized Energy Consumption. (a): HWHB scheme (b): FWHB and HWFB schemes.}\label{fig:energy}
+  \caption{The normalized energy consumption. (a): HWHB scheme (b): FWHB and HWFB schemes.}\label{fig:energy}
     \vspace{-10pt}
 \end{figure}
 
@@ -178,7 +178,7 @@ The write operation for a $M \times N$ array requires totaly $M+V$ voltage drive
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/drive_i_double.pdf}\\
-  \caption{The Driven Current Requirements for wordlines and bitlines. (a) One Bit Writing; (B) Multi Bit Writing.}\label{fig:drive_i}
+  \caption{The driven current requirements for word lines and bit lines. (a) One bit writing; (B) Multi bit writing.}\label{fig:drive_i}
 \end{figure}
 
 
@@ -192,7 +192,7 @@ So far, we only discuss the one bit per access write operation. In this section,
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.4\textwidth]{./figures/multiwrite.pdf}\\
-  \caption{The Array Size Requirement for the Cross-Point Array with Different Write Schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one wordline per access. }\label{fig:reliable_region}
+  \caption{The array size requirement for the cross-point array with different write schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one word line per access. }\label{fig:reliable_region}
     \vspace{-10pt}
 \end{figure}
 
@@ -203,7 +203,7 @@ $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bi
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/multi_energy2.pdf}\\
-  \caption{The Normalized Energy Consumption per Bit for Multi-Bits Write Operation. (a): HWHB and  FWHB schemes; (b): HWFB scheme. }\label{fig:multi_energy}
+  \caption{The normalized energy consumption per bit for multi-bits write operation. (a): HWHB and  FWHB schemes; (b): HWFB scheme. }\label{fig:multi_energy}
     \vspace{-10pt}
 \end{figure}
 
@@ -222,7 +222,7 @@ $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bi
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.4\textwidth]{./figures/non_linear}\\
-  \caption{The Maximum Array Size with Different Non-linearity Coefficient.}\label{fig:non_linear}
+  \caption{The maximum array size with different non-linearity coefficient.}\label{fig:non_linear}
 \end{figure}
 One of the most distinct feature of ReRAM is its non-linearity. Take the memristor based ReRAM for example, the non-linearity is observed at LRS and can be described as: the resistance of the memristor cell is not constant but varies with the applied voltage. The non-linearity coefficient is defined as:
 $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resistance of the memristor biased at $V/p$ and $V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for memristor based ReRAM is larger than 20, meaning that the resistance of half-biased  cell is at least 10 times larger than full-biased cell. Clearly, the ReRAM cell with larger non-linearity coefficient is more suitable to be employed as the memory cell since the current in the sneak path will be significantly reduced. Besides, the increased resistance at half-selected and unselected cell can also mitigate the voltage drop along the activated wordline and bitline. Figure~\ref{fig:non_linear} shows the influence of different non-linearity coefficients on the array size requirements for one bit HWHB writing scheme. In this figure, the maximum array size increases from $112 \times 112$ to $340 \times 340$ when the non-linearity coefficient $K_r$ increases to 10. Similarly, the non-linearity can also increase the maximum array size for other write schemes.
@@ -234,7 +234,7 @@ On the other hand, the non-linearity can also reduce the energy consumption and 
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.38\textwidth]{./figures/non_linear_energy.pdf}\\
-  \caption{The Normalized Energy Consumption with Non-linear ReRAM Cells.}\label{fig:non_linear_energy}
+  \caption{The normalized energy consumption with non-linear ReRAM cells.}\label{fig:non_linear_energy}
 \end{figure}
 
 %\begin{figure}%[!t]
@@ -255,7 +255,7 @@ On the other hand, the non-linearity can also reduce the energy consumption and 
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/area_all.pdf}\\
   \vspace{-5pt}
-  \caption{The Driven Current Requirements and Area Overheads with Different Non-linearity Coefficients}\label{fig:area_all}
+  \caption{The driven current requirements and area overheads with different non-linearity coefficients}\label{fig:area_all}
  \vspace{-15pt}
 \end{figure}
 
@@ -264,7 +264,7 @@ On the other hand, the non-linearity can also reduce the energy consumption and 
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.35\textwidth]{./figures/Area_kr20.pdf}\\
-  \caption{The Normalized Area Overhead of Voltage Drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
+  \caption{The normalized area overhead of voltage drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
 \end{figure}
 \subsection{Read Operation}
 In this section, the current sensing scheme is used to determine the current in each bitline. In order to read cell $R_{i,j}$, the $i^{th}$ wordline is biased at $V_{READ}$ and all of the other wordlines and bitlines are grounded. Then the state of the selected cell is read out by measuring the voltage across $R_s$. The energy consumption for read operation can be analyzed by the same way as that of the write operation. Considering the read voltage is much smaller than write voltage, the read energy is expected at least one order smaller than write operation. Besides, since the read voltage/current is much lower than the write, we believe that the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Therefore, we can conclude that the area overhead of voltage drivers is determined by the write current. However, the reliability of read operation is different from the write operation. The read reliability is determined by the voltage swing for reading HRS and LRS cells. Figure~\ref{fig:sense_margin} (a) shows the voltage swing with different array sizes and $K_r$ values. Large array sizes and large non-linearity are harmful to the voltage swing: on the one hand, larger array has more sneak paths,making the output voltage very sensitive to the data pattern of unselected cells; on the other hand, the non-linearity increases the resistance of LRS and therefore reduces the ON-OFF resistance ratio. In order to improve the reliability of the read operation, a two-step sensing scheme can be applied, which senses the current of unselected cell first, then the overall current is sensed, and after that the current difference is converted to the output voltage. The voltage swing of this two-step sensing scheme is shown in Figure~\ref{fig:sense_margin} (b). By using the two steps sensing schemes, the voltage swing is doubled for the array with same size and non-linearity coefficient.
@@ -295,5 +295,5 @@ In this section, the current sensing scheme is used to determine the current in 
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/sense_margin2}\\
-  \caption{Relationships among the Voltage Swing, Array Size and Non-linearity. (a) Normal Sensing Scheme; (b) Two-step Sensing Scheme}\label{fig:sense_margin}
-\end{figure} 
+  \caption{Relationships among the voltage swing, array size and non-linearity. (a) Normal sensing scheme; (b) Two-step sensing scheme}\label{fig:sense_margin}
+\end{figure}
