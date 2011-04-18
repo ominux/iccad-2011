@@ -196,7 +196,6 @@ So far, we only discuss the one bit per access write operation. In this section,
 In order to fairly compared the energy consumption, we compared the energy-per-bit instead of the total energy. For example, in order to write a word line with size of 128, the energy-per-bit can be calculated as:
 $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bit of the multi-bit write operation. The energy shown in this figure is normalized to the same unit as Figure~\ref{fig:energy} for easier comparison. The results show that for large size of the cross point array, the multi-bit write operation is much more energy efficient. This is because the energy wasted at the unselected and half-selected cells are shared by multi bits and the average energy for one each bit is therefore reduced. However, although the multi bit write operation has the advantage of energy consumption, the maximum current requirement for each word line also increases. As shown in Figure~\ref{fig:drive_i}(b), the maximum driven current for bit line is almost the same as one bit writing, the drive capability for wold line is almost doubled for multi-bit writing. Since the area of the voltage driver increases proportional with its driven capability, the area overhead for multi-bit writing is about 50\% larger than one bit writing.
 
-
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
