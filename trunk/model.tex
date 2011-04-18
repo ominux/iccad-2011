@@ -5,13 +5,14 @@ In this section, we present a detailed mathematical model for cross-point arrays
 edge conditions, the reliability, energy consumption, and area overheads of different read/write schemes can be easily evaluated.
 
 \subsection{Basic model of Cross-Point Memory}
-Figure~\ref{fig:modeling} shows the circuit model of an $M$ by $N$ cross-point ReRAM array. The horizontal lines are wordlines and vertical lines represent bitlines. The ReRAM cells are located at each cross-point of wordline and bitlines. The resistance of the ReRAM cell at the cross-point of $i^{th}$ wordline and $j^{th}$ bitline is represented by $R_{i,j}$. We assume the resistance of the wire connecting two crosspoints to be $R_{line}$. The input resistance of each wordline and bitline is $R_v$ and the resistance of sense amplifier is $R_s$. In order to set up the Kirchhoff's Current Law (KCL) equations, the voltage at each cross-point is indicated as $V_{i,j}$ for wordline and $V'_{i,j}$ for bitline. A detailed cross-point is also shown in right side of Figure~\ref{fig:modeling}. The input voltage for the $i^{th}$ wordline is $V_{Wi}$ and the $i^{th}$ bitline is $V_{Bi}$. In the case where a wordline takes input from both the sides, the voltage at the other end of the $i^{th}$ wordline is represented as $V_{W1}$. Finally, the voltage at the sense amplifier is $V'_{Bi}$ during the read operation.
+Figure~\ref{fig:modeling} shows the circuit model of an $M$ by $N$ cross-point ReRAM array. The model is built upon Kirchhoff's Current Law (KCL) and it's validity can be guaranteed by deductions from the basic circuit theory.The horizontal lines are wordlines and vertical lines represent bitlines. The ReRAM cells are located at each cross-point of wordline and bitlines. The resistance of the ReRAM cell at the cross-point of $i^{th}$ wordline and $j^{th}$ bitline is represented by $R_{i,j}$. We assume the resistance of the wire connecting two cross-points to be $R_{line}$. The input resistance of each wordline and bitline is $R_v$ and the resistance of sense amplifier is $R_s$. In order to set up the KCL equations, the voltage at each cross-point is indicated as $V_{i,j}$ for wordline and $V'_{i,j}$ for bitline. A detailed cross-point is also shown in right side of Figure~\ref{fig:modeling}. The input voltage for the $i^{th}$ wordline is $V_{Wi}$ and the $i^{th}$ bitline is $V_{Bi}$. In the case where a wordline takes input from both the sides, the voltage at the other end of the $i^{th}$ wordline is represented as $V_{W1}$. Finally, the voltage at the sense amplifier is $V'_{Bi}$ during the read operation.
+
 %YOU MIGHT WANT TO CHANGE THE ABOVE PARA INTO A TABLE
 
 \begin{figure}%[!hb]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/model_reverse.pdf}\\
+  \includegraphics[width=0.45\textwidth]{./figures/model_f.pdf}\\
   \caption{The basic model of typical cross-point array.}\label{fig:modeling}
   \vspace{-12pt}
 \end{figure}
@@ -37,7 +38,7 @@ The activated point and floating point represent the nodes at the edge of cross-
 \begin{equation}\label{equ:KCL3}
 -(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=-R_v^{-1}V_{Wi}.
 \end{equation}
-Otherwise, it is floating and its KCL equation is,
+Otherwise, it is floating and its KCL equation is
 \begin{equation}\label{equ:KCL4}
 -(R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=0.
 \end{equation}
@@ -60,7 +61,7 @@ for $i=1,2...m$. Then all of the KCL equations can be considered as a system of 
 \begin{equation}\label{equ:matrix}
 A\cdot V = C.
 \end{equation}
-$A$ is a ${2mn\times{2mn}}$ coefficient matrix, which is determined by Equation(\ref{equ:KCL1})-(\ref{equ:KCL4}). $C$ is a ${2mn\times{1}}$ vector, containing the constant terms of these equations. As shown, the KCL equations for each node have very simple structure and are very similar to each other. Therefore, the linear equation system has a relatively fixed format and simple structure, making it very easy to establish and adjust the coefficients and constants according to different design schemes. The characteristics of the linear system can be summarized as:
+$A$ is a ${2mn\times{2mn}}$ coefficient matrix, which is determined by Equations(\ref{equ:KCL1})-(\ref{equ:KCL4}). $C$ is a ${2mn\times{1}}$ vector, containing the constant terms of these equations. As shown, the KCL equations for each node have very simple structure and are very similar to each other. Therefore, the linear equation system has a relatively fixed format and simple structure, making it very easy to establish and adjust the coefficients and constants according to different design schemes. The characteristics of the linear system can be summarized as:
 
 \begin{enumerate}
   \item
