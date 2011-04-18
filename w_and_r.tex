@@ -175,7 +175,7 @@ The write operation for a $M \times N$ array requires totaly $M+V$ voltage drive
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/drive_i_double.pdf}\\
-  \caption{The }\label{fig:drive_i}
+  \caption{The Driven Current Requirements for Word Lines and Bit Lines. (a) One Bit Writing; (B) Multi Bit Writing.}\label{fig:drive_i}
 \end{figure}
 
 
@@ -200,7 +200,7 @@ $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bi
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/multi_energy2.pdf}\\
-  \caption{The Normalized Energy Consumption per Bit for Multi-Bits Write Operation. (a): HWHB and  FWHB schemes (b): HWFB scheme. }\label{fig:multi_energy}
+  \caption{The Normalized Energy Consumption per Bit for Multi-Bits Write Operation. (a): HWHB and  FWHB schemes; (b): HWFB scheme. }\label{fig:multi_energy}
     \vspace{-10pt}
 \end{figure}
 
@@ -252,7 +252,7 @@ On the other hand, the non-linearity can also reduce the energy consumption and 
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/area_all.pdf}\\
   \vspace{-5pt}
-  \caption{The}\label{fig:area_all}
+  \caption{The Driven Current Requirements and Area Overheads with Different Non-linearity Coefficients}\label{fig:area_all}
  \vspace{-15pt}
 \end{figure}
 
@@ -264,7 +264,7 @@ On the other hand, the non-linearity can also reduce the energy consumption and 
   \caption{The Normalized Area Overhead of Voltage Drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
 \end{figure}
 \subsection{Read Operation}
-In this section, the current sensing scheme is used to determine the current in each bit line. In order to read cell $R_{i,j}$, the $i^{th}$ word line is biased at $V_{READ}$ and all of the other word lines and bit lines are grounded. Then the state of the selected cell is read out by measuring the voltage across $R_s$. The energy consumption for read operation can be analyzed by the same way as that of the write operation. Considering the read voltage is much smaller than write voltage, the read energy is expected at least one order smaller than write operation. Besides, since the read voltage/current is much lower than the write, we believe that the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Therefore, we can conclude that the area overhead of voltage drivers is determined by the write current. However, the reliability of read operation is different from the write operation. The read reliability is determined by the voltage swing for reading HRS and LRS cells. Figure~\ref{fig:sense_margin} (a) shows the voltage swing with different array sizes and $K_r$ values. Large array sizes and large non-linearity are harmful to the voltage swing: on the one hand, larger array has more sneak paths,making the output voltage very sensitive to the data pattern of unselected cells; on the other hand, the non-linearity increases the resistance of LRS and therefore reduces the ON-OFF resistance ratio. In order to improve the reliability of the read operation, a two steps sensing scheme can be applied, which senses the current of unselected cell first, then the overall current is sensed, and after that the current difference is converted to the output voltage. The voltage swing of this two step sensing scheme is shown in Figure~\ref{fig:sense_margin} (b). By using the two steps sensing schemes, the voltage swing is doubled for the array with same size and non-linearity coefficient.
+In this section, the current sensing scheme is used to determine the current in each bit line. In order to read cell $R_{i,j}$, the $i^{th}$ word line is biased at $V_{READ}$ and all of the other word lines and bit lines are grounded. Then the state of the selected cell is read out by measuring the voltage across $R_s$. The energy consumption for read operation can be analyzed by the same way as that of the write operation. Considering the read voltage is much smaller than write voltage, the read energy is expected at least one order smaller than write operation. Besides, since the read voltage/current is much lower than the write, we believe that the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Therefore, we can conclude that the area overhead of voltage drivers is determined by the write current. However, the reliability of read operation is different from the write operation. The read reliability is determined by the voltage swing for reading HRS and LRS cells. Figure~\ref{fig:sense_margin} (a) shows the voltage swing with different array sizes and $K_r$ values. Large array sizes and large non-linearity are harmful to the voltage swing: on the one hand, larger array has more sneak paths,making the output voltage very sensitive to the data pattern of unselected cells; on the other hand, the non-linearity increases the resistance of LRS and therefore reduces the ON-OFF resistance ratio. In order to improve the reliability of the read operation, a two-step sensing scheme can be applied, which senses the current of unselected cell first, then the overall current is sensed, and after that the current difference is converted to the output voltage. The voltage swing of this two-step sensing scheme is shown in Figure~\ref{fig:sense_margin} (b). By using the two steps sensing schemes, the voltage swing is doubled for the array with same size and non-linearity coefficient.
 
 %\begin{figure}%[!t]
 %\centering
@@ -292,5 +292,5 @@ In this section, the current sensing scheme is used to determine the current in 
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/sense_margin2}\\
-  \caption{The}\label{fig:sense_margin}
+  \caption{Relationships among the Voltage Swing, Array Size and Non-linearity. (a) Normal Sensing Scheme; (b) Two-step Sensing Scheme}\label{fig:sense_margin}
 \end{figure} 
