@@ -215,7 +215,8 @@ $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are equivalent resi
   \caption{The Maximum Array Size with Different Non-linearity Coefficient.}\label{fig:non_linear}
 \end{figure}
 
-On the other hand, the non-linearity can also reduce the energy consumption and area overheads of the cross-point array. Take the $128 \times 128$ array for example. As shown in Figure~\ref{fig:non_linear_energy}, the energy consumption for the write operation decreases dramatically with the increase of non-linearity coefficient $K_r$. As $K_r$ increases from 1 to 40, the write energy is reduced by 98.3\%. The driven current requirement 
+On the other hand, the non-linearity can also reduce the energy consumption and area overheads of the cross-point array. Take the $128 \times 128$ array for example. As shown in Figure~\ref{fig:non_linear_energy}, the energy consumption for the write operation decreases dramatically with the increase of non-linearity coefficient $K_r$. As $K_r$ increases from 1 to 40, the write energy is reduced by 98.3\%. The driven current requirement is shown in Figure~\ref{fig:non_linear_I}, and the corresponding area overheads of the voltage drivers are compared to the array size at Figure~\ref{fig:non_linear_ara}. The baseline design is unacceptable because the area of voltage drivers is about 11.6 times larger than the area of cross-point array. In this case, the area efficiency of ReRAM's $4F^2$ cell size will be offset by the extreme huge area overhead of the voltage drivers. However, with the increase of non-linearity, the area of voltage drivers becomes comparable to the array area. Therefore, we can conclude that, the ReRAM cells with small non-linearity coefficient are not suitable for the cross-point structure based memory array. Besides, we also study the area overhead of multi bit write. Figure~\ref{fig:Area_kr20} shows the normalized areas of the voltage drivers for one bit and multi bit write operations. 
+
 
 
 \begin{figure}%[!t]
@@ -245,7 +246,7 @@ On the other hand, the non-linearity can also reduce the energy consumption and 
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.4\textwidth]{./figures/Area_kr20.pdf}\\
-  \caption{The}\label{fig:Area_kr20}
+  \caption{The Normalized Area Overhead of Voltage Drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
 \end{figure}
 \subsection{Read Operation}
 The design constraints for read operation can be analyzed by the same way as the write operation, including the reliability, energy consumption and the area overhead. Since the read voltage/current is much lower than the write, we believe the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Thus in this section, we only shows the results of reliability issue and read energy. Also, since the difference
