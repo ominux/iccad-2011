@@ -1,42 +1,57 @@
 \vspace{10pt}
 \section{Preliminaries}\label{sec:preliminary}
 
-This section provides background of ReRAM technology and cross-point architecture, and discusses their advantages and limitations. % of cross-point architecture
-
-%demonstrated by a series of simple example, which motivates the work in this paper.
+This section provides background of ReRAM technology and cross-point
+architecture, and discusses their advantages and limitations.
 
 \subsection{Background of ReRAM technology}
-Table~\ref{table:compare} compares the properties of state-of-art non-volatile memory technologies. ReRAM and STT-RAM are better than PCM or FeRAM due to their faster access time and high endurance.
-Although STT-RAM has better read/write delay characteristics, the difference in cell resistance between ON and OFF states is higher in ReRAM. Further more, ReRAM has the best memory density.
-Hence, ReRAM is a leading candidate for next generation storage.
+%Table~\ref{table:compare} compares the properties of state-of-art
+%non-volatile memory technologies. ReRAM and STT-RAM are better than PCM or
+%FeRAM due to their faster access time and high endurance. Although STT-RAM
+%has better read/write delay characteristics, the difference in cell
+%resistance between ON and OFF states is higher in ReRAM. Further more,
+%ReRAM has the best memory density. Hence, ReRAM is a leading candidate for
+%next generation storage.
+%%
+%%shows the fastest read/write latency among all non-volatile memory technologies, the structure of the memory cell is complex and it has a large cell size. On the other hand, the ReRAM has a very simple cell structure and can be implemented with an area efficient cross-point structure, which can work without any access devices. This simple structure provides the possibility of high density integration and 3-D stacking /* DOES THAT MEAN STT-MRAM IS NOT 3D FRIENDLY? ALSO, HOW SIMPLE STRUCTURE & 3D ARE RELATED? */ of ReRAM based memory arrays. Besides, the ReRAM has much higher ON-OFF resistance ratio than STT-RAM. With all of these advantages, the ReRAM based memory is considered as a highly competitive technology compared to all other emerging non-volatile memory technologies.
 %
-%shows the fastest read/write latency among all non-volatile memory technologies, the structure of the memory cell is complex and it has a large cell size. On the other hand, the ReRAM has a very simple cell structure and can be implemented with an area efficient cross-point structure, which can work without any access devices. This simple structure provides the possibility of high density integration and 3-D stacking /* DOES THAT MEAN STT-MRAM IS NOT 3D FRIENDLY? ALSO, HOW SIMPLE STRUCTURE & 3D ARE RELATED? */ of ReRAM based memory arrays. Besides, the ReRAM has much higher ON-OFF resistance ratio than STT-RAM. With all of these advantages, the ReRAM based memory is considered as a highly competitive technology compared to all other emerging non-volatile memory technologies.
-
-\begin{table}[!tb]
-  \centering
-  \scriptsize
-    \scriptsize
-  \caption{Comparison of Emerging Non-Volatile Memory Technologies}\label{table:compare}
-  \vspace{-0pt}
-%  \begin{tabular}{|cccccp{3.5cm}|}
-  \begin{tabular}{|c|cccc|}
-    \hline
-    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-    \textbf{Metric} & \textbf{STT-RAM} & \textbf{PCM}    & \textbf{FeRAM} & \textbf{ReRAM}
-    \\\hline
-    \textbf{Cell Size($F^2$)} & $6-20$ & $4-8$ & $15$ & $4$\\\hline
-    \textbf{Read Latency(ns)} &  1-10 & 20-50 & 20-80 & 5-50\\\hline
-    \textbf{Write Latency(ns)} & 2-20& 150& 100& 5-50\\\hline
-    \textbf{Endurance} &  $10^{15}$ & $10^8$ & $10^{12}$ & $10^{8-10}$\\\hline
-  \end{tabular}
-  \vspace{-5pt}
-\end{table}
-
+%\begin{table}[!tb]
+%  \centering
+%  \scriptsize
+%    \scriptsize
+%  \caption{Comparison of Emerging Non-Volatile Memory Technologies}\label{table:compare}
+%  \vspace{-0pt}
+%%  \begin{tabular}{|cccccp{3.5cm}|}
+%  \begin{tabular}{|c|cccc|}
+%    \hline
+%    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+%    \textbf{Metric} & \textbf{STT-RAM} & \textbf{PCM}    & \textbf{FeRAM} & \textbf{ReRAM}
+%    \\\hline
+%    \textbf{Cell Size($F^2$)} & $6-20$ & $4-8$ & $15$ & $4$\\\hline
+%    \textbf{Read Latency(ns)} &  1-10 & 20-50 & 20-80 & 5-50\\\hline
+%    \textbf{Write Latency(ns)} & 2-20& 150& 100& 5-50\\\hline
+%    \textbf{Endurance} &  $10^{15}$ & $10^8$ & $10^{12}$ & $10^{8-10}$\\\hline
+%  \end{tabular}
+%  \vspace{-5pt}
+%\end{table}
 
 %Different from the traditional memory technologies, which use the electron stored in the cell to represent the information, the non-volatile memory use the the phase/state/resistance of the memory cell itself to store the data. Therefore, the nonvolatile memory can retain the stored information without pow supply. This kind of non-volatility make it a potential candidate as the alternative memory technology to replace the DRAM even SRAM technologies.
-As implied by the name, a ReRAM cell uses its resistance to represent the stored information. A ReRAM cell can be switched between high resistance state (HRS) and low resistance state (LRS) by applying an external voltage across the cell.
+
+As implied by the name, a ReRAM cell uses its resistance to represent the
+stored information. A ReRAM cell can be switched between high resistance
+state (HRS) and low resistance state (LRS) by applying an external voltage
+across the cell.
 %The resistance switching behavior of ReRAM has been noticed for several years and attracted great research interests recently for the potential application as the next generation non-volatile memory technology.
-In general, a ReRAM cell is built on a Metal-Insulator-Metal (MIM) structure. The resistance switching behaviors have been observed in many MIM nanodevices with different metal oxide materials. For example, a particular $TiO_2$ based MIM structure ReRAM, named `memristor', was developed by HP Labs in 2008~\cite{memristor:missing}. The proposed memristor-based ReRAM is considered as the first experimental realization and a theoretical model of the fourth fundamental circuit element, which is predicted by Chua~\cite{memristor:chua} about 40 years ago. The memristor-based ReRAM has very small cell size with an access time of less than 50ns. %of $50\times50 nm^2$ with an access time less than 50ns.
+In general, a ReRAM cell is built on a Metal-Insulator-Metal (MIM)
+structure. The resistance switching behaviors have been observed in many
+MIM nanodevices with different metal oxide materials. For example, a
+particular $TiO_2$ based MIM structure ReRAM, named `memristor', was
+developed by HP Labs in 2008~\cite{memristor:missing}. The proposed
+memristor-based ReRAM is considered as the first experimental realization
+and a theoretical model of the fourth fundamental circuit element, which
+is predicted by Chua~\cite{memristor:chua} about 40 years ago. The
+memristor-based ReRAM has very small cell size with an access time of less
+than 50ns.
 %/*(WHAT IS THE SIGNIFICANCE OF 50x50nm2 SIZE? AT WHAT TECHNOLOGY? */
 Another $H_fO_2$-based bipolar ReRAM was implemented by ITRI this year with an access time as low as 7.2ns~\cite{ReRAM_ISSCC2011_Sheu}.
 
@@ -55,12 +70,12 @@ For these reasons, most high performance ReRAM studies are dominated by bipolar 
 In this study, we perform a detailed analysis of the design challenges of bipolar ReRAM cross-point arrays.
 
 \subsection{Cross-Point Architecture}
-There are two possible memory structures for a bipolar ReRAM implementation: 
-a traditional MOSFET-accessed structure and a cross-point structure. In the 
-MOS-accessed memory array, a MOSFET is added as an access device for each memory 
-cell. As the size of a MOSFET access device is typically much larger than the size 
-of a ReRAM cell, the total area of memory array is primarily dominated by MOSFETs 
-rather than ReRAM cells. Also, in order to prove enough driven current, lager than minimum transistor should be used for writes. 
+There are two possible memory structures for a bipolar ReRAM implementation:
+a traditional MOSFET-accessed structure and a cross-point structure. In the
+MOS-accessed memory array, a MOSFET is added as an access device for each memory
+cell. As the size of a MOSFET access device is typically much larger than the size
+of a ReRAM cell, the total area of memory array is primarily dominated by MOSFETs
+rather than ReRAM cells. Also, in order to prove enough driven current, lager than minimum transistor should be used for writes.
 Hence, ReRAM's area advantage gets lost because of the access device. %The ReRAM's advantage of ultra small cell size will be offset by the access device.
 
 In contrast, the cross-point structure is more area-efficient for the ReRAM memory array~\cite{memristor:Cong}. A schematic view of a typical cross-point memory array is shown in Figure~\ref{fig:array}(a). In a cross-point array, ReRAM is sandwiched between wordlines and bitlines. Figure~\ref{fig:array}(b) shows the feasibility of $4F^2$ cells, the theoretical minimum size for a single layer single level memory cell.
