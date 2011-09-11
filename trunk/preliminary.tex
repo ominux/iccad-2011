@@ -53,8 +53,8 @@ is predicted by Chua~\cite{memristor:chua} about 40 years ago. The
 memristor-based ReRAM has very small cell size with an access time of less
 than 50ns.
 %/*(WHAT IS THE SIGNIFICANCE OF 50x50nm2 SIZE? AT WHAT TECHNOLOGY? */
-Another $H_fO_2$-based bipolar ReRAM was implemented by ITRI this year with an access time as low as 7.2ns~\cite{ReRAM_ISSCC2011_Sheu}.
-
+Another $H_fO_2$-based bipolar ReRAM was implemented by ITRI this year
+with an access time as low as 7.2ns~\cite{ReRAM_ISSCC2011_Sheu}.
 %The memristor based ReRAM built by HP Labs has a two-terminal, two-layer structure. The top and the bottom electrodes are nanowires made by Pt. Two layers of titanium dioxide are sandwiched between these two electrodes in
 %a crossbar architecture. By applying an external voltage across the cell, the memristor can switch between two stable states: ON
 %state with low resistance and OFF state with high resistance. A
@@ -62,24 +62,45 @@ Another $H_fO_2$-based bipolar ReRAM was implemented by ITRI this year with an a
 %into the OFF state (SET operation) and a negative voltage of the
 %same magnitude toggles it to its ON state (RESET operation). T
 
-Although there are several variants of ReRAMs, all of them can be classified into two broad categories: unipolar ReRAM and bipolar ReRAM. In an unipolar cell, the resistance switching behaviors do not depend on the polarity of the voltage input across the cell and only relate to magnitude and duration of the voltage input. On the other hand, in a bipolar cell, the voltage polarity for ON-to-OFF switching (RESET operation) is different from OFF-to-ON switching (SET operation). %Unipolar ReRAM can be easily stacked on top of a diode to build a one diode one resistor (1D1R) ReRAM~\cite{memristor:1D1R}. SINCE BIPOLAR RERAM CAN ALSO USE ACCESS DEVICE, WHAT IS THE VALUE OF THIS LINE?
+Although there are several variants of ReRAMs, all of them can be
+classified into two broad categories: unipolar ReRAM and bipolar ReRAM. In
+an unipolar cell, the resistance switching behaviors do not depend on the
+polarity of the voltage input across the cell and only relate to magnitude
+and duration of the voltage input. On the other hand, in a bipolar cell,
+the voltage polarity for ON-to-OFF switching (RESET operation) is
+different from OFF-to-ON switching (SET operation).
+%Unipolar ReRAM can be easily stacked on top of a diode to build a one diode one resistor (1D1R) ReRAM~\cite{memristor:1D1R}. SINCE BIPOLAR RERAM CAN ALSO USE ACCESS DEVICE, WHAT IS THE VALUE OF THIS LINE?
 %However, since SET and RESET operations have different latencies, the performance of unipolar ReRAM is limited by the longer voltage pulse.
-The need for different pulse widths for SET and RESET in unipolar ReRAM means that its write latency will be determined by the longest pulse. Morever, the control of SET, RESET, and read operations without any disturbance is another crucial design challenge, especially in high speed ReRAM design. %WHAT KIND OF DISTURBANCE? ARE THEY TOO SENSITIVE TO PULSE WIDTH THAT IT IS DIFFICULT TO PRECISELY CONTROL WIDTH THAT ACCURATELY?
-For these reasons, most high performance ReRAM studies are dominated by bipolar ReRAM~\cite{ReRAM_IEDM2010_Kim,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka}.
+The need for different pulse widths for SET and RESET in unipolar ReRAM
+means that its write latency will be determined by the longest pulse.
+Morever, the control of SET, RESET, and read operations without any
+disturbance is another crucial design challenge, especially in high speed
+ReRAM design. For these reasons, most high performance ReRAM studies are
+dominated by bipolar
+ReRAM~\cite{ReRAM_IEDM2010_Kim,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka}.
 %However, the bipolar ReRAM also has its inherent problems as they lack access device in cells. IN THE NEXT PARA BEGINNING, YOU SAY WE CAN USE MOS ACCESS DEVICE. SO THIS SHOULDN'T BE AN INHERENT PROBLEM.
 In this study, we perform a detailed analysis of the design challenges of bipolar ReRAM cross-point arrays.
 
 \subsection{Cross-Point Architecture}
-There are two possible memory structures for a bipolar ReRAM implementation:
-a traditional MOSFET-accessed structure and a cross-point structure. In the
-MOS-accessed memory array, a MOSFET is added as an access device for each memory
-cell. As the size of a MOSFET access device is typically much larger than the size
-of a ReRAM cell, the total area of memory array is primarily dominated by MOSFETs
-rather than ReRAM cells. Also, in order to prove enough driven current, lager than minimum transistor should be used for writes.
-Hence, ReRAM's area advantage gets lost because of the access device. %The ReRAM's advantage of ultra small cell size will be offset by the access device.
-
-In contrast, the cross-point structure is more area-efficient for the ReRAM memory array~\cite{memristor:Cong}. A schematic view of a typical cross-point memory array is shown in Figure~\ref{fig:array}(a). In a cross-point array, ReRAM is sandwiched between wordlines and bitlines. Figure~\ref{fig:array}(b) shows the feasibility of $4F^2$ cells, the theoretical minimum size for a single layer single level memory cell.
-The memory density can further be improved by using a multi-layer multi-level cross-point ReRAM array~\cite{ReRAM_ISSCC2011_Sheu}~\cite{memristor:IEDM08_3D}.
+There are two possible memory structures for a bipolar ReRAM
+implementation: a traditional MOSFET-accessed structure and a cross-point
+structure. In the MOS-accessed memory array, a MOSFET is added as an
+access device for each memory cell. As the size of a MOSFET access device
+is typically much larger than the size of a ReRAM cell, the total area of
+memory array is primarily dominated by MOSFETs rather than ReRAM cells.
+Also, in order to prove enough driven current, lager than minimum
+transistor should be used for writes. Hence, ReRAM's area advantage gets
+lost because of the access device.
+%The ReRAM's advantage of ultra small cell size will be offset by the access device.
+In contrast, the cross-point structure is more area-efficient for the
+ReRAM memory array~\cite{memristor:Cong}. A schematic view of a typical
+cross-point memory array is shown in Figure~\ref{fig:array}(a). In a
+cross-point array, ReRAM is sandwiched between wordlines and bitlines.
+Figure~\ref{fig:array}(b) shows the feasibility of $4F^2$ cells, the
+theoretical minimum size for a single layer single level memory cell. The
+memory density can further be improved by using a multi-layer multi-level
+cross-point ReRAM
+array~\cite{ReRAM_ISSCC2011_Sheu}~\cite{memristor:IEDM08_3D}.
 %Besides, as aforementioned, the good stackability and the high resistance ratio provide the capability of building a multi-layer multi-level cross-point ReRAM array, which can further increase the area efficiency~\cite{ReRAM_ISSCC2011_Sheu}~\cite{memristor:IEDM08_3D}.
 
 \begin{figure}
@@ -90,12 +111,34 @@ The memory density can further be improved by using a multi-layer multi-level cr
 \vspace{-12pt}
 \end{figure}
 
-In a cross-point structure, the write operation can either write one bit per access or several bits attached to a wordline at the same time. Although the second scheme has higher bandwidth, it requires a two-step writing operation to prevent unintentional writing~\cite{memristor:Cong}, significantly increasing the write latency. %Therefore, the write latency for the multi bit write operation is much larger than the one bit operation.
-While writing to a cross-point array, the unselected wordlines and bitlines can either be left floating or half biased. However, while reading a cell, the selected wordline should be biased at read voltage and all other wordlines and bitlines in the array are shunted to ground. The current in each bitline is then sensed and compared to a reference current to determine cell content. However, due to the sneak current existing at the cross-point array, the current in bitline also varies depending upon the values stored in unselected cells. %is impacted significantly by the data pattern of the unselected cells in the array.
- This phenomenon of read disturbance restricts the size of a cross-point array, since sneak current increases with the number of cells attached to wordlines and bitlines. In order to mitigate this problem, a two-step write operation was proposed: in the first step, the background current of the cross-point array  will be sensed. Then the total current, comprising of both the background current and current at the selected cell, will be read out. The state of the selected cell can then be determined by computing the difference between the total current and background current. For this scheme to work, the cross-point array should be sized such that the difference between background current
- and current through the selected cell should be large enough for reliable sensing.
+In a cross-point structure, the write operation can either write one bit
+per access or several bits attached to a wordline at the same time.
+Although the second scheme has higher bandwidth, it requires a two-step
+writing operation to prevent unintentional writing~\cite{memristor:Cong},
+significantly increasing the write latency.
+%Therefore, the write latency for the multi bit write operation is much larger than the one bit operation.
+While writing to a cross-point array, the unselected wordlines and
+bitlines can either be left floating or half biased. However, while
+reading a cell, the selected wordline should be biased at read voltage and
+all other wordlines and bitlines in the array are shunted to ground. The
+current in each bitline is then sensed and compared to a reference current
+to determine cell content. However, due to the sneak current existing at
+the cross-point array, the current in bitline also varies depending upon
+the values stored in unselected cells.
+%is impacted significantly by the data pattern of the unselected cells in the array.
+This phenomenon of read disturbance restricts the size of a cross-point
+array, since sneak current increases with the number of cells attached to
+wordlines and bitlines. In order to mitigate this problem, a two-step
+write operation was proposed: in the first step, the background current of
+the cross-point array  will be sensed. Then the total current, comprising
+of both the background current and current at the selected cell, will be
+read out. The state of the selected cell can then be determined by
+computing the difference between the total current and background current.
+For this scheme to work, the cross-point array should be sized such that
+the difference between background current and current through the selected
+cell should be large enough for reliable sensing.
 
-Depending upon the read/write scheme, the size of the array can vary significantly. In this work, we propose a methodology to find the minimum array size that meets specific energy and area constraints based on the worst-case state of the array. This will help designers find an optimal memory organization early in the design flow. %t read/write schemes as well as array sizes can be chosen for the cross-point array, it is not straightforward to figure out how to design a workable memory array with the minimum energy consumption and area overheads. Thus, following sections will proposed a worst-case oriented methodology to help designer make the decision early in the design flow.
+%Depending upon the read/write scheme, the size of the array can vary significantly. In this work, we propose a methodology to find the minimum array size that meets specific energy and area constraints based on the worst-case state of the array. This will help designers find an optimal memory organization early in the design flow. %t read/write schemes as well as array sizes can be chosen for the cross-point array, it is not straightforward to figure out how to design a workable memory array with the minimum energy consumption and area overheads. Thus, following sections will proposed a worst-case oriented methodology to help designer make the decision early in the design flow.
 
 
 %\subsection{Limitations of Cross-Point Architecture}
