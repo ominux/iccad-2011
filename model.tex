@@ -1,4 +1,4 @@
-\vspace{10pt}
+%\vspace{10pt}
 \section{Modeling of the Cross-Point Memory}\label{sec:model}
 
 In this section, we present a detailed mathematical model for cross-point
@@ -95,7 +95,7 @@ relatively fixed format and simple structure, making it very easy to
 establish and adjust the coefficients and constants according to different
 design schemes. Besides, due to the simplicity of the KCL equation, $A$ is
 populated primarily with zeros and can be saved as a sparse matrix, which
-will further reduce the storage cost during the computation. 
+will further reduce the storage cost during the computation.
 
 %
 %The characteristics of the linear system can be summarized as:
@@ -148,11 +148,10 @@ will further reduce the storage cost during the computation.
 %    \end{array} \right.
 %    \end{equation}
 %\end{enumerate}
-
 Thus, with input parameters such as the resistance of a ReRAM cell, the
 resistance of interconnect wires, program voltages, and write/read
 schemes, voltages at various cross points can be obtained by solving
-Equation~(\ref{equ:matrix}). With detailed voltage values,
+the system of linear equations. With detailed voltage values,
 $V_{2mn{\times}1}$, we can analyze the array at a fine granularity. These
 values are also critical to evaluate reliability, energy consumption,
 driven current density, and area overheads of a cross-point array.
