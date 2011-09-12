@@ -1,8 +1,9 @@
 %\vspace{10pt}
-\section{Non-linearity}\label{sec:scale}
+\section{Non-linearity and Voltage Scaling}\label{sec:scale}
 %\section{Non-linearity and Write Current Scaling}\label{sec:scale}
-\vspace{6pt} \emph{Non-linearity of the ReRAM Cell.} \vspace{6pt}
-
+%\subsection{Non-linearity of the ReRAM Cell.} \vspace{6pt}
+(\textbf{Figure and discussion in this section should be modified after we
+got the results})
 \begin{figure}[!b]
 \centering
   % Requires \usepackage{graphicx}
@@ -22,23 +23,25 @@ Clearly, the ReRAM cell with a larger non-linearity coefficient results in
 a better memory cell since the current in the sneak path will be
 significantly reduced. In addition, the increased resistance at
 half-selected and unselected cells can also mitigate the voltage drop
-along the activated wordline and bitline. Figure~\ref{fig:non_linear}
-shows the influence of different non-linearity coefficients on the array
-size requirements for one bit HWHB writing scheme. In this figure, the
-maximum array size increases from $112 \times 112$ to $340 \times 340$
-when the non-linearity coefficient $K_r$ increases from 1 to 10.
-Similarly, the non-linearity can also increase the maximum array size for
-other write schemes.
+along the activated wordline and bitline. Besides, we found that the
+cross-point array design can also benefit from the scaling of the write
+current. Figure~\ref{fig:non_linear} shows the influence of different
+non-linearity coefficients and write current on the array size
+requirements for one bit HWHB writing scheme. In this figure, the maximum
+array size increases from $112 \times 112$ to $340 \times 340$ when the
+non-linearity coefficient $K_r$ increases from 1 to 10. Similarly, the
+non-linearity can also increase the maximum array size for other write
+schemes.
 
-
-Moreover, the non-linearity can also reduce the energy consumption and
-area overheads of the cross-point array. For example, consider a $128
-\times 128$ array. As shown in Figure~\ref{fig:non_linear_energy}, the
-energy consumption for the write operation decreases dramatically with the
-increase of non-linearity coefficient $K_r$. As $K_r$ increases from 1 to
-40, the write energy is reduced by 98.3\%. The driven current requirement
-is shown in Figure~\ref{fig:area_all}(a), and the corresponding area
-overheads of the voltage drivers are compared to the array size at
+Moreover, the increase of non-linearity or scaling of write current can
+also reduce the energy consumption and area overheads of the cross-point
+array. For example, consider a $128 \times 128$ array. As shown in
+Figure~\ref{fig:non_linear_energy}, the energy consumption for the write
+operation decreases dramatically with the increase of non-linearity
+coefficient $K_r$. As $K_r$ increases from 1 to 40, the write energy is
+reduced by 98.3\%. The driven current requirement is shown in
+Figure~\ref{fig:area_all}(a), and the corresponding area overheads of the
+voltage drivers are compared to the array size at
 Figure~\ref{fig:area_all}(b). The baseline design is unacceptable because
 the area of voltage drivers is about 11.6 times larger than the area of
 the cross-point array. In this case, the area efficiency of ReRAM's $4F^2$
@@ -95,62 +98,42 @@ increase.
   \caption{The normalized area overhead of voltage drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
 \end{figure}
 
-\subsection{Read Operation}
-In this section we applied the similar sensing scheme as
-\cite{crossbar_TED_2010} and \cite{crossbar_NANO08_Flocke}. In order to
-read cell $R_{i,j}$, the $i^{th}$ wordline is biased at $V_{READ}$ and all
-of the other wordlines and bitlines are grounded. Then the state of the
-selected cell is read out by measuring the voltage across $R_s$. The
-energy consumption for read operation can be analyzed by the same way as
-that of the write operation. Since the read voltage is much smaller than
-write voltage, the read energy is expected at least one order smaller than
-write operation. Additionally, since the read voltage/current is much
-lower than the write, we believe that the voltage drivers can always
-provide enough current for the read operation if they meet the current
-requirement for write operation. Therefore, we can conclude that the area
-overhead of voltage drivers is determined by the write current. However,
-the reliability of read operation is different from the write operation.
-The read reliability is determined by the voltage swing for reading HRS
-and LRS cells. Figure~\ref{fig:sense_margin} (a) shows the voltage swing
-with different array sizes and $K_r$ values. Large array sizes and large
-non-linearity are harmful to the voltage swing: on the one hand, a larger
-array has more sneak paths, making the output voltage very sensitive to
-the data pattern of unselected cells; on the other hand, the non-linearity
-increases the resistance of LRS and therefore the resistance difference
-between HRS and LRS cells is reduced. In order to improve the reliability
-of the read operation, a two-step sensing scheme can be applied, which
-senses the current of an unselected cell first, then the overall current
-is sensed, and after that the current difference is converted to the
-output voltage. The voltage swing of this two-step sensing scheme is shown
-in Figure~\ref{fig:sense_margin} (b). By using this two-step sensing
-schemes, the voltage swing for a given array size and non-linearity
-coefficient is doubled.
-
-%\begin{figure}%[!t]
-%\centering
-%  % Requires \usepackage{graphicx}
-%  \includegraphics[width=0.45\textwidth]{./figures/margin.pdf}
-%  \caption{The}\label{fig:margin}
-%\end{figure}
+%\subsection{Read Operation}
+%In this section we applied the similar sensing scheme as
+%\cite{crossbar_TED_2010} and \cite{crossbar_NANO08_Flocke}. In order to
+%read cell $R_{i,j}$, the $i^{th}$ wordline is biased at $V_{READ}$ and all
+%of the other wordlines and bitlines are grounded. Then the state of the
+%selected cell is read out by measuring the voltage across $R_s$. The
+%energy consumption for read operation can be analyzed by the same way as
+%that of the write operation. Since the read voltage is much smaller than
+%write voltage, the read energy is expected at least one order smaller than
+%write operation. Additionally, since the read voltage/current is much
+%lower than the write, we believe that the voltage drivers can always
+%provide enough current for the read operation if they meet the current
+%requirement for write operation. Therefore, we can conclude that the area
+%overhead of voltage drivers is determined by the write current. However,
+%the reliability of read operation is different from the write operation.
+%The read reliability is determined by the voltage swing for reading HRS
+%and LRS cells. Figure~\ref{fig:sense_margin} (a) shows the voltage swing
+%with different array sizes and $K_r$ values. Large array sizes and large
+%non-linearity are harmful to the voltage swing: on the one hand, a larger
+%array has more sneak paths, making the output voltage very sensitive to
+%the data pattern of unselected cells; on the other hand, the non-linearity
+%increases the resistance of LRS and therefore the resistance difference
+%between HRS and LRS cells is reduced. In order to improve the reliability
+%of the read operation, a two-step sensing scheme can be applied, which
+%senses the current of an unselected cell first, then the overall current
+%is sensed, and after that the current difference is converted to the
+%output voltage. The voltage swing of this two-step sensing scheme is shown
+%in Figure~\ref{fig:sense_margin} (b). By using this two-step sensing
+%schemes, the voltage swing for a given array size and non-linearity
+%coefficient is doubled.
 %
-%\begin{figure}%[!t]
-%\centering
-%  % Requires \usepackage{graphicx}
-%  \includegraphics[width=0.4\textwidth]{./figures/overlap.pdf}\\
-%  \caption{The}\label{fig:overlap}
-%\end{figure}
-
 %
-%\begin{figure}%[!t]
+%
+%\begin{figure}[!t]
 %\centering
 %  % Requires \usepackage{graphicx}
-%  \includegraphics[width=0.5\textwidth]{./figures/sense_margin21}\\
-%  \caption{The}\label{fig:sense_margin}
+%  \includegraphics[width=0.5\textwidth]{./figures/sense_margin_f}\\
+%  \caption{Relationships among the voltage swing, array size and non-linearity. (a) Normal sensing scheme; (b) Two-step sensing scheme}\label{fig:sense_margin}
 %\end{figure}
-
-\begin{figure}[!t]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/sense_margin_f}\\
-  \caption{Relationships among the voltage swing, array size and non-linearity. (a) Normal sensing scheme; (b) Two-step sensing scheme}\label{fig:sense_margin}
-\end{figure}
