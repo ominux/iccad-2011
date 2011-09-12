@@ -43,20 +43,18 @@ LRS ReRAM cells and cell non-linearity.
     \textbf{Metric} & \textbf{Description} & \textbf{Values} \\
     \hline
     \textbf{$S_{cell}$} & Cell Size & \textbf{$4F^2$} \\
-    \textbf{$R_l$} &  Interconnection Resistance&\textbf{$1.25\Omega$} \\
+    \textbf{$R_l$} &  Interconnection Resistance&\textbf{$0.65\Omega$} \\
     \textbf{$V_{RESET}$} & Threshold voltage for RESET&\textbf{$2.0V$} \\
     \textbf{$V_{SET}$} & Threshold voltage for SET&\textbf{$-2.0V$} \\
     \textbf{$V_{READ}$} & Read Voltage of Cell&\textbf{$0.5V$} \\
-    \textbf{$R_{off}$} & HRS Resistance &\textbf{$500K\Omega$} \\
-    \textbf{$R_{on}$} & LRS Resistance &\textbf{$10K\Omega$} \\
+    \textbf{$I_{on}$} & Write Current for LRS Cell &\textbf{$10K\Omega$} \\
     \textbf{$V_{W}(R)$} & Wordline Voltage during Read &\textbf{$0.4V$} \\
     \textbf{$V_{W}(W)$} & Wordline Voltage during Write  &\textbf{$\pm2V$} \\
     \textbf{$V_{W}(H)$} & Half Selected wordline Voltage &\textbf{$1V$} \\
     \textbf{$V_{B}(R)$} & Bitline Voltage during Read  &\textbf{$0V$} \\
     \textbf{$V_{B}(W)$} & Bitline Voltage during Write  &\textbf{$0V$} \\
     \textbf{$V_{B}(H)$} & Half Selected bitline Voltage &\textbf{$1V$} \\
-    \textbf{$M$} & Number of wordlines &\textbf{$64$} \\
-    \textbf{$N$} & Number of bitlines &\textbf{$64$} \\
+    \textbf{$M,N$} & Number of wordlines/bitlines &\textbf{$256$} \\
     \hline
   \end{tabular}
   \vspace{-10pt}
@@ -72,39 +70,46 @@ write operation:
   \item In contrast to the scheme 2), activate the selected wordline and bitline. Leave all the unselected bitlines floating and half bias the unselected wold lines (HWFB shemes).
   \item Activate the selected wordline and bitline. Then half bias all other wordlines and bitlines (HWHB shemes).
 \end{enumerate}
-%Since several potential read/write schemes can be used to program a memory
-%array, it is difficult to identify the ideal scheme that meets the design
-%constraints in terms of area, energy, and reliability.
-However, the FWFB scheme has inherent problem that may result in severe
-write disturbance. For example, for writing a ReRAM cell located at the
-cross point of the $i^{nd}$ wordline and the $j^{nd}$ bitline in a $M
-\times N$ matrix ($M>N$), the worst case voltage drop of unselected cells
-appears when all of the ReRAM cells at the selected bitline are in the
-HRS, while all of the other cells are in the LRS. In this case, the
-voltage drop across the selected cell almost has the same magnitude as the
-unselected cell at the same bitline, resulting the write disturbance to
-all of the unselected cells at the selected bitline. Actually, the worst
-case voltage drop of the unselected cell can be calculated as:
-\begin{equation}\label{worst_FWFB}
-V_{worst}=V_{select} \cdot [1-\frac{1}{M+(N-1)R_{off}/R_{on}}].
-\end{equation}
+However,the FWFB scheme has inherent problem that may result in severe
+write disturbance~\cite{??}. Therefore, in the following discussion, we
+only compare the results of FWHB, HWFB and HWHB schemes. For each of these
+three schemes, we can either write several cells at one wordline at the
+same time or only write one bit per access and distribute the write
+operation to several arrays. In the following discussion, we start from
+one bit per access write operation, then the results of one wordline per
+access method are discussed.
 
-Considering that the reported On-OFF resistance ratio of ReRAM cell is
-always $>50$
-~\cite{ReRAM_IEDM2010_Ho,ReRAM_IEDM2010_Chien,ReRAM_IEDM2010_Lee_Diode,ReRAM_IEDM2010_Lee_Evidence,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka},
-, the worst case voltage drop at the unselected cell is larger than $98\%$
-of the voltage at the selected cell, making it is impossible to build a
-reliable cross-point structure ReRAM with the FWFB scheme. Therefore, in
-the following discussion, we only compare the results of FWHB, HWFB and
-HWHB schemes. For each of these three schemes, we can either write several
-cells at one wordline at the same time or only write one bit per access
-and distribute the write operation to several arrays. In the following
-discussion, we start from one bit per access write operation, then the
-results of one wordline per access method are discussed.
+%Since several potential read/write schemes can be used to program a memory array, it is difficult to identify the ideal scheme that meets the design constraints in terms of area, energy, and reliability.
+%However, the FWFB scheme has inherent problem that may result in severe
+%write disturbance. For example, for writing a ReRAM cell located at the
+%cross point of the $i^{nd}$ wordline and the $j^{nd}$ bitline in a $M
+%\times N$ matrix ($M>N$), the worst case voltage drop of unselected cells
+%appears when all of the ReRAM cells at the selected bitline are in the
+%HRS, while all of the other cells are in the LRS. In this case, the
+%voltage drop across the selected cell almost has the same magnitude as the
+%unselected cell at the same bitline, resulting the write disturbance to
+%all of the unselected cells at the selected bitline. Actually, the worst
+%case voltage drop of the unselected cell can be calculated as:
+%\begin{equation}\label{worst_FWFB}
+%V_{worst}=V_{select} \cdot [1-\frac{1}{M+(N-1)R_{off}/R_{on}}].
+%\end{equation}
+%Considering that the reported On-OFF resistance ratio of ReRAM cell is
+%always $>50$
+%~\cite{ReRAM_IEDM2010_Ho,ReRAM_IEDM2010_Chien,ReRAM_IEDM2010_Lee_Diode,ReRAM_IEDM2010_Lee_Evidence,ReRAM_ISSCC2011_Sheu,ReRAM_ISSCC2011_Otsuka},
+%, the worst case voltage drop at the unselected cell is larger than $98\%$
+%of the voltage at the selected cell, making it is impossible to build a
+%reliable cross-point structure ReRAM with the FWFB scheme. Therefore, in
+%the following discussion, we only compare the results of FWHB, HWFB and
+%HWHB schemes. For each of these three schemes, we can either write several
+%cells at one wordline at the same time or only write one bit per access
+%and distribute the write operation to several arrays. In the following
+%discussion, we start from one bit per access write operation, then the
+%results of one wordline per access method are discussed.
 
 %Since reliability, energy consumption, and area overheads for these
 %schemes are different, we address these problems separately and finally
 %combine all constraints to provide design guidelines for write operations.
+
 
 \vspace{6pt} \emph{Reliable Write Operation.} \vspace{6pt}
 
@@ -210,11 +215,12 @@ exceeds the threshold voltage for SET or RESET operation.
 Figure~\ref{fig:half} shows the maximum voltage applied at unselected
 cells with the minimum driven voltage, which is determined in
 Figure~\ref{fig:worst_v}. Since the threshold voltage of the ReRAM cell is
-2V, only array sizes with worst case voltage less than 2V are allowable.
-Otherwise, the array is unreliable because it can not avoid write failure
-and write disturbance at the same time. Therefore, Figure~\ref{fig:half}
-provides a hard constraint on array size, and all of the following energy
-and area tradeoffs should be bounded by this constraint.
+2V, only array sizes with worst case unselected cell voltage less than 2V
+are allowable. Otherwise, the array is unreliable because it can not avoid
+write failure and write disturbance at the same time. Therefore,
+Figure~\ref{fig:half} provides a hard constraint on array size, and all of
+the following energy and area tradeoffs should be bounded by this
+constraint.
 
 \begin{figure}%[!t]
 \centering
@@ -225,16 +231,43 @@ and area tradeoffs should be bounded by this constraint.
 \end{figure}
 
 
-
 \vspace{6pt} \emph{Energy Consumption of Write Operation.} \vspace{6pt}
 
-The energy consumption of a write operation for a cross-point array can be calculated as:
-\begin{equation}
-E_{write} = E_{select} + E_{unselect} + E_{halfselect} + E_{line},
-\end{equation}
-where the $E_{select}$ is the energy consumed to change the state of the
-selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired energy wasted at the half selected and unselected cells. The energy consumed by the interconnect lines are represented by $E_{line}$. Figure~\ref{fig:energy} shows the decomposed energy consumption for the cross-point array. Note that, the $E_{line}$ and $E_{halfselect}$ take a large amount of the total energy consumption. Also, this part of energy wasted during the write operation takes greater part of the total energy for larger array sizes. For example, the undesired energy consumption for writing a $128{\times}128$ array is more than 1000 times larger than the $8{\times}8$ array. We also notice that, since the impact of sneak paths for floating schemes (FWHB and HWFB) is more serious, the energy consumed at unselected cells for floating schemes is larger than the half-biased scheme. Due to this reason, the total energy consumptions for FWHB and HWFB schemes are at least 10\% larger than that of HWHB scheme.
-
+%The energy consumption of a write operation for a cross-point array can be calculated as:
+%\begin{equation}
+%E_{write} = E_{select} + E_{unselect} + E_{halfselect} + E_{line},
+%\end{equation}
+%where the $E_{select}$ is the energy consumed to change the state of the
+%selected cell, the $E_{unselect}$ and $E_{halfselect}$ are the undesired
+%energy wasted at the half selected and unselected cells. The energy
+%consumed by the interconnect lines are represented by $E_{line}$.
+%Figure~\ref{fig:energy} shows the decomposed energy consumption for the
+%cross-point array. Note that, the $E_{line}$ and $E_{halfselect}$ take a
+%large amount of the total energy consumption. Also, this part of energy
+%wasted during the write operation takes greater part of the total energy
+%for larger array sizes. For example, the undesired energy consumption for
+%writing a $128{\times}128$ array is more than 1000 times larger than the
+%$8{\times}8$ array. We also notice that, since the impact of sneak paths
+%for floating schemes (FWHB and HWFB) is more serious, the energy consumed
+%at unselected cells for floating schemes is larger than the half-biased
+%scheme. Due to this reason, the total energy consumptions for FWHB and
+%HWFB schemes are at least 10\% larger than that of HWHB scheme.
+The energy consumption of a write operation including: the energy consumed
+to change the state of the selected cell (denoted as $E_{select}$), the
+undesired energy wasted at the half selected cells ($E_{halfselect}$) and
+unselected cells ($E_{unselect}$), as well as the energy consumed by the
+interconnect lines ($E_{line}$). Figure~\ref{fig:energy} shows the
+decomposed energy consumption for the cross-point array. Note that, the
+$E_{line}$ and $E_{halfselect}$ take a large amount of the total energy
+consumption. Also, this part of energy wasted during the write operation
+takes greater part of the total energy for larger array sizes. For
+example, the undesired energy consumption for writing a $128{\times}128$
+array is more than 1000 times larger than the $8{\times}8$ array. We also
+notice that, since the impact of sneak paths for floating schemes (FWHB
+and HWFB) is more serious, the energy consumed at unselected cells for
+floating schemes is larger than the half-biased scheme. Due to this
+reason, the total energy consumptions for FWHB and HWFB schemes are at
+least 10\% larger than that of HWHB scheme.
 
 \begin{figure}%[!t]
 \centering
@@ -274,17 +307,23 @@ following discussion.
 
 \vspace{6pt} \emph{Discussion on Multi-Bits Write Operation.} \vspace{6pt}
 
-So far, we have only discussed the write operation with one bit per access. In this section, we consider the difference between one bit per access and one wordline per access write operations. Firstly, writing a wordline at a time will worsen the voltage drop along the wordline. Therefore, as shown in Figure~\ref{fig:reliable_region}, the reliable size of the cross-point array will be further reduced. The maximum array size reduces from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes.
-
+So far, we have only discussed the write operation with one bit per
+access. In this section, we consider the difference between one bit per
+access and one wordline per access write operations. Firstly, writing a
+wordline at a time will worsen the voltage drop along the wordline.
+%Therefore, as shown in Figure~\ref{fig:reliable_region},
+Therefore the simulation results show that the reliable size of the
+cross-point array will be further reduced. The maximum array size reduces
+from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes.
 %For the energy consumption point of view, the one wordline write operation is more efficient.
 
-\begin{figure}%[!t]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/multiwrite_f.pdf}\\
-  \caption{The array size requirement for the cross-point array with different write schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one wordline per access. }\label{fig:reliable_region}
-    \vspace{-10pt}
-\end{figure}
+%\begin{figure}%[!t]
+%\centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=0.4\textwidth]{./figures/multiwrite_f.pdf}\\
+%  \caption{The array size requirement for the cross-point array with different write schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one wordline per access. }\label{fig:reliable_region}
+%    \vspace{-10pt}
+%\end{figure}
 
 In order to fairly compare the energy consumption, we compare the energy-per-bit instead of the total energy. For example, in order to write a wordline with size of 128, the energy-per-bit can be calculated as:
 $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bit of the multi-bit write operation. The energy shown in this figure is normalized to the same unit as Figure~\ref{fig:energy} for easier comparison. The results show that for large cross point array sizes, the multi-bit write operation is much more energy efficient. This is because the energy wasted at the unselected and half-selected cells are shared by multiple bits and the average energy for one each bit is therefore reduced. However, although the multi-bit write operation has the advantage of lower energy consumption, the maximum current requirement for each wordline also increases. As shown in Figure~\ref{fig:drive_i}(b), the maximum driven current for each bitline is almost the same as when writing one bit, however the drive capability for each word line is almost doubled for multi-bit writing. Since the area of the voltage driver increases proportionally with its drive capability, the area overhead for multi-bit writing is about 50\% larger than for one bit writing.
@@ -298,6 +337,45 @@ $E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bi
 \end{figure}
 
 
+\subsection{Read Operation}
+In this section we applied the similar sensing scheme as
+\cite{crossbar_TED_2010} and \cite{crossbar_NANO08_Flocke}. In order to
+read cell $R_{i,j}$, the $i^{th}$ wordline is biased at $V_{READ}$ and all
+of the other wordlines and bitlines are grounded. Then the state of the
+selected cell is read out by measuring the voltage across $R_s$. The
+energy consumption for read operation can be analyzed by the same way as
+that of the write operation. Since the read voltage is much smaller than
+write voltage, the read energy is expected at least one order smaller than
+write operation. Additionally, since the read voltage/current is much
+lower than the write, we believe that the voltage drivers can always
+provide enough current for the read operation if they meet the current
+requirement for write operation. Therefore, we can conclude that the area
+overhead of voltage drivers is determined by the write current. However,
+the reliability of read operation is different from the write operation.
+The read reliability is determined by the voltage swing for reading HRS
+and LRS cells. Figure~\ref{fig:sense_margin} (a) shows the voltage swing
+with different array sizes and $K_r$ values. Large array sizes and large
+non-linearity are harmful to the voltage swing: on the one hand, a larger
+array has more sneak paths, making the output voltage very sensitive to
+the data pattern of unselected cells; on the other hand, the non-linearity
+increases the resistance of LRS and therefore the resistance difference
+between HRS and LRS cells is reduced. In order to improve the reliability
+of the read operation, a two-step sensing scheme can be applied, which
+senses the current of an unselected cell first, then the overall current
+is sensed, and after that the current difference is converted to the
+output voltage. The voltage swing of this two-step sensing scheme is shown
+in Figure~\ref{fig:sense_margin} (b). By using this two-step sensing
+schemes, the voltage swing for a given array size and non-linearity
+coefficient is doubled.
+
+
+
+\begin{figure}[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.5\textwidth]{./figures/sense_margin_f}\\
+  \caption{Relationships among the voltage swing, array size and non-linearity. (a) Normal sensing scheme; (b) Two-step sensing scheme}\label{fig:sense_margin}
+\end{figure}
 
 %\begin{figure}%[!t]
 %\centering
