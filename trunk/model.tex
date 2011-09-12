@@ -1,16 +1,16 @@
 %\vspace{10pt}
 \section{Modeling of the Cross-Point Memory}\label{sec:model}
 
-In this section, we present a detailed mathematical model for cross-point
-arrays. By using this model, along with specific parameters and edge
-conditions, the reliability, energy consumption, and area overheads of
-different read/write schemes can be easily evaluated.
+%In this section, we present a detailed mathematical model for cross-point
+%arrays. By using this model, along with specific parameters and edge
+%conditions, the reliability, energy consumption, and area overheads of
+%different read/write schemes can be easily evaluated.
 
-\subsection{Basic model of Cross-Point Memory}
-Figure~\ref{fig:modeling} shows the circuit model of an $M$ by $N$
-cross-point ReRAM array. The model is built upon Kirchhoff's Current Law
-(KCL) and it's validity can be guaranteed by deductions from the basic
-circuit theory.The horizontal lines are wordlines and vertical lines
+%\subsection{Basic model of Cross-Point Memory}
+The basic circuit model of an $M$ by $N$ cross-point ReRAM array is shown
+in Figure~\ref{fig:modeling}. The model is built upon Kirchhoff's Current
+Law (KCL) and it's validity can be guaranteed by deductions from the basic
+circuit theory. The horizontal lines are wordlines and vertical lines
 represent bitlines. The ReRAM cells are located at each cross-point of
 wordline and bitlines. The resistance of the ReRAM cell at the cross-point
 of $i^{th}$ wordline and $j^{th}$ bitline is represented by $R_{i,j}$. We
@@ -35,19 +35,18 @@ the voltage at the sense amplifier is $V'_{Bi}$ during the read operation.
   \vspace{-12pt}
 \end{figure}
 
-\subsection{Mathematical Model of a Cross-Point Array}
-Based on the circuit model shown in Figure~\ref{fig:modeling}, the current
-equations for each cross-point can be set following KCL: $
-{\Sigma}_{I=1}^kI_k=0.$ All of the cross-points have similar structure
-with no more than three current branches and therefore it is very easy to
-set up the KCL equations for each cross-point. However, we should treat
-the cross-points at the edges of the array specially because there are
-different conditions for different write/read schemes. For example, the
-unselected wordline for write operation can be either half biased or left
-floating. Thus, the edge conditions should be adjusted according to each
-write/read scheme. In particular, all of the cross-points in an array can
-be classified into three major categories: \emph{normal point},
-\emph{activated point} and \emph{floating point}.
+%\subsection{Mathematical Model of a Cross-Point Array}
+Based on this model, the current equations for each cross-point can be set
+following KCL: $ {\Sigma}_{I=1}^kI_k=0.$ All of the cross-points have
+similar structure with no more than three current branches and therefore
+it is very easy to set up the KCL equations for each cross-point. However,
+we should treat the cross-points at the edges of the array specially
+because there are different conditions for different write/read schemes.
+For example, the unselected wordline for write operation can be either
+half biased or left floating. Thus, the edge conditions should be adjusted
+according to each write/read scheme. In particular, all of the
+cross-points in an array can be classified into three major categories:
+\emph{normal point}, \emph{activated point} and \emph{floating point}.
 
 The normal points are located inside the memory array. In other words, for all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form of
 \begin{equation}\label{equ:KCL1}
