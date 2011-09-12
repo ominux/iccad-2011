@@ -118,13 +118,13 @@ writing operation to prevent unintentional writing~\cite{memristor:Cong},
 significantly increasing the write latency.
 %Therefore, the write latency for the multi bit write operation is much larger than the one bit operation.
 While writing to a cross-point array, the unselected wordlines and
-bitlines can either be left floating or half biased. However, while
-reading a cell, the selected wordline should be biased at read voltage and
-all other wordlines and bitlines in the array are shunted to ground. The
-current in each bitline is then sensed and compared to a reference current
-to determine cell content. However, due to the sneak current existing at
-the cross-point array, the current in bitline also varies depending upon
-the values stored in unselected cells.
+bitlines can either be left floating or half biased. On the other hand,
+while reading a cell, the selected wordline should be biased at read
+voltage and all other wordlines and bitlines in the array are shunted to
+ground. The current in each bitline is then sensed and compared to a
+reference current to determine cell content. However, due to the sneak
+current existing at the cross-point array, the current in bitline also
+varies depending upon the values stored in unselected cells.
 %is impacted significantly by the data pattern of the unselected cells in the array.
 This phenomenon of read disturbance restricts the size of a cross-point
 array, since sneak current increases with the number of cells attached to
