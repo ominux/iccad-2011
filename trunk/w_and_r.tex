@@ -1,25 +1,25 @@
-%\vspace{10pt}
+\vspace{-4pt}
 \section{Analysis of Design Constraints - A Case Study}\label{sec:w_and_r}
 
 In this section, we study the effect of various schemes on cross-point
 size and reliability in detail by using our mathematical model. The
-constraints on array size, energy and area overheads are analyzed in the
-worst cases scenario. The results of this study will be a useful guide in
-designing a cross-point array.
+constraints on array size, energy consumption and area overhead are
+analyzed in the worst cases scenario. The results of this study will be a
+useful guide in designing a cross-point array.
 
 \vspace{-10pt}
 \subsection{Overview}
 %As shown in Figure~\ref{fig:modeling}, i
 In order to write or read a cross-point array, proper voltages should be
-applied to wordlines and bitlines. Although the goal of a read operation
-is different from a write operations, both of them are realized by fully
+applied across the ReRAM cell. Although the goal of a read operation is
+different from a write operations, both of them are realized by fully
 biasing the selected wordlines/bitlines and floating (or half biasing)
 unselected wordlines/bitlines. Thus, the coefficient matrix $A$ and the
 constant vector $C$ are very similar for both. In addition, their energy
 consumption and area overhead will also have a similar trend. Therefore,
-in the next section, we first study the writing operation comprehensively.
-After that, for read operation, we mainly focus on the read margin
-analysis since it is unique to reads.
+in this section, we first study the write operation comprehensively. After
+that, for read operation, we mainly focus on the read margin analysis
+since it is unique to reads.
 %can be very useful to guide the design of the cross-point array.
 %Also, we assumes that the in the case of worst scenario, the ReRAM cells at the selected wordline, th
 %Since it is impossible to consider all of the data pattern stored in the array,
