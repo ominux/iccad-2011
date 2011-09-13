@@ -1,4 +1,4 @@
-\documentclass[9pt,conference,twocolumn]{IEEEtran}
+\documentclass[9pt,twocolumn]{IEEEtran}
 
 %\usepackage{pdfsync}
 %\usepackage{epsfig}
@@ -14,10 +14,19 @@
 %\usepackage[sort]{natbib}
 \usepackage{graphicx}
 
+\usepackage{blindtext}
+\usepackage{etoolbox}
+
+\makeatletter
+\def\do#1{\patchcmd{#1}{\thepage}{\null}{}{\GenericWarning{}{Could not patch \string#1}}}
+\docsvlist{\@oddhead,\@evenhead,\ps@headings,\ps@IEEEtitlepagestyle,\ps@IEEEpeerreviewcoverpagestyle}
+\makeatother
+
+
 \newcommand{\squishlist}{
    \begin{list}{$\bullet$}
     { \setlength{\itemsep}{0pt}      \setlength{\parsep}{0pt}
-      \setlength{\topsep}{3pt}       \setlength{\partopsep}{0pt}
+      \setlength{\topsep}{0pt}       \setlength{\partopsep}{0pt}
       \setlength{\listparindent}{-2pt}
       \setlength{\itemindent}{-5pt}
       %\setlength{\itemindent}{10pt}
@@ -38,9 +47,9 @@
     \end{list}  }
 
 \begin{document}
-\title{\vspace{-10pt} Reliability-Oriented High Density Cross-Point \\Resistive Memory Design}
+\title{\vspace{-0pt} Reliability-Oriented High Density Cross-Point \\Resistive Memory Design}
 \maketitle
-%\vspace{-20pt}
+\vspace{-20pt}
 \input{intro}
 \input{preliminary}
 %\input{related}
