@@ -347,7 +347,9 @@ selected cell is read out by measuring the voltage across $R_s$. The
 energy consumption for read operation can be analyzed by the same way as
 that of the write operation. Since the read voltage is much smaller than
 write voltage, the read energy is expected at least one order smaller than
-write operation. Additionally, since the read voltage/current is much
+write operation. Considerable sensing margin is achieved by implementing a current-to-voltage converter and sensing the voltage signal using traditional or emerging sense amplifier design. The input resistance of the current-to-voltage converter is extracted from HSPICE simulation results. Read sensing margin is defined as $\Delta V = \Delta I \times R_{converter}$ where $R_{converter}$ is input resistance of the converter. 
+
+Additionally, since the read voltage/current is much
 lower than the write, we believe that the voltage drivers can always
 provide enough current for the read operation if they meet the current
 requirement for write operation. Therefore, we can conclude that the area

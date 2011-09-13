@@ -37,7 +37,7 @@ and discusses their advantages and limitations.
 
 %Different from the traditional memory technologies, which use the electron stored in the cell to represent the information, the non-volatile memory use the the phase/state/resistance of the memory cell itself to store the data. Therefore, the nonvolatile memory can retain the stored information without pow supply. This kind of non-volatility make it a potential candidate as the alternative memory technology to replace the DRAM even SRAM technologies.
 
-As implied by the name, a ReRAM cell uses its resistance to represent the
+As implied by its name, a ReRAM cell uses its resistance to represent the
 stored information. A ReRAM cell can be switched between high resistance
 state (HRS) and low resistance state (LRS) by applying an external voltage
 across the cell.
@@ -53,7 +53,7 @@ is predicted by Chua~\cite{memristor:chua} about 40 years ago. The
 memristor-based ReRAM has very small cell size with an access time of less
 than 50ns.
 %/*(WHAT IS THE SIGNIFICANCE OF 50x50nm2 SIZE? AT WHAT TECHNOLOGY? */
-Another $H_fO_2$-based bipolar ReRAM was implemented by ITRI this year
+Another $H_fO_2$-based bipolar ReRAM prototype was fabricated by ITRI this year
 with an access time as low as 7.2ns~\cite{ReRAM_ISSCC2011_Sheu}.
 %The memristor based ReRAM built by HP Labs has a two-terminal, two-layer structure. The top and the bottom electrodes are nanowires made by Pt. Two layers of titanium dioxide are sandwiched between these two electrodes in
 %a crossbar architecture. By applying an external voltage across the cell, the memristor can switch between two stable states: ON
@@ -62,7 +62,7 @@ with an access time as low as 7.2ns~\cite{ReRAM_ISSCC2011_Sheu}.
 %into the OFF state (SET operation) and a negative voltage of the
 %same magnitude toggles it to its ON state (RESET operation). T
 
-Although there are several variants of ReRAMs, all of them can be
+Although there are several variants of ReRAM cells, all of them can be
 classified into two broad categories: unipolar ReRAM and bipolar ReRAM. In
 an unipolar cell, the resistance switching behaviors do not depend on the
 polarity of the voltage input across the cell and only relate to magnitude
@@ -84,11 +84,11 @@ In this study, we perform a detailed analysis of the design challenges of bipola
 \subsection{Cross-Point Architecture}
 There are two possible memory structures for a bipolar ReRAM
 implementation: a traditional MOSFET-accessed structure and a cross-point
-structure. In the MOS-accessed memory array, a MOSFET is added as an
+structure. In the MOSFET-accessed memory array, a MOSFET is used as an
 access device for each memory cell. As the size of a MOSFET access device
 is typically much larger than the size of a ReRAM cell, the total area of
 memory array is primarily dominated by MOSFETs rather than ReRAM cells.
-Also, in order to prove enough driven current, lager than minimum
+Also, in order to prove enough driven current, lager than minimum-sized
 transistor should be used for writes. Hence, ReRAM's area advantage gets
 lost because of the access device.
 %The ReRAM's advantage of ultra small cell size will be offset by the access device.
@@ -100,7 +100,7 @@ Figure~\ref{fig:array}(b) shows the feasibility of $4F^2$ cells, the
 theoretical minimum size for a single layer single level memory cell. The
 memory density can further be improved by using a multi-layer multi-level
 cross-point ReRAM
-array~\cite{ReRAM_ISSCC2011_Sheu}~\cite{memristor:IEDM08_3D}.
+array~\cite{ReRAM_Unity}~\cite{memristor:IEDM08_3D}.
 %Besides, as aforementioned, the good stackability and the high resistance ratio provide the capability of building a multi-layer multi-level cross-point ReRAM array, which can further increase the area efficiency~\cite{ReRAM_ISSCC2011_Sheu}~\cite{memristor:IEDM08_3D}.
 
 \begin{figure}
@@ -120,7 +120,7 @@ significantly increasing the write latency.
 While writing to a cross-point array, the unselected wordlines and
 bitlines can either be left floating or half biased. On the other hand,
 while reading a cell, the selected wordline should be biased at read
-voltage and all other wordlines and bitlines in the array are shunted to
+voltage and all the other wordlines and bitlines in the array are shunted to
 ground. The current in each bitline is then sensed and compared to a
 reference current to determine cell content. However, due to the sneak
 current existing at the cross-point array, the current in bitline also
@@ -129,7 +129,7 @@ varies depending upon the values stored in unselected cells.
 This phenomenon of read disturbance restricts the size of a cross-point
 array, since sneak current increases with the number of cells attached to
 wordlines and bitlines. In order to mitigate this problem, a two-step
-write operation was proposed: in the first step, the background current of
+read operation was proposed: in the first step, the background current of
 the cross-point array  will be sensed. Then the total current, comprising
 of both the background current and current at the selected cell, will be
 read out. The state of the selected cell can then be determined by

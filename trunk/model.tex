@@ -98,13 +98,15 @@ A\cdot V = C.
 $A$ is a ${2mn\times{2mn}}$ coefficient matrix, which is determined by
 Equations(\ref{equ:KCL1})-(\ref{equ:KCL4}). $C$ is a ${2mn\times{1}}$
 vector, containing the constant terms of these equations. As shown, all of
-the KCL equations have very simple structure and are very similar to each
+the KCL equations have simple structure and are similar to each
 other. Therefore, the linear equation system has a relatively fixed format
-and simple structure, making it very easy to establish and adjust the
+and simple structure, making it easy to establish and adjust the
 coefficients and constants according to different design schemes. Besides,
 due to the simplicity of the KCL equation, $A$ is populated primarily with
 zeros and can be saved as a sparse matrix, which will further reduce the
 storage cost during the computation.
+
+To validate our analytical model, we compared the results with the HSPICE simulations using simple a resistor model in cross-point memory arrays. DC analysis was performed by HSPICE which solved the voltage of every node in the array. As shown in Figure ??, the voltage drop on the selected cell derived by our analytical model are consistent with the HSPICE simulation results.
 
 %
 %The characteristics of the linear system can be summarized as:
