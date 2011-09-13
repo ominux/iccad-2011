@@ -9,7 +9,7 @@
 %\subsection{Basic model of Cross-Point Memory}
 The basic circuit model of an $M$ by $N$ cross-point ReRAM array is shown
 in Figure~\ref{fig:modeling}. The model is built upon Kirchhoff's Current
-Law (KCL) and it's validity can be guaranteed by deductions from the basic
+Law (KCL) and its validity can be guaranteed by deductions from the basic
 circuit theory. The horizontal lines are wordlines and vertical lines
 represent bitlines. The ReRAM cells are located at each cross-point of
 wordline and bitlines. The resistance of the ReRAM cell at the cross-point
@@ -19,10 +19,10 @@ $R_{line}$. The input resistance of each wordline and bitline is $R_v$ and
 the resistance of sense amplifier is $R_s$. In order to set up the KCL
 equations, the voltage at each cross-point is indicated as $V_{i,j}$ for
 wordline and $V'_{i,j}$ for bitline. A detailed cross-point is also shown
-in right side of Figure~\ref{fig:modeling}. The input voltage for the
-$i^{th}$ wordline is $V_{Wi}$ and the $i^{th}$ bitline is $V_{Bi}$. In the
-case where a wordline takes input from both the sides, the voltage at the
-other end of the $i^{th}$ wordline is represented as $V_{W1}$.
+in Figure~\ref{fig:modeling}(b). The input voltage for the $i^{th}$
+wordline is $V_{Wi}$ and the $i^{th}$ bitline is $V_{Bi}$. In the case
+where a wordline takes input from both the sides, the voltage at the other
+end of the $i^{th}$ wordline is represented as $V'_{Wi}$.
 %Finally, the voltage at the sense amplifier is $V'_{Bi}$ during the read operation.
 %YOU MIGHT WANT TO CHANGE THE ABOVE PARA INTO A TABLE
 
@@ -39,15 +39,18 @@ Based on this model, the current equations for each cross-point can be set
 following KCL: $ {\Sigma}_{I=1}^kI_k=0.$ All of the cross-points have
 similar structure with no more than three current branches and therefore
 it is very easy to set up the KCL equations for each cross-point. However,
-we should treat the cross-points at the edges of the array specially
-because there are different conditions for different write/read schemes.
-For example, the unselected wordline for write operation can be either
-half biased or left floating. Thus, the edge conditions should be adjusted
-according to each write/read scheme. In particular, all of the
-cross-points in an array can be classified into three major categories:
-\emph{normal point}, \emph{activated point} and \emph{floating point}.
+we should treat the cross-points at the edges of the array specifically
+because KCL equations for these cross-points vary with different
+write/read schemes. For example, the unselected wordline for write
+operation can be either half biased or left floating. Thus, the edge
+conditions should be adjusted according to each write/read scheme. In
+particular, all of the cross-points in an array can be classified into
+three major categories: \emph{normal point}, \emph{activated point} and
+\emph{floating point}.
 
-The normal points are located inside the memory array. In other words, for all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form of
+The normal points are located inside the memory array. In other words, for
+all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form
+of
 \begin{equation}\label{equ:KCL1}
 R_l^{-1}V_{i,j-1} -(2R_l^{-1}+R_{i,j}^{-1})V_{i,j}+ R_l^{-1}V_{i,j+1}+R_{i,j}^{-1}V'_{i,j}=0,
 \end{equation}
@@ -57,7 +60,14 @@ R_l^{-1}V'_{i-1,j} -(2R_l^{-1}+R_{i,j}^{-1})V'_{i,j}+ R_l^{-1}V'_{i+1,j}+R_{i,j}
 \end{equation}
 for the node at bitline layer.
 
-The activated point and floating point represent the nodes at the edge of cross-point array with different conditions: an edge point, which is directly connected to the voltage input or to the ground, can be considered as an activated point. Otherwise, it is a floating point. For example, consider the point located at the intersection of $i^{th}$ wordline and $1^{st}$ bitline. If the $i^{th}$ wordline is activated by an input voltage of $V_{Wi}$, this cross-point is an activated point, and the KCL equation for this point is:
+The activated point and floating point represent the nodes at the edge of
+cross-point array with different conditions: an edge point, which is
+directly connected to the voltage input or to the ground, can be
+considered as an activated point. Otherwise, it is a floating point. For
+example, consider the point located at the intersection of $i^{th}$
+wordline and $1^{st}$ bitline. If the $i^{th}$ wordline is activated by an
+input voltage of $V_{Wi}$, this cross-point is an activated point, and the
+KCL equation for this point is:
 \begin{equation}\label{equ:KCL3}
 -(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=-R_v^{-1}V_{Wi}.
 \end{equation}
@@ -87,14 +97,14 @@ A\cdot V = C.
 \end{equation}
 $A$ is a ${2mn\times{2mn}}$ coefficient matrix, which is determined by
 Equations(\ref{equ:KCL1})-(\ref{equ:KCL4}). $C$ is a ${2mn\times{1}}$
-vector, containing the constant terms of these equations. As shown, the
-KCL equations for each node have very simple structure and are very
-similar to each other. Therefore, the linear equation system has a
-relatively fixed format and simple structure, making it very easy to
-establish and adjust the coefficients and constants according to different
-design schemes. Besides, due to the simplicity of the KCL equation, $A$ is
-populated primarily with zeros and can be saved as a sparse matrix, which
-will further reduce the storage cost during the computation.
+vector, containing the constant terms of these equations. As shown, all of
+the KCL equations have very simple structure and are very similar to each
+other. Therefore, the linear equation system has a relatively fixed format
+and simple structure, making it very easy to establish and adjust the
+coefficients and constants according to different design schemes. Besides,
+due to the simplicity of the KCL equation, $A$ is populated primarily with
+zeros and can be saved as a sparse matrix, which will further reduce the
+storage cost during the computation.
 
 %
 %The characteristics of the linear system can be summarized as:
@@ -147,10 +157,10 @@ will further reduce the storage cost during the computation.
 %    \end{array} \right.
 %    \end{equation}
 %\end{enumerate}
-Thus, with input parameters such as the resistance of a ReRAM cell, the
+Thus, with parameters such as the resistance of ReRAM cells, the
 resistance of interconnect wires, program voltages, and write/read
-schemes, voltages at various cross points can be obtained by solving
-the system of linear equations. With detailed voltage values,
+schemes, voltages at various cross points can be obtained by solving the
+system of linear equations. With detailed voltage values,
 $V_{2mn{\times}1}$, we can analyze the array at a fine granularity. These
 values are also critical to evaluate reliability, energy consumption,
 driven current density, and area overheads of a cross-point array.
