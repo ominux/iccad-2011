@@ -41,21 +41,22 @@ LRS ReRAM cells and cell non-linearity.
   \begin{tabular}{c|c|c}
     \hline    \hline
     % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-    \textbf{Metric} & \textbf{Description} & \textbf{Values} \\
+    \textbf{Metric} & \textbf{Description} & \textbf{Typical Values (Range)} \\
     \hline
     \textbf{$S_{cell}$} & Cell Size & \textbf{$4F^2$} \\
     \textbf{$R_l$} &  Interconnection Resistance&\textbf{$0.65\Omega$} \\
     \textbf{$V_{RESET}$} & Threshold voltage for RESET&\textbf{$2.0V$} \\
     \textbf{$V_{SET}$} & Threshold voltage for SET&\textbf{$-2.0V$} \\
     \textbf{$V_{READ}$} & Read Voltage of Cell&\textbf{$0.5V$} \\
-    \textbf{$I_{on}$} & Write Current for LRS Cell &\textbf{$10K\Omega$} \\
+    \textbf{$I_{on}$} & Write Current for LRS Cell &\textbf{$40uA$~~($20\sim200uA$)} \\
     \textbf{$V_{W}(R)$} & Wordline Voltage during Read &\textbf{$0.4V$} \\
     \textbf{$V_{W}(W)$} & Wordline Voltage during Write  &\textbf{$\pm2V$} \\
     \textbf{$V_{W}(H)$} & Half Selected wordline Voltage &\textbf{$1V$} \\
     \textbf{$V_{B}(R)$} & Bitline Voltage during Read  &\textbf{$0V$} \\
     \textbf{$V_{B}(W)$} & Bitline Voltage during Write  &\textbf{$0V$} \\
     \textbf{$V_{B}(H)$} & Half Selected bitline Voltage &\textbf{$1V$} \\
-    \textbf{$M,N$} & Number of wordlines/bitlines &\textbf{$256$} \\
+    \textbf{$K_r$} & Nonlinearity of ReRAM Cell &\textbf{$5$~~($2\sim40$)} \\
+    \textbf{$M,N$} & Number of wordlines/bitlines &\textbf{$512$~~($8\sim1024$)} \\
     \hline
   \end{tabular}
   \vspace{-10pt}
@@ -169,18 +170,18 @@ Write failure typically results from the voltage drop at the interconnect
 wires along the wordline and bitline. It has been shown
 that~\cite{crossbar_TED_2010}, for one bit per access write operation, the
 worst case voltage drop occurs when writing the cell at the cross point of
-the $M^{nd}$ wordline and the $N^{nd}$ bitline with all of the cells in
+the $M^{th}$ wordline and the $N^{th}$ bitline with all of the cells in
 the array are in LRS. In order to avoid the write failure and successfully
 program the selected ReRAM cell, the driven voltage should be boosted to a
 higher level, making sure that the voltage across the cell exceeds the
 threshold voltage even at the worst case. Figure~\ref{fig:worst_v} shows
 the lower bound of the driven voltage for different sizes of cross-point
 array. The minimum wordline/bitline voltage increases from 2.01~V for a $8
-\times 8$ array to 4.47~V for a $128 \times 128$ cross-point array. In
+\times 8$ array to 4.2~V for a $1024 \times 1024$ cross-point array. In
 addition, for a memory capability, the cross-point array can be organized
-with different number of wordlines and bitlines. For example, a 4K bits
-cross-point array can be implemented either by a $64 \times 64$ array or
-by a $32 \times 128$ array. In the latter case, the voltage drops along
+with different number of wordlines and bitlines. For example, a 256K bits
+cross-point array can be implemented either by a $512 \times 512$ array or
+by a $64 \times 4096$ array. In the latter case, the voltage drops along
 the wordline will be much more serious than along the bitline.
 Figure~\ref{fig:shape} examines the voltage requirement for different
 array organizations with different write schemes. The result shows that
@@ -204,7 +205,7 @@ HWFB and FWHB schemes have the same minimum driven voltage.
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/shape_f.pdf}\\
-  \caption{Write voltage requirement with different memory shape. (Array capacity = 4Kbits, Activated wordline voltage = 2V, Activated bitline voltage = 0V.)}\label{fig:shape}
+  \caption{Write voltage requirement with different memory shape. (Array capacity = 256Kbits, Activated wordline voltage = 2V, Activated bitline voltage = 0V.)}\label{fig:shape}
     \vspace{-15pt}
 \end{figure}
 
@@ -212,24 +213,33 @@ However, boosting the driven voltage also introduces other potential
 problems for the array. In particular, increasing the driven voltage also
 increases the voltage applied at unselected cells. Therefore, a write
 disturbance may occur when the voltage applied at an unselected cell
-exceeds the threshold voltage for SET or RESET operation.
-Figure~\ref{fig:half} shows the maximum voltage applied at unselected
-cells with the minimum driven voltage, which is determined in
-Figure~\ref{fig:worst_v}. Since the threshold voltage of the ReRAM cell is
-2V, only array sizes with worst case unselected cell voltage less than 2V
-are allowable. Otherwise, the array is unreliable because it can not avoid
-write failure and write disturbance at the same time. Therefore,
-Figure~\ref{fig:half} provides a hard constraint on array size, and all of
-the following energy and area tradeoffs should be bounded by this
+exceeds the threshold voltage for SET or RESET operation. Specifically,
+the maximum voltage applied at unselect cells is exactlly the same as half
+of the driven voltage. Thus, only the array with driven voltage less than
+4V are allowable. Otherwise, the array is unreliable because it can not
+avoid write failure and write disturbance at the same time. Therefore, the
+Figure~\ref{fig:worst_v} can provide a hard constraint on array size, and
+all of the following energy and area tradeoffs should be bounded by this
 constraint.
 
-\begin{figure}%[!t]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.28\textwidth]{./figures/Theoretical_bound_f.pdf}\\
-  \caption{The maximum voltage applied at unselected cells with the minimum driven voltage.}\label{fig:half}
-  \vspace{-10pt}
-\end{figure}
+
+%Figure~\ref{fig:half} shows the maximum voltage applied at unselected
+%cells with the minimum driven voltage, which is determined in
+%Figure~\ref{fig:worst_v}. Since the threshold voltage of the ReRAM cell is
+%2V, only array sizes with worst case unselected cell voltage less than 2V
+%are allowable. Otherwise, the array is unreliable because it can not avoid
+%write failure and write disturbance at the same time. Therefore,
+%Figure~\ref{fig:half} provides a hard constraint on array size, and all of
+%the following energy and area tradeoffs should be bounded by this
+%constraint.
+
+%\begin{figure}%[!t]
+%\centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=0.28\textwidth]{./figures/Theoretical_bound_f.pdf}\\
+%  \caption{The maximum voltage applied at unselected cells with the minimum driven voltage.}\label{fig:half}
+%  \vspace{-10pt}
+%\end{figure}
 
 
 \vspace{6pt} \emph{Energy Consumption of Write Operation.} \vspace{6pt}
@@ -253,7 +263,7 @@ constraint.
 %at unselected cells for floating schemes is larger than the half-biased
 %scheme. Due to this reason, the total energy consumptions for FWHB and
 %HWFB schemes are at least 10\% larger than that of HWHB scheme.
-The energy consumption of a write operation including: the energy consumed
+The energy consumption of a write operation includes: the energy consumed
 to change the state of the selected cell (denoted as $E_{select}$), the
 undesired energy wasted at the half selected cells ($E_{halfselect}$) and
 unselected cells ($E_{unselect}$), as well as the energy consumed by the
@@ -262,7 +272,7 @@ decomposed energy consumption for the cross-point array. Note that, the
 $E_{line}$ and $E_{halfselect}$ take a large amount of the total energy
 consumption. Also, this part of energy wasted during the write operation
 takes greater part of the total energy for larger array sizes. For
-example, the undesired energy consumption for writing a $128{\times}128$
+example, the undesired energy consumption for writing a $512{\times}512$
 array is more than 1000 times larger than the $8{\times}8$ array. We also
 notice that, since the impact of sneak paths for floating schemes (FWHB
 and HWFB) is more serious, the energy consumed at unselected cells for
@@ -278,7 +288,8 @@ least 10\% larger than that of HWHB scheme.
     \vspace{-10pt}
 \end{figure}
 
-\vspace{6pt} \emph{Area cost of Write Operation.} \vspace{6pt}
+\vspace{6pt} \emph{Write Current and Area Overhead of Write Operation.}
+\vspace{6pt}
 
 The write operation for a $M \times N$ array requires totaly $M+N$ voltage
 drivers. Therefore, the average number of ReRAM cells per voltage driver
@@ -326,8 +337,24 @@ from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes.
 %    \vspace{-10pt}
 %\end{figure}
 
-In order to fairly compare the energy consumption, we compare the energy-per-bit instead of the total energy. For example, in order to write a wordline with size of 128, the energy-per-bit can be calculated as:
-$E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the energy-per-bit of the multi-bit write operation. The energy shown in this figure is normalized to the same unit as Figure~\ref{fig:energy} for easier comparison. The results show that for large cross point array sizes, the multi-bit write operation is much more energy efficient. This is because the energy wasted at the unselected and half-selected cells are shared by multiple bits and the average energy for one each bit is therefore reduced. However, although the multi-bit write operation has the advantage of lower energy consumption, the maximum current requirement for each wordline also increases. As shown in Figure~\ref{fig:drive_i}(b), the maximum driven current for each bitline is almost the same as when writing one bit, however the drive capability for each word line is almost doubled for multi-bit writing. Since the area of the voltage driver increases proportionally with its drive capability, the area overhead for multi-bit writing is about 50\% larger than for one bit writing.
+In order to fairly compare the energy consumption, we compare the
+energy-per-bit instead of the total energy. For example, in order to write
+a wordline with size of 128, the energy-per-bit can be calculated as:
+$E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the
+energy-per-bit of the multi-bit write operation. The energy shown in this
+figure is normalized to the same unit as Figure~\ref{fig:energy} for
+easier comparison. The results show that for large cross point array
+sizes, the multi-bit write operation is much more energy efficient. This
+is because the energy wasted at the unselected and half-selected cells are
+shared by multiple bits and the average energy for one each bit is
+therefore reduced. However, although the multi-bit write operation has the
+advantage of lower energy consumption, the maximum current requirement for
+each wordline also increases. As shown in Figure~\ref{fig:drive_i}(b), the
+maximum driven current for each bitline is almost the same as when writing
+one bit, however the drive capability for each word line is almost doubled
+for multi-bit writing. Since the area of the voltage driver increases
+proportionally with its drive capability, the area overhead for multi-bit
+writing is about 50\% larger than for one bit writing.
 
 \begin{figure}%[!t]
 \centering
@@ -347,7 +374,7 @@ selected cell is read out by measuring the voltage across $R_s$. The
 energy consumption for read operation can be analyzed by the same way as
 that of the write operation. Since the read voltage is much smaller than
 write voltage, the read energy is expected at least one order smaller than
-write operation. Considerable sensing margin is achieved by implementing a current-to-voltage converter and sensing the voltage signal using traditional or emerging sense amplifier design. The input resistance of the current-to-voltage converter is extracted from HSPICE simulation results. Read sensing margin is defined as $\Delta V = \Delta I \times R_{converter}$ where $R_{converter}$ is input resistance of the converter. 
+write operation. Considerable sensing margin is achieved by implementing a current-to-voltage converter and sensing the voltage signal using traditional or emerging sense amplifier design. The input resistance of the current-to-voltage converter is extracted from HSPICE simulation results. Read sensing margin is defined as $\Delta V = \Delta I \times R_{converter}$ where $R_{converter}$ is input resistance of the converter.
 
 Additionally, since the read voltage/current is much
 lower than the write, we believe that the voltage drivers can always
