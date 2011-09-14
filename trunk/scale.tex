@@ -98,6 +98,25 @@ increase.
   \caption{The normalized area overhead of voltage drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
 \end{figure}
 
+
+Different from write operation, the read operation can not benefit from
+the increasing of non-linearity or the scaling of write current.
+Figure~\ref{fig:sense_margin} (a) shows the voltage swing with different
+$K_r$ values and write current. Large non-linearity and small write
+current are harmful to the voltage swing: \textbf{add discussion here
+after we got the data}
+%the non-linearity increases the resistance of half LRS and therefore the
+%resistance difference between HRS and LRS cells is reduced; on the other
+%hand, .
+\begin{figure}[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.5\textwidth]{./figures/sense_margin_f}\\
+  \caption{Relationships among the voltage swing, array size and non-linearity. (a) Normal sensing scheme; (b) Two-step sensing scheme}\label{fig:sense_margin}
+\end{figure}
+
+
+
 %\subsection{Read Operation}
 %In this section we applied the similar sensing scheme as
 %\cite{crossbar_TED_2010} and \cite{crossbar_NANO08_Flocke}. In order to
