@@ -291,17 +291,8 @@ least 10\% larger than that of HWHB scheme.
 \vspace{6pt} \emph{Write Current and Area Overhead of Write Operation.}
 \vspace{6pt}
 
-The write operation for a $M \times N$ array requires totaly $M+N$ voltage
-drivers. Therefore, the average number of ReRAM cells per voltage driver
-can be calculated as $mn/(m+n)$. Given the array capacity of $C_{array}$,
-it is easy to find that the optimal array organization can be achieved
-when $M=N=\sqrt{C_{array}}$ and the maximum number of cells per voltage
-driver is: $\sqrt{C_{array}}/2$. However, the area overhead of a voltage
-driver is also related to its current drive capability.
-Figure~\ref{fig:drive_i}(a) shows the maximum write current with different
-ReRAM array sizes. According to the current requirement, the area of the
-voltage driver can be directly calculated, which will be shown in the
-following discussion.
+The write operation for a $M \times N$ array requires $M$ wordline voltage
+drivers and $N$ bitline multiplexers. The drivers and multiplexers should be sized such that they can provide the worst-case current of wordline current and bitline current. The transistor sizing of the wordline/bitline circuitry are achieved using HSPICE simulations. We further calculate the area overhead for the drivers and multiplexers by referring to the CACTI area model. Figure~\ref{fig:drive_i}(a) shows the maximum write current with different ReRAM array sizes. As we can see, the current requirement increases slightly faster than linearly as array size increases. This is primarily because we have to increase the write voltage to compensate the voltage drop in large array size. Figure~\ref{fig:drive_i}(b) demonstrates the area overhead for the wordline and bitline circuitry. It is indicated that wordline drivers occupies comparable or even larger area than the memory cells, degrading the effective cell size significantly. There are two possible reasons: (1) wordline drivers are usually implemented as tri-gates and larger than bitline multiplexers that are essentially pass transistors; (2) wordline drivers have to provide more than one set of write current in multi-bits write operation, as discussed in the following section.
 
 %\begin{figure}%[!t]
 %\centering
