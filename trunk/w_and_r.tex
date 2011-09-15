@@ -379,11 +379,9 @@ with its driving current, the area overhead for multi-bit writing is much larger
 %    \vspace{-10pt}
 %\end{figure}
 
-In addition to the extra area overhead, writing multi-bit at a time will
-also worsen the voltage drop along the wordline. As shown in
-Figure~\ref{fig:multi_V}(a), in order to write a wordline per writing, the
-reliable array size reduces to $352 \times 352$. \textbf{Compare to
-Baseline and add discription for (b)}.
+In addition to the extra area overhead, writing multiple bits at one time also worsens the voltage drop along the wordline. As shown in Figure~\ref{fig:multi_V}(a), in order to write a wordline per writing, the
+reliable array size reduces to $352 \times 352$. This is because the current passing through the interconnect wires in multi-bit write scheme is much larger than that of single-bit write scheme, causing more severe voltage drop on the wire resistance. Figure~\ref{fig:multi_V}(b) shows that for a $512\times 512$ cross-point array, the worst-case voltage drop increases and eventually become unreliable as we increase the number of bits per write operation. The maximum of bits that can be accessed simultaneously while maintaining reliable write operation is about 130.
+
 %Therefore, as shown in Figure~\ref{fig:reliable_region},
 %Therefore the simulation results show that the reliable size of the
 %cross-point array will be further reduced. The maximum array size reduces
