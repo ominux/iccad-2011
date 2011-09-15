@@ -12,14 +12,14 @@ useful guide in designing a cross-point array.
 %As shown in Figure~\ref{fig:modeling}, i
 In order to write or read a cross-point array, proper voltages should be
 applied across the ReRAM cell. Although the goal of a read operation is
-different from a write operations, both of them are realized by fully
+different from a write operation, both of them are realized by fully
 biasing the selected wordlines/bitlines and floating (or half biasing)
 unselected wordlines/bitlines. Thus, the coefficient matrix $A$ and the
 constant vector $C$ are very similar for both. In addition, their energy
 consumption and area overhead will also have a similar trend. Therefore,
 in this section, we first study the write operation comprehensively. After
 that, for read operation, we mainly focus on the read margin analysis
-since it is unique to reads.
+since it is unique to read operations.
 %can be very useful to guide the design of the cross-point array.
 %Also, we assumes that the in the case of worst scenario, the ReRAM cells at the selected wordline, th
 %Since it is impossible to consider all of the data pattern stored in the array,
@@ -74,21 +74,20 @@ write operation:
 \begin{enumerate}
   \item According to the location of a selected cell, activate one
       wordline and one bitline and leave all of other lines floating
-      (FWFB shemes).
+      (FWFB scheme).
   \item Activate the selected wordline and bitline. Leave all the
       unselected wordlines floating and half bias the unselected
-      bitlines (FWHB shemes).
+      bitlines (FWHB scheme).
   \item In contrast to the scheme 2), activate the selected wordline
       and bitline. Leave all the unselected bitlines floating and half
-      bias the unselected wold lines (HWFB shemes).
-  \item Activate the selected wordline and bitline. Then half bias all
-      other wordlines and bitlines (HWHB shemes).
+      bias the unselected wold lines (HWFB scheme).
+  \item Activate the selected wordline and bitline. Then half bias the unselected wordlines and bitlines (HWHB scheme).
 \end{enumerate}
 However,the FWFB scheme has inherent problem that may result in severe
 write disturbance~\cite{??}. Therefore, in the following discussion, we
-only compare the results of FWHB, HWFB and HWHB schemes. For each of these
+only compare the results between FWHB, HWFB and HWHB schemes. For each of these
 three schemes, we can either write several cells at one wordline at the
-same time or only write one bit per access and distribute the write
+same time or write only one bit per access and distribute the write
 operation to several arrays. In the following discussion, we start from
 one bit per access write operation, then the results of one wordline per
 access method are discussed.
@@ -133,11 +132,11 @@ cells are negligible. In such a scenario, all the write schemes discussed
 above will make sure that the write voltage $V_W(W)-V_B(W)$ is fully
 applied across the specified cell. However, in reality, both wire
 resistance and sneak current are non-trivial. Hence, the operation of
-cross-point array will vary based on the data pattern stored in ReRAM
+cross-point array varies based on the data pattern stored in ReRAM
 cells. A write is considered reliable if it modifies the content of the
 selected cells to the new value without disturbing other unselected cells.
 %A reliable write operation can be defined as: switching the selected cells into required states without disturbing the states of unselected cells.
-There are two potential problems with writes: \emph{write failure}, an
+Correspondingly, there are two potential problems with writes: \emph{write failure}, an
 unsuccessful write on selected cell, and \emph{write disturbance}, an
 undesirable write on unselected cell. It is necessary to ensure that a
 write scheme guarantees reliable operation even in the worst case (w.r.t
@@ -194,10 +193,10 @@ array. In addition, for a memory capability, the cross-point array can be
 organized with different number of wordlines and bitlines. For example, a
 256K bits cross-point array can be implemented either by a $512 \times
 512$ array or by a $64 \times 4096$ array. In the latter case, the voltage
-drops along the wordline will be much more serious than along the bitline.
+drops along the wordline will be much worse than along the bitline.
 Figure~\ref{fig:shape} examines the voltage requirement for different
 array organizations with different write schemes. The result shows that
-from a reliability point of view, a cross-point array with same numbers of
+from a reliability point of view, a cross-point array with same number of
 wordlines and bitlines is the best choice. Furthermore, we also notice
 that when the array has the same number of wordlines and bitlines, FWFB,
 HWFB and FWHB schemes have the same minimum driven voltage.
@@ -307,21 +306,19 @@ a $32{\times}32$ array.
 \vspace{6pt}
 
 The write operation for a $M \times N$ array requires $M$ wordline voltage
-drivers and $N$ bitline multiplexers. The drivers and multiplexers should
+drivers and $N$ bitline multiplexes. The drivers and multiplexes should
 be sized such that they can provide the worst-case current of wordline
 current and bitline current. The transistor sizing of the wordline/bitline
 circuitry are achieved using HSPICE simulations. We further calculate the
-area overhead for the drivers and multiplexers by referring to the CACTI
+area overhead for the drivers and multiplexes by referring to the CACTI
 area model. Figure~\ref{fig:drive_i}(a) shows the maximum write current
-with different ReRAM array sizes. As we can see, the current requirement
-increases slightly faster than linearly as array size increases. This is
-primarily because we have to increase the write voltage to compensate the
-voltage drop in large array size. Figure~\ref{fig:drive_area}(a)
+with different ReRAM array sizes. Not surprisingly, the current requirement
+increases as array size increases. Figure~\ref{fig:drive_area}(a)
 demonstrates the area overhead for the wordline and bitline circuitry. It
 is indicated that wordline drivers occupies comparable or even larger area
 than the memory cells, degrading the effective cell size significantly.
 There are two possible reasons: (1) wordline drivers are usually
-implemented as tri-gates and larger than bitline multiplexers that are
+implemented as tri-gates and larger than bitline multiplexes that are
 essentially pass transistors; (2) wordline drivers have to provide more
 than one set of write current in multi-bits write operation, as discussed
 in the following section.
@@ -357,15 +354,15 @@ operation. The energy shown in this figure is normalized to the same unit
 as Figure~\ref{fig:energy}(a) for easier comparison. \textbf{The results
 show that for large cross point array sizes, the multi-bit write operation
 is much more energy efficient. This is because the energy wasted at the
-unselected and half-selected cells are shared by multiple bits and the
-average energy for one each bit is therefore reduced. However, although
+unselected and half-selected cells are amortized by multiple bits and the
+average energy for one bit is therefore reduced. However, although
 the multi-bit write operation has the advantage of lower energy
 consumption,} the maximum current requirement for each wordline also
 increases. As shown in Figure~\ref{fig:drive_i}(b), the maximum driven
 current for each bitline is almost the same as when writing one bit,
 however the drive capability for each word line is >10 times larger than
 that of  multi-bit writing. Since the area of the voltage driver increases
-proportionally with its drive capability, the area overhead for multi-bit
+proportionally with its driving capability, the area overhead for multi-bit
 writing is significantlly larger than for one bit writing. Due to the
 space limitations, the results of area overhead are shown in the next
 session.
@@ -403,7 +400,7 @@ of the other wordlines and bitlines are grounded. Then the state of the
 selected cell is read out by measuring the voltage across $R_s$. The
 energy consumption for read operation can be analyzed by the same way as
 that of the write operation. Since the read voltage is much smaller than
-write voltage, the read energy is expected at least one order smaller than
+write voltage, the read energy is expected at least one order magnitude smaller than
 write operation. Considerable sensing margin is achieved by implementing a
 current-to-voltage converter and sensing the voltage signal using
 traditional or emerging sense amplifier design. The input resistance of
@@ -411,7 +408,7 @@ the current-to-voltage converter is extracted from HSPICE simulation
 results. Read sensing margin is defined as $\Delta V = \Delta I \times
 R_{converter}$ where $R_{converter}$ is input resistance of the converter.
 
-Additionally, since the read voltage/current is much lower than the write,
+Additionally, since the read voltage/current is much lower than the write voltage/current,
 we believe that the voltage drivers can always provide enough current for
 the read operation if they meet the current requirement for write
 operation. Therefore, we can conclude that the area overhead of voltage
