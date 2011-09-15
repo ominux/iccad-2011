@@ -348,31 +348,28 @@ in the following section.
 \vspace{6pt} \emph{Discussion on Multi-Bits Write Operation.} \vspace{6pt}
 
 So far, we have only discussed the write operation with one bit per
-access. In this section, we consider the difference between one bit per
+access. In this section, we consider the difference between single-bit per
 access and multi-bit per access write operations.
 
 First of all, we evaluate the energy consumption of the write operation
 that program one wordline at the same time. In order to fairly compare the
 energy consumption, we compare the energy-per-bit instead of the total
-energy. Besides, the multi-bit write operation required a two-step write
-scheme. Therefore, in order to write a wordline with size of 512, the
+energy. For example, in order to write a wordline with size of 512, the
 energy-per-bit can be calculated as: $E_{ave}=E_{total}/512$.
 Figure~\ref{fig:energy}(b) shows the energy-per-bit of the multi-bit write
-operation. The energy shown in this figure is normalized to the same unit
-as Figure~\ref{fig:energy}(a) for easier comparison. \textbf{The results
+operation. Compared with the sing-bit write operation, as shown in Figure~\ref{fig:energy}(a),the results
 show that for large cross point array sizes, the multi-bit write operation
 is much more energy efficient. This is because the energy wasted at the
 unselected and half-selected cells are amortized by multiple bits and the
 average energy for one bit is therefore reduced. However, although the
-multi-bit write operation has the advantage of lower energy consumption,}
-the maximum current requirement for each wordline also increases. As shown
-in Figure~\ref{fig:drive_i}(b), the maximum driven current for each
-bitline is almost the same as when writing one bit, however the drive
-capability for each word line is >10 times larger than that of  multi-bit
-writing. Since the area of the voltage driver increases proportionally
-with its driving capability, the area overhead for multi-bit writing is
-significantlly larger than for one bit writing. Due to the space
-limitations, the results of area overhead are shown in the next session.
+multi-bit write operation has the advantage of lower energy consumption,
+the maximum current requirement for each wordline also increases. As demonstrated
+in Figure~\ref{fig:drive_i}(b), although the maximum driven current for each
+bitline is almost the same as when writing one bit, the driving
+current requirement for each word line in multi-bit write scheme is $>10$ times larger than that of single-bit
+write scheme. Since the area of the voltage driver increases proportionally
+with its driving current, the area overhead for multi-bit writing is much larger than that of single-bit write scheme.
+
 
 %\begin{figure}%[!t]
 %\centering
