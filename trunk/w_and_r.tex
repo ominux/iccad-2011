@@ -183,13 +183,13 @@ program the selected ReRAM cell, the driven voltage should be boosted to a
 higher level, making sure that the voltage across the cell exceeds the
 threshold voltage even at the worst case. Figure~\ref{fig:worst_v} shows
 the lower bound of the driven voltage for different sizes of cross-point
-array. The minimum wordline/bitline voltage increases from 2.01~V for a $8
-\times 8$ array to 4.2~V for a $1024 \times 1024$ cross-point array. In
-addition, for a memory capability, the cross-point array can be organized
-with different number of wordlines and bitlines. For example, a 256K bits
-cross-point array can be implemented either by a $512 \times 512$ array or
-by a $64 \times 4096$ array. In the latter case, the voltage drops along
-the wordline will be much more serious than along the bitline.
+array. The minimum wordline/bitline voltage increases from 2.01~V for a
+$32 \times 32$ array to nearly 7~V for a $1024 \times 1024$ cross-point
+array. In addition, for a memory capability, the cross-point array can be
+organized with different number of wordlines and bitlines. For example, a
+256K bits cross-point array can be implemented either by a $512 \times
+512$ array or by a $64 \times 4096$ array. In the latter case, the voltage
+drops along the wordline will be much more serious than along the bitline.
 Figure~\ref{fig:shape} examines the voltage requirement for different
 array organizations with different write schemes. The result shows that
 from a reliability point of view, a cross-point array with same numbers of
@@ -201,8 +201,9 @@ HWFB and FWHB schemes have the same minimum driven voltage.
 
 \begin{figure}%[!hb]
 \centering
+\hspace{-5pt}
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.4\textwidth]{./figures/worst_v_f.pdf}\\
+  \includegraphics[width=0.45\textwidth]{./figures/worst_v_f.pdf}\\
   \caption{Write voltage requirement (Threshold voltage = 2V). }\label{fig:worst_v}
   \vspace{-5pt}
 \end{figure}
@@ -223,11 +224,12 @@ disturbance may occur when the voltage applied at an unselected cell
 exceeds the threshold voltage for SET or RESET operation. Specifically,
 the maximum voltage applied at unselect cells is exactlly the same as half
 of the driven voltage. Thus, only the array with driven voltage less than
-4V are allowable. Otherwise, the array is unreliable because it can not
-avoid write failure and write disturbance at the same time. Therefore, the
-Figure~\ref{fig:worst_v} can provide a hard constraint on array size, and
-all of the following energy and area tradeoffs should be bounded by this
-constraint.
+4V are allowable.  Otherwise, the array is unreliable because it can not
+avoid write failure and write disturbance at the same time. The unreliable
+array sizes are denoted as red bars in Figure~\ref{fig:worst_v}. The array
+size limitation provied by Figure~\ref{fig:worst_v} is a hard constraint
+on array size, and all of the following energy and area tradeoffs should
+be bounded by this constraint.
 
 
 %Figure~\ref{fig:half} shows the maximum voltage applied at unselected
@@ -290,8 +292,8 @@ least 10\% larger than that of HWHB scheme.
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/energy_f.pdf}\\
-  \caption{The normalized energy consumption. (a): HWHB scheme (b): FWHB and HWFB schemes.}\label{fig:energy}
+  \includegraphics[width=0.5\textwidth]{./figures/energy_f_tall.pdf}\\
+  \caption{The normalized energy consumption. (a): One bit writing; (b): Multi-bit writing.}\label{fig:energy}
     \vspace{-10pt}
 \end{figure}
 
@@ -327,13 +329,13 @@ cross-point array will be further reduced. The maximum array size reduces
 from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes.
 %For the energy consumption point of view, the one wordline write operation is more efficient.
 
-%\begin{figure}%[!t]
-%\centering
-%  % Requires \usepackage{graphicx}
-%  \includegraphics[width=0.4\textwidth]{./figures/multiwrite_f.pdf}\\
-%  \caption{The array size requirement for the cross-point array with different write schemes. (Baseline: one bit per access. HWHB, HWFB and FWHB: one wordline per access. }\label{fig:reliable_region}
-%    \vspace{-10pt}
-%\end{figure}
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.5\textwidth]{./figures/multi_V.pdf}\\
+  \caption{Worst case voltage and write voltage requirment for multi-bit writing. (a) One wordline wrting with different array size; (b) 512x512 array with various number of bits per writing.}\label{fig:reliable_region}
+    \vspace{-10pt}
+\end{figure}
 
 In order to fairly compare the energy consumption, we compare the
 energy-per-bit instead of the total energy. For example, in order to write
@@ -354,13 +356,13 @@ for multi-bit writing. Since the area of the voltage driver increases
 proportionally with its drive capability, the area overhead for multi-bit
 writing is about 50\% larger than for one bit writing.
 
-\begin{figure}%[!t]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/multi_energy_f.pdf}\\
-  \caption{The normalized energy consumption per bit for multi-bits write operation. (a): HWHB and  FWHB schemes; (b): HWFB scheme. }\label{fig:multi_energy}
-    \vspace{-10pt}
-\end{figure}
+%\begin{figure}%[!t]
+%\centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=0.5\textwidth]{./figures/multi_energy_f.pdf}\\
+%  \caption{The normalized energy consumption per bit for multi-bits write operation. (a): HWHB and  FWHB schemes; (b): HWFB scheme. }\label{fig:multi_energy}
+%    \vspace{-10pt}
+%\end{figure}
 
 
 \subsection{Read Operation}
