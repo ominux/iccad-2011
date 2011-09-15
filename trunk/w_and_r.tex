@@ -276,16 +276,16 @@ The energy consumption of a write operation includes: the energy consumed
 to change the state of the selected cell (denoted as $E_{select}$), the
 undesired energy wasted at the half selected cells ($E_{halfselect}$) and
 unselected cells ($E_{unselect}$), as well as the energy consumed by the
-interconnect lines ($E_{line}$). Figure~\ref{fig:energy} shows the
+interconnect lines ($E_{line}$). Figure~\ref{fig:energy}(a) shows the
 decomposed energy consumption for the cross-point array. Note that, the
 $E_{line}$ and $E_{halfselect}$ take a large amount of the total energy
 consumption. Also, this part of energy wasted during the write operation
 takes greater part of the total energy for larger array sizes. For
 example, the undesired energy consumption for writing a $512{\times}512$
-array is more than 1000 times larger than the $8{\times}8$ array. We also
-notice that, since the impact of sneak paths for floating schemes (FWHB
-and HWFB) is more serious, the energy consumed at unselected cells for
-floating schemes is larger than the half-biased scheme. Due to this
+array is more than 15 times larger than that of a $32{\times}32$ array. We
+also notice that, since the impact of sneak paths for floating schemes
+(FWHB and HWFB) is more serious, the energy consumed at unselected cells
+for floating schemes is larger than the half-biased scheme. Due to this
 reason, the total energy consumptions for FWHB and HWFB schemes are at
 least 10\% larger than that of HWHB scheme.
 
@@ -293,7 +293,7 @@ least 10\% larger than that of HWHB scheme.
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/energy_f_tall.pdf}\\
-  \caption{The normalized energy consumption. (a): One bit writing; (b): Multi-bit writing.}\label{fig:energy}
+  \caption{The normalized energy consumption with different array size. (a): One bit writing; (b): Multi-bit writing.}\label{fig:energy}
     \vspace{-10pt}
 \end{figure}
 
@@ -301,7 +301,24 @@ least 10\% larger than that of HWHB scheme.
 \vspace{6pt}
 
 The write operation for a $M \times N$ array requires $M$ wordline voltage
-drivers and $N$ bitline multiplexers. The drivers and multiplexers should be sized such that they can provide the worst-case current of wordline current and bitline current. The transistor sizing of the wordline/bitline circuitry are achieved using HSPICE simulations. We further calculate the area overhead for the drivers and multiplexers by referring to the CACTI area model. Figure~\ref{fig:drive_i}(a) shows the maximum write current with different ReRAM array sizes. As we can see, the current requirement increases slightly faster than linearly as array size increases. This is primarily because we have to increase the write voltage to compensate the voltage drop in large array size. Figure~\ref{fig:drive_i}(b) demonstrates the area overhead for the wordline and bitline circuitry. It is indicated that wordline drivers occupies comparable or even larger area than the memory cells, degrading the effective cell size significantly. There are two possible reasons: (1) wordline drivers are usually implemented as tri-gates and larger than bitline multiplexers that are essentially pass transistors; (2) wordline drivers have to provide more than one set of write current in multi-bits write operation, as discussed in the following section.
+drivers and $N$ bitline multiplexers. The drivers and multiplexers should
+be sized such that they can provide the worst-case current of wordline
+current and bitline current. The transistor sizing of the wordline/bitline
+circuitry are achieved using HSPICE simulations. We further calculate the
+area overhead for the drivers and multiplexers by referring to the CACTI
+area model. Figure~\ref{fig:drive_i}(a) shows the maximum write current
+with different ReRAM array sizes. As we can see, the current requirement
+increases slightly faster than linearly as array size increases. This is
+primarily because we have to increase the write voltage to compensate the
+voltage drop in large array size. Figure~\ref{fig:drive_i}(b) demonstrates
+the area overhead for the wordline and bitline circuitry. It is indicated
+that wordline drivers occupies comparable or even larger area than the
+memory cells, degrading the effective cell size significantly. There are
+two possible reasons: (1) wordline drivers are usually implemented as
+tri-gates and larger than bitline multiplexers that are essentially pass
+transistors; (2) wordline drivers have to provide more than one set of
+write current in multi-bits write operation, as discussed in the following
+section.
 
 %\begin{figure}%[!t]
 %\centering
@@ -321,40 +338,31 @@ drivers and $N$ bitline multiplexers. The drivers and multiplexers should be siz
 
 So far, we have only discussed the write operation with one bit per
 access. In this section, we consider the difference between one bit per
-access and one wordline per access write operations. Firstly, writing a
-wordline at a time will worsen the voltage drop along the wordline.
-%Therefore, as shown in Figure~\ref{fig:reliable_region},
-Therefore the simulation results show that the reliable size of the
-cross-point array will be further reduced. The maximum array size reduces
-from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes.
-%For the energy consumption point of view, the one wordline write operation is more efficient.
+access and multi-bit per access write operations.
 
-\begin{figure}%[!t]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/multi_V.pdf}\\
-  \caption{Worst case voltage and write voltage requirment for multi-bit writing. (a) One wordline wrting with different array size; (b) 512x512 array with various number of bits per writing.}\label{fig:reliable_region}
-    \vspace{-10pt}
-\end{figure}
-
-In order to fairly compare the energy consumption, we compare the
-energy-per-bit instead of the total energy. For example, in order to write
-a wordline with size of 128, the energy-per-bit can be calculated as:
-$E_{ave}=E_{total}/128/2$. Figure~\ref{fig:multi_energy} shows the
-energy-per-bit of the multi-bit write operation. The energy shown in this
-figure is normalized to the same unit as Figure~\ref{fig:energy} for
-easier comparison. The results show that for large cross point array
-sizes, the multi-bit write operation is much more energy efficient. This
-is because the energy wasted at the unselected and half-selected cells are
-shared by multiple bits and the average energy for one each bit is
-therefore reduced. However, although the multi-bit write operation has the
-advantage of lower energy consumption, the maximum current requirement for
-each wordline also increases. As shown in Figure~\ref{fig:drive_i}(b), the
-maximum driven current for each bitline is almost the same as when writing
-one bit, however the drive capability for each word line is almost doubled
-for multi-bit writing. Since the area of the voltage driver increases
+First of all, we evaluate the energy consumption of the write operation
+that program one wordline at the same time. In order to fairly compare the
+energy consumption, we compare the energy-per-bit instead of the total
+energy. Besides, the multi-bit write operation required a two-step write
+scheme. Therefore, in order to write a wordline with size of 512, the
+energy-per-bit can be calculated as: $E_{ave}=E_{total}*2/512$.
+Figure~\ref{fig:energy}(b) shows the energy-per-bit of the multi-bit write
+operation. The energy shown in this figure is normalized to the same unit
+as Figure~\ref{fig:energy}(a) for easier comparison. \textbf{The results
+show that for large cross point array sizes, the multi-bit write operation
+is much more energy efficient. This is because the energy wasted at the
+unselected and half-selected cells are shared by multiple bits and the
+average energy for one each bit is therefore reduced. However, although
+the multi-bit write operation has the advantage of lower energy
+consumption,} the maximum current requirement for each wordline also
+increases. As shown in Figure~\ref{fig:drive_i}(b), the maximum driven
+current for each bitline is almost the same as when writing one bit,
+however the drive capability for each word line is >10 times larger than
+that of  multi-bit writing. Since the area of the voltage driver increases
 proportionally with its drive capability, the area overhead for multi-bit
-writing is about 50\% larger than for one bit writing.
+writing is significantlly larger than for one bit writing. Due to the
+space limitations, the results of area overhead are shown in the next
+session.
 
 %\begin{figure}%[!t]
 %\centering
@@ -364,7 +372,23 @@ writing is about 50\% larger than for one bit writing.
 %    \vspace{-10pt}
 %\end{figure}
 
-
+In addition to the extra area overhead, writing multi-bit at a time will
+also worsen the voltage drop along the wordline. As shown in
+Figure~\ref{fig:multi_V}(a), in order to write a wordline per writing, the
+reliable array size reduces to $352 \times 352$. \textbf{Compare to
+Baseline and add discription for (b)}. 
+%Therefore, as shown in Figure~\ref{fig:reliable_region},
+%Therefore the simulation results show that the reliable size of the
+%cross-point array will be further reduced. The maximum array size reduces
+%from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes.
+%For the energy consumption point of view, the one wordline write operation is more efficient.
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.5\textwidth]{./figures/multi_V.pdf}\label{fig:multi_V}\\
+  \caption{Worst case voltage and write voltage requirment for multi-bit writing. (a) One wordline wrting with different array size; (b) 512x512 array with various number of bits per writing.}\label{fig:reliable_region}
+    \vspace{-10pt}
+\end{figure}
 \subsection{Read Operation}
 In this section we applied the similar sensing scheme as
 \cite{crossbar_TED_2010} and \cite{crossbar_NANO08_Flocke}. In order to
