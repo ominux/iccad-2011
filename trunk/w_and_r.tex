@@ -26,10 +26,15 @@ since it is unique to reads.
 
 Table~\ref{table:parameter} shows the circuit parameters of our baseline
 50nm design. The data is derived from the recently published studies on
-ReRAM~\cite{?????,memristor:Cong}. We study reliability, energy
-consumption, and area overheads for four different write schemes, and
-discuss the sensitivities of these schemes to the data pattern of HRS and
-LRS ReRAM cells and cell non-linearity.
+ReRAM~\cite{?????,memristor:Cong}. The non-linearity coefficient is
+defined as: $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$
+are the equivalent resistance of the cell biased at $V/p$ and
+$V$~\cite{memristor:Cong}. Therefore, the resistance of a ReRAM cell with
+non-linearit is not constant but varies with the applied voltage. By using
+these parameters, We study reliability, energy consumption, and area
+overheads for four different write schemes, and discuss the sensitivities
+of these schemes to the data pattern of HRS and LRS ReRAM cells and cell
+non-linearity.
 
 \begin{table}[!b]
   \centering
@@ -276,19 +281,20 @@ The energy consumption of a write operation includes: the energy consumed
 to change the state of the selected cell (denoted as $E_{select}$), the
 undesired energy wasted at the half selected cells ($E_{halfselect}$) and
 unselected cells ($E_{unselect}$), as well as the energy consumed by the
-interconnect lines ($E_{line}$). Figure~\ref{fig:energy}(a) shows the
-decomposed energy consumption for the cross-point array. Note that, the
-$E_{line}$ and $E_{halfselect}$ take a large amount of the total energy
-consumption. Also, this part of energy wasted during the write operation
-takes greater part of the total energy for larger array sizes. For
-example, the undesired energy consumption for writing a $512{\times}512$
-array is more than 15 times larger than that of a $32{\times}32$ array. We
-also notice that, since the impact of sneak paths for floating schemes
-(FWHB and HWFB) is more serious, the energy consumed at unselected cells
-for floating schemes is larger than the half-biased scheme. Due to this
-reason, the total energy consumptions for FWHB and HWFB schemes are at
-least 10\% larger than that of HWHB scheme.
-
+interconnect lines ($E_{line}$). Notice that since the impact of sneak
+paths for floating schemes (FWHB and HWFB) is more serious, the energy
+consumed at unselected cells for floating schemes is larger than the
+half-biased scheme. Howevern, compared to the total energy consumpion, the
+energy consumed by unselected cells are negligible. Therefore, the total
+energy consumptions for FWHB and HWFB schemes are almost the same as that
+of HWHB scheme. In the following discussion, we focus on the HWHB scheme.
+Figure~\ref{fig:energy}(a) shows the decomposed energy consumption for the
+cross-point array. Note that, the $E_{line}$ and $E_{halfselect}$ take a
+large amount of the total energy consumption. Also, this part of energy
+wasted during the write operation takes greater part of the total energy
+for larger array sizes. For example, the undesired energy consumption for
+writing a $512{\times}512$ array is more than 15 times larger than that of
+a $32{\times}32$ array.
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
@@ -310,15 +316,15 @@ area model. Figure~\ref{fig:drive_i}(a) shows the maximum write current
 with different ReRAM array sizes. As we can see, the current requirement
 increases slightly faster than linearly as array size increases. This is
 primarily because we have to increase the write voltage to compensate the
-voltage drop in large array size. Figure~\ref{fig:drive_i}(b) demonstrates
-the area overhead for the wordline and bitline circuitry. It is indicated
-that wordline drivers occupies comparable or even larger area than the
-memory cells, degrading the effective cell size significantly. There are
-two possible reasons: (1) wordline drivers are usually implemented as
-tri-gates and larger than bitline multiplexers that are essentially pass
-transistors; (2) wordline drivers have to provide more than one set of
-write current in multi-bits write operation, as discussed in the following
-section.
+voltage drop in large array size. Figure~\ref{fig:drive_area}(a)
+demonstrates the area overhead for the wordline and bitline circuitry. It
+is indicated that wordline drivers occupies comparable or even larger area
+than the memory cells, degrading the effective cell size significantly.
+There are two possible reasons: (1) wordline drivers are usually
+implemented as tri-gates and larger than bitline multiplexers that are
+essentially pass transistors; (2) wordline drivers have to provide more
+than one set of write current in multi-bits write operation, as discussed
+in the following section.
 
 %\begin{figure}%[!t]
 %\centering
@@ -376,7 +382,7 @@ In addition to the extra area overhead, writing multi-bit at a time will
 also worsen the voltage drop along the wordline. As shown in
 Figure~\ref{fig:multi_V}(a), in order to write a wordline per writing, the
 reliable array size reduces to $352 \times 352$. \textbf{Compare to
-Baseline and add discription for (b)}. 
+Baseline and add discription for (b)}.
 %Therefore, as shown in Figure~\ref{fig:reliable_region},
 %Therefore the simulation results show that the reliable size of the
 %cross-point array will be further reduced. The maximum array size reduces
