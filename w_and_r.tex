@@ -297,7 +297,7 @@ a $32{\times}32$ array.
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/energy_f_tall.pdf}\\
+  \includegraphics[width=0.5\textwidth]{./figures/energy_f_tall2.pdf}\\
   \caption{The normalized energy consumption with different array size. (a): One bit writing; (b): Multi-bit writing.}\label{fig:energy}
     \vspace{-10pt}
 \end{figure}
@@ -337,6 +337,14 @@ in the following section.
 \end{figure}
 
 
+
+\begin{figure}%[!t]
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.5\textwidth]{./figures/area_comp_f.pdf}\\
+  \caption{The area overhead comparison. (a) One bit writing; (B) Multi-bit writing.}\label{fig:area_i}
+\end{figure}
+
 \vspace{6pt} \emph{Discussion on Multi-Bits Write Operation.} \vspace{6pt}
 
 So far, we have only discussed the write operation with one bit per
@@ -348,24 +356,23 @@ that program one wordline at the same time. In order to fairly compare the
 energy consumption, we compare the energy-per-bit instead of the total
 energy. Besides, the multi-bit write operation required a two-step write
 scheme. Therefore, in order to write a wordline with size of 512, the
-energy-per-bit can be calculated as: $E_{ave}=E_{total}*2/512$.
+energy-per-bit can be calculated as: $E_{ave}=E_{total}/512$.
 Figure~\ref{fig:energy}(b) shows the energy-per-bit of the multi-bit write
 operation. The energy shown in this figure is normalized to the same unit
 as Figure~\ref{fig:energy}(a) for easier comparison. \textbf{The results
 show that for large cross point array sizes, the multi-bit write operation
 is much more energy efficient. This is because the energy wasted at the
 unselected and half-selected cells are amortized by multiple bits and the
-average energy for one bit is therefore reduced. However, although
-the multi-bit write operation has the advantage of lower energy
-consumption,} the maximum current requirement for each wordline also
-increases. As shown in Figure~\ref{fig:drive_i}(b), the maximum driven
-current for each bitline is almost the same as when writing one bit,
-however the drive capability for each word line is >10 times larger than
-that of  multi-bit writing. Since the area of the voltage driver increases
-proportionally with its driving capability, the area overhead for multi-bit
-writing is significantlly larger than for one bit writing. Due to the
-space limitations, the results of area overhead are shown in the next
-session.
+average energy for one bit is therefore reduced. However, although the
+multi-bit write operation has the advantage of lower energy consumption,}
+the maximum current requirement for each wordline also increases. As shown
+in Figure~\ref{fig:drive_i}(b), the maximum driven current for each
+bitline is almost the same as when writing one bit, however the drive
+capability for each word line is >10 times larger than that of  multi-bit
+writing. Since the area of the voltage driver increases proportionally
+with its driving capability, the area overhead for multi-bit writing is
+significantlly larger than for one bit writing. Due to the space
+limitations, the results of area overhead are shown in the next session.
 
 %\begin{figure}%[!t]
 %\centering
@@ -386,9 +393,9 @@ Baseline and add discription for (b)}.
 %from $116{\times}116$ to $100{\times}100$ for HWFB and HWFB schemes.
 %For the energy consumption point of view, the one wordline write operation is more efficient.
 \begin{figure}%[!t]
-\centering
+\centering\label{fig:multi_V}
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/multi_V.pdf}\label{fig:multi_V}\\
+  \includegraphics[width=0.5\textwidth]{./figures/multi_V.pdf}\\
   \caption{Worst case voltage and write voltage requirment for multi-bit writing. (a) One wordline wrting with different array size; (b) 512x512 array with various number of bits per writing.}\label{fig:reliable_region}
     \vspace{-10pt}
 \end{figure}
