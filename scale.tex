@@ -2,44 +2,33 @@
 \section{Non-linearity and Write Current Scaling}\label{sec:scale}
 %\section{Non-linearity and Write Current Scaling}\label{sec:scale}
 %\subsection{Non-linearity of the ReRAM Cell.} \vspace{6pt}
-(\textbf{Figure and discussion in this section should be modified after we
-got the results})
 \begin{figure}[!b]
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/non_linear_f}\\
   \caption{The maximum array size with different non-linearity coefficient.}\label{fig:non_linear}
 \end{figure}
-One of the most distinct features of ReRAM is its non-linearity. For
-example, the non-linearity of memristor-based ReRAM is observed at LRS
-when the resistance of the memristor cell is not constant but varies with
-the applied voltage. The non-linearity coefficient is defined as:
-$K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are the
-equivalent resistance of the memristor biased at $V/p$ and
-$V$~\cite{memristor:Cong}. Normally, the $K_r(p,V)$ value for
-memristor-based ReRAM is larger than 20, meaning that the resistance of a
-half-biased  cell is at least 10 times larger than a full-biased cell.
-Clearly, the ReRAM cell with a larger non-linearity coefficient results in
-a better memory cell since the current in the sneak path will be
-significantly reduced. In addition, the increased resistance at
-half-selected and unselected cells can also mitigate the voltage drop
+One of the most distinct features of ReRAM is its non-linearity. Normally,
+the $K_r(p,V)$ value for memristor-based ReRAM is larger than 20, meaning
+that the resistance of a half-biased cell is at least 10 times larger than
+a full-biased cell. Clearly, the ReRAM cell with a larger non-linearity
+coefficient results in a better memory cell since the current in the sneak
+path will be significantly reduced. In addition, the increased resistance
+at half-selected and unselected cells can also mitigate the voltage drop
 along the activated wordline and bitline. Besides, we found that the
 cross-point array design can also benefit from the scaling of the write
 current. Figure~\ref{fig:non_linear} shows the influence of different
 non-linearity coefficients and write current on the array size
-requirements for one bit HWHB writing scheme. In this figure, the maximum
-array size increases from $112 \times 112$ to $340 \times 340$ when the
-non-linearity coefficient $K_r$ increases from 1 to 10. Similarly, the
-non-linearity can also increase the maximum array size for other write
-schemes.
+requirements for one bit HWHB writing scheme. This figure shows that
+\textbf{!!!!????}
 
-Moreover, the increase of non-linearity or scaling of write current can
-also reduce the energy consumption and area overheads of the cross-point
-array. For example, consider a $128 \times 128$ array. As shown in
-Figure~\ref{fig:non_linear_energy}, the energy consumption for the write
-operation decreases dramatically with the increase of non-linearity
-coefficient $K_r$. As $K_r$ increases from 1 to 40, the write energy is
-reduced by 98.3\%. The driven current requirement is shown in
+\textbf{Moreover, the increase of non-linearity or scaling of write
+current can also reduce the energy consumption and area overheads of the
+cross-point array. As shown in Figure~\ref{fig:non_linear_energy}, for a
+$512 \times 512$ array, the energy consumption for the write operation
+decreases dramatically with the increase of non-linearity coefficient
+$K_r$. As $K_r$ increases from 1 to 40, the write energy is reduced by
+98.3\%. The driven current requirement is shown in
 Figure~\ref{fig:area_all}(a), and the corresponding area overheads of the
 voltage drivers are compared to the array size at
 Figure~\ref{fig:area_all}(b). The baseline design is unacceptable because
@@ -59,7 +48,7 @@ operations. Finally, normalized areas of the one bit and multi-bit write
 operations have opposite trends as the array size increases. Normalized
 area for one bit write operation increases with the array size. On the
 contrary, normalized area for multi-bit write decreases as the array size
-increase.
+increase.}
 
 \begin{figure}%[!t]
 \centering
@@ -91,12 +80,12 @@ increase.
 \end{figure}
 
 
-\begin{figure}%[!t]
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=0.35\textwidth]{./figures/Area_kr20_f.pdf}\\
-  \caption{The normalized area overhead of voltage drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
-\end{figure}
+%\begin{figure}%[!t]
+%\centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=0.35\textwidth]{./figures/Area_kr20_f.pdf}\\
+%  \caption{The normalized area overhead of voltage drivers ($K_r=20$, the areas are normalized to the area of cross-point array). }\label{fig:Area_kr20}
+%\end{figure}
 
 
 Different from write operation, the read operation can not benefit from
