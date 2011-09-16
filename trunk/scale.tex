@@ -21,33 +21,9 @@ current. Figure~\ref{fig:non_linear} shows the influence of different
 non-linearity coefficients and write current on the array size
 requirements for one bit HWHB writing scheme. This figure shows that the array size limitation is relaxed as nonlinearity or write current scales. As we can tell from the figure, the maximum array size exceeds $1024\times 1024$ when we have a nonlinearity of $30$ together with a write current of $40\mu A$.
 
-\textbf{Moreover, the increase of non-linearity or scaling of write
-current can also reduce the energy consumption and area overheads of the
-cross-point array. As shown in Figure~\ref{fig:non_linear_energy}, for a
-$512 \times 512$ array, the energy consumption for the write operation
-decreases dramatically with the increase of non-linearity coefficient
-$K_r$. As $K_r$ scales from 1 to 40, the write energy is reduced by
-98.3\%. The driven current requirement is shown in
-Figure~\ref{fig:area_all}(a), and the corresponding area overheads of the
-voltage drivers are compared to the array size at
-Figure~\ref{fig:area_all}(b). The baseline design is unacceptable because
-the area of voltage drivers is about 11.6 times larger than the area of
-the cross-point array. In this case, the area efficiency of ReRAM's $4F^2$
-cell size will be offset by the extremely huge area overhead of the
-voltage drivers. However, with the increase of non-linearity, the area of
-voltage drivers becomes comparable to the array area. Therefore, we can
-conclude that, the ReRAM cells with a small non-linearity coefficient are
-not suitable for the cross-point structure based memory array. Next, we
-study the area overhead of multi-bit write. Figure~\ref{fig:Area_kr20}
-shows the normalized areas of the voltage drivers for one bit and
-multi-bit write operations. As mentioned, multi-bit write operations
-require larger driven current. Therefore, the area of voltage drivers for
-multi-bit write operations are much larger than that for one bit write
-operations. Finally, normalized areas of the one bit and multi-bit write
-operations have opposite trends as the array size increases. Normalized
-area for one bit write operation increases with the array size. On the
-contrary, normalized area for multi-bit write decreases as the array size
-increase.}
+Moreover, the increase of non-linearity or scaling of write current can also reduce the energy consumption and area overhead of the cross-point array. As shown in Figure~\ref{fig:E_and_A}(a), for a $512 \times 512$, the energy consumption for the write operation decreases dramatically with the scaling of non-linearity coefficient $K_r$. As $K_r$ decreases from 1 to 40, the write energy is reduced by \textbf{98.3\%}. The area overhead of the voltage drivers is illustrated in Figure~\ref{fig:E_and_A}(b). As a baseline design ($K_r=20$ and $I_w=40\mu A$), the driver area overhead is about \textbf{35\%} the area of the memory array cells. To design a memory array with effective cell size close to $4F^2$, we need to make sure the nonlinearity and write current should satisfy certain conditions that the driver overhead is less than 100\% so that the wordline drivers can be almost "hidden" underneath the ReRAM cells. As nonlinearity and write current continues to scale, the area overhead can be as low as \textbf{10\%}. In that case, the introduction of 3D stacking of multi-layer cross-point arrays is meaningful in further reducing the effective cell size to $4/N F^2$ where N is the number of layers.
+
+%Therefore, we can conclude that, the ReRAM cells with a small non-linearity coefficient are not suitable for the cross-point structure based memory array. Next, we study the area overhead of multi-bit write. Figure~\ref{fig:Area_kr20} shows the normalized areas of the voltage drivers for one bit and multi-bit write operations. As mentioned, multi-bit write operations require larger driven current. Therefore, the area of voltage drivers for multi-bit write operations are much larger than that for one bit write operations. Finally, normalized areas of the one bit and multi-bit write operations have opposite trends as the array size increases. Normalized area for one bit write operation increases with the array size. On the contrary, normalized area for multi-bit write decreases as the array size increase.}
 
 %\begin{figure}%[!t]
 %\centering
