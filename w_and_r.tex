@@ -26,7 +26,7 @@ since it is unique to read operations.
 
 Table~\ref{table:parameter} shows the circuit parameters of our baseline
 50nm design. The data is derived from the recently published studies on
-ReRAM~\cite{?????,memristor:Cong}. The non-linearity coefficient is
+ReRAM~\cite{ReRAM_overview,memristor:Cong,ReRAM_Renesas}. The non-linearity coefficient is
 defined as: $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$
 are the equivalent resistance of the cell biased at $V/p$ and
 $V$~\cite{memristor:Cong}. Therefore, the resistance of a ReRAM cell with
@@ -84,7 +84,7 @@ write operation:
   \item Activate the selected wordline and bitline. Then half bias the unselected wordlines and bitlines (HWHB scheme).
 \end{enumerate}
 However,the FWFB scheme has inherent problem that may result in severe
-write disturbance~\cite{??}. Therefore, in the following discussion, we
+write disturbance~\cite{crossbar_NANO2003_Ziegler}. Therefore, in the following discussion, we
 only compare the results between FWHB, HWFB and HWHB schemes. For each of these
 three schemes, we can either write several cells at one wordline at the
 same time or write only one bit per access and distribute the write
@@ -409,27 +409,11 @@ current-to-voltage converter and sensing the voltage signal using
 traditional or emerging sense amplifier design. The input resistance of
 the current-to-voltage converter is extracted from HSPICE simulation
 results. Read sensing margin is defined as $\Delta V = \Delta I \times
-R_{converter}$ where $R_{converter}$ is input resistance of the converter.
+R_{converter}$ where $R_{converter}$ is input resistance of the converter. The read reliability
+is determined by the voltage swing for reading HRS and LRS cells. In order to improve the reliability of the read
+operation, a two-step sensing scheme can be applied~\cite{memristor:Cong}, which senses the current of an unselected cell first, then the overall current is sensed, and after that the current difference is converted to the output voltage. More detailed results will be shown in Section~\ref{sec:scale}.
 
-Additionally, since the read voltage/current is much lower than the write voltage/current,
-we believe that the voltage drivers can always provide enough current for
-the read operation if they meet the current requirement for write
-operation. Therefore, we can conclude that the area overhead of voltage
-drivers is determined by the write current. However, the reliability of
-read operation is different from the write operation. The read reliability
-is determined by the voltage swing for reading HRS and LRS cells.
-Figure~\ref{fig:sense_margin_basic} (a) shows the voltage swing with
-different array sizes. Specifically, larger cross-point array have more
-sneak paths, making the output voltage very sensitive to the data pattern
-of unselected cell. Therefore, the sense margin decreases with the
-increase of array size. In order to improve the reliability of the read
-operation, a two-step sensing scheme can be applied, which senses the
-current of an unselected cell first, then the overall current is sensed,
-and after that the current difference is converted to the output voltage.
-The voltage swing of this two-step sensing scheme is shown in
-Figure~\ref{fig:sense_margin_basic} (b). By using this two-step sensing
-schemes, the voltage swing for a given array size and non-linearity
-coefficient is doubled.
+%Additionally, since the read voltage/current is much lower than the write voltage/current, we believe that the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Therefore, we can conclude that the area overhead of voltage drivers is determined by the write current. However, the reliability of read operation is different from the write operation. Figure~\ref{fig:sense_margin_basic} (a) shows the voltage swing with different array sizes. Specifically, larger cross-point array have more sneak paths, making the output voltage very sensitive to the data pattern of unselected cell. Therefore, the sense margin decreases with the increase of array size.  The voltage swing of this two-step sensing scheme is shown in Figure~\ref{fig:sense_margin_basic} (b). By using this two-step sensing schemes, the voltage swing for a given array size and non-linearity coefficient is doubled.
 
 
 %\begin{figure}%[!t]
