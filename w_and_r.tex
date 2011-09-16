@@ -31,10 +31,12 @@ defined as: $K_r(p,V) = p \times R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$
 are the equivalent resistance of the cell biased at $V/p$ and
 $V$~\cite{memristor:Cong}. Therefore, the resistance of a ReRAM cell with
 non-linearit is not constant but varies with the applied voltage. By using
-these parameters, We study reliability, energy consumption, and area
+these parameters, we study reliability, energy consumption, and area
 overheads for four different write schemes, and discuss the sensitivities
 of these schemes to the data pattern of HRS and LRS ReRAM cells and cell
-non-linearity.
+non-linearity. In this section, the baseline design use the cell with
+write current of $40 uA$ and non-linearity $Kr=20$. In section
+\~ref{sec:scale}, ??????
 
 \begin{table}[!b]
   \centering
@@ -60,7 +62,7 @@ non-linearity.
     \textbf{$V_{B}(R)$} & Bitline Voltage during Read  &\textbf{$0V$} \\
     \textbf{$V_{B}(W)$} & Bitline Voltage during Write  &\textbf{$0V$} \\
     \textbf{$V_{B}(H)$} & Half Selected bitline Voltage &\textbf{$1V$} \\
-    \textbf{$K_r$} & Nonlinearity of ReRAM Cell &\textbf{$5$~~($2\sim40$)} \\
+    \textbf{$K_r$} & Nonlinearity of ReRAM Cell &\textbf{$20$~~($2\sim40$)} \\
     \textbf{$M,N$} & Number of wordlines/bitlines &\textbf{$512$~~($8\sim1024$)} \\
     \hline
   \end{tabular}
@@ -208,7 +210,7 @@ HWFB and FWHB schemes have the same minimum driven voltage.
 \hspace{-5pt}
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/worst_v_f.pdf}\\
-  \caption{Write voltage requirement (Threshold voltage = 2V). }\label{fig:worst_v}
+  \caption{Write voltage requirement (Threshold voltage = 2V.). }\label{fig:worst_v}
   \vspace{-5pt}
 \end{figure}
 
