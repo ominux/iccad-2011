@@ -68,12 +68,8 @@ Moreover, the increase of non-linearity or scaling of write current can also red
 %\end{figure}
 
 
-Different from write operation, the read operation can not benefit from
-the increasing of non-linearity or the scaling of write current.
-Figure~\ref{fig:sense_margin} (a) shows the voltage swing with different
-$K_r$ values and write current. Large non-linearity and small write
-current are harmful to the voltage swing: \textbf{add discussion here
-after we got the data}
+Different from write operation, the read operation suffers, rather than benefits, from scaling of non-linearity or write current. This is simply because the scaling of non-linearity and write current will reduce read current, degrading the read signal ratio. Figure~\ref{fig:sense_margin}(a) shows the read noise margin with different array size for the baseline design in Section~\ref{sec:w_and_r}.  As seen, the read noise margin is reduced at large array size. The impact of non-linearity and write current on read noise margin is illustrated in Figure~\ref{fig:sense_margin}(b). As mentioned, large $K_r$ value and small write current are harmful to the read noise margin. For example, given a $512 \times 512$, the read noise margin is only $30mV$ for $K_r=40$ and $I_w=40\mu A$, which makes it very difficult to sense the state of the selected memory cell using traditional sense amplifiers.
+
 %the non-linearity increases the resistance of half LRS and therefore the
 %resistance difference between HRS and LRS cells is reduced; on the other
 %hand, .
