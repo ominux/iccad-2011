@@ -97,7 +97,7 @@ HWHB schemes. For each of these three schemes, we can either write several
 cells at one wordline at the same time or write only one bit per access
 and distribute the write operation to several arrays. In the following
 discussion, we start from one bit per access write operation, then the
-results of one wordline per access method are discussed.
+results of multi-bit per access method are discussed.
 
 %Since several potential read/write schemes can be used to program a memory array, it is difficult to identify the ideal scheme that meets the design constraints in terms of area, energy, and reliability.
 %However, the FWFB scheme has inherent problem that may result in severe
@@ -136,12 +136,13 @@ results of one wordline per access method are discussed.
 Write reliability is a serious concern in cross-point arrays. In an ideal
 condition, the resistance of wires and the sneak currents in unselected
 cells are negligible. In such a scenario, all the write schemes discussed
-above will make sure that the write voltage $V_W(W)-V_B(W)$ is fully
+above can make sure that the write voltage $V_W(W)-V_B(W)$ is fully
 applied across the specified cell. However, in reality, both wire
-resistance and sneak current are non-trivial. Hence, the operation of
-cross-point array varies based on the data pattern stored in ReRAM cells.
-A write is considered reliable if it modifies the content of the selected
-cells to the new value without disturbing other unselected cells.
+resistance and sneak current are non-trivial. Hence, the voltage applied
+across a cross-point varies based on the data pattern stored in all of the
+ReRAM cells in the array. A write is considered reliable if it modifies
+the content of the selected cells to the new value without disturbing
+other unselected cells.
 %A reliable write operation can be defined as: switching the selected cells into required states without disturbing the states of unselected cells.
 Correspondingly, there are two potential problems with writes: \emph{write
 failure}, an unsuccessful write on selected cell, and \emph{write
@@ -189,25 +190,26 @@ Write failure typically results from the voltage drop at the interconnect
 wires along the wordline and bitline. It has been shown
 that~\cite{crossbar_TED_2010}, for one bit per access write operation, the
 worst case voltage drop occurs when writing the cell at the cross point of
-the $M^{th}$ wordline and the $N^{th}$ bitline with all of the cells in
-the array are in LRS. In order to avoid the write failure and successfully
-program the selected ReRAM cell, the driven voltage should be boosted to a
-higher level, making sure that the voltage across the cell exceeds the
-threshold voltage even at the worst case. Figure~\ref{fig:worst_v} shows
-the lower bounds of the driven voltage for different sizes of cross-point
-array. The minimum wordline/bitline voltage increases from 2.01~V for a
-$32 \times 32$ array to nearly 7~V for a $1024 \times 1024$ cross-point
-array. In addition, for a memory capability, the cross-point array can be
-organized with different number of wordlines and bitlines. For example, a
-256K bits cross-point array can be implemented either by a $512 \times
-512$ array or by a $64 \times 4096$ array. In the latter case, the voltage
-drops along the wordline will be much worse than along the bitline.
-Figure~\ref{fig:shape} examines the voltage requirements for different
-array organizations with different write schemes. The result shows that
-from a reliability point of view, a cross-point array with same number of
-wordlines and bitlines is the best choice. Furthermore, we also notice
-that when the array has the same number of wordlines and bitlines, FWFB,
-HWFB and FWHB schemes have the same minimum driven voltage.
+the $M^{th}$ wordline and the $N^{th}$ bitline with all of the other cells
+in the array are in LRS. In order to avoid the write failure and
+successfully program the selected ReRAM cell, the driven voltage should be
+boosted to a higher level, making sure that the voltage across the cell
+exceeds the threshold voltage even at the worst case.
+Figure~\ref{fig:worst_v} shows the lower bounds of the driven voltage for
+different sizes of cross-point array. The minimum wordline/bitline voltage
+increases from 2.01~V for a $32 \times 32$ array to nearly 7~V for a $1024
+\times 1024$ cross-point array. In addition, for a memory capability, the
+cross-point array can be organized with different number of wordlines and
+bitlines. For example, a 256K bits cross-point array can be implemented
+either by a $512 \times 512$ array or by a $64 \times 4096$ array. In the
+latter case, the voltage drops along the wordline will be much worse than
+along the bitline. Figure~\ref{fig:shape} examines the voltage
+requirements for different array organizations with different write
+schemes. The result shows that from a reliability point of view, a
+cross-point array with same number of wordlines and bitlines is the best
+choice. Furthermore, we also notice that when the array has the same
+number of wordlines and bitlines, FWFB, HWFB and FWHB schemes have the
+same minimum driven voltage.
 
 %Clearly, the magnitude of the voltage drop increases with the array size and the resistance of interconnect wires.
 
@@ -230,8 +232,8 @@ HWFB and FWHB schemes have the same minimum driven voltage.
 \end{figure}
 
 However, boosting the driven voltage also introduces other potential
-problems for the array. In particular, increasing the driven voltage also
-increases the voltage applied at unselected cells. Therefore, a write
+problems for the array. In particular, increasing the driven voltage will
+increase the voltage applied at unselected cells. Therefore, a write
 disturbance may occur when the voltage applied at an unselected cell
 exceeds the threshold voltage for SET or RESET operation. Specifically,
 the maximum voltage applied at unselect cells is exactly the same as half
@@ -239,9 +241,9 @@ of the driven voltage. Thus, only the array with driven voltage less than
 4V are allowable.  Otherwise, the array is unreliable because it can not
 avoid write failure and write disturbance at the same time. The unreliable
 array sizes are denoted as red bars in Figure~\ref{fig:worst_v}. The array
-size limitation provied by Figure~\ref{fig:worst_v} is a hard constraint
-on array size, and all of the following energy and area tradeoffs should
-be bounded by this constraint.
+size limitation provied by Figure~\ref{fig:worst_v} is a hard constraint,
+and all of the following energy and area tradeoffs should be bounded by
+this constraint.
 
 
 %Figure~\ref{fig:half} shows the maximum voltage applied at unselected
@@ -291,15 +293,16 @@ unselected cells ($E_{unselect}$), as well as the energy consumed by the
 interconnect lines ($E_{line}$). Notice that since the impact of sneak
 paths for floating schemes (FWHB and HWFB) is more serious, the energy
 consumed at unselected cells for floating schemes is larger than the
-half-biased scheme. However, compared to the total energy consumption, the
-energy consumed by unselected cells are negligible. Therefore, the total
-energy consumptions for FWHB and HWFB schemes are almost the same as that
-of HWHB scheme. In the following discussion, we focus on the HWHB scheme.
-Figure~\ref{fig:energy}(a) shows the decomposed energy consumption for the
-cross-point array. Note that, the $E_{line}$ and $E_{halfselect}$ take a
-large amount of the total energy consumption. Also, this part of energy
-wasted during the write operation takes greater part of the total energy
-for larger array sizes. For example, the undesired energy consumption for
+half-biased scheme. However, we found that compared to the total energy
+consumption, the energy consumed by unselected cells are negligible.
+Therefore, the total energy consumptions for FWHB and HWFB schemes are
+almost the same as that of HWHB scheme. In the following discussion, we
+focus on the HWHB scheme. Figure~\ref{fig:energy}(a) shows the decomposed
+energy consumption for the cross-point array. Obviously, for a cross-point
+ReRAM array, the undesired $E_{line}$ and $E_{halfselect}$ take a large
+amount of the total energy consumption. Also, this part of energy wasted
+during the write operation takes greater part of the total energy for
+larger array sizes. For example, the undesired energy consumption for
 writing a $512{\times}512$ array is more than 15 times larger than that of
 a $32{\times}32$ array.
 \begin{figure}%[!t]
@@ -323,13 +326,10 @@ area model. Figure~\ref{fig:drive_i}(a) shows the maximum write current
 with different ReRAM array sizes. Not surprisingly, the current
 requirement increases as array size increases. Figure~\ref{fig:area_i}(a)
 demonstrates the area overhead for the wordline and bitline circuitry. It
-is indicated that wordline drivers occupies comparable or even larger area
-than the memory cells, degrading the effective cell size significantly.
-There are two possible reasons: (1) wordline drivers are usually
-implemented as tri-gates and larger than bitline multiplexes that are
-essentially pass transistors; (2) wordline drivers have to provide more
-than one set of write current in multi-bits write operation, as discussed
-in the following section.
+is indicated that wordline drivers occupies smaller area than the
+cross-point array. Only in this case, voltage drivers and multiplexes can
+implemented beneath the array, resulting an ideal cell size of $4F^2$.
+
 
 %\begin{figure}%[!t]
 %\centering
@@ -357,30 +357,29 @@ in the following section.
 \vspace{6pt} \emph{Discussion on Multi-Bits Write Operation.} \vspace{2pt}
 
 So far, we have only discussed the write operation with one bit per
-access. In this section, we consider the difference between single-bit per
+access. In this section, we compare the difference between single-bit per
 access and multi-bit per access write operations.
 
 First of all, we evaluate the energy consumption of the write operation
-that program one wordline at the same time. In order to fairly compare the
-energy consumption, we compare the energy-per-bit instead of the total
-energy. For example, in order to write a wordline with size of 512, the
-energy-per-bit can be calculated as: $E_{ave}=E_{total}/512$.
+that program the entire wordline at the one time. In order to fairly
+compare the energy consumption, we compare the energy-per-bit instead of
+the total energy. For example, in order to write a wordline with size of
+512, the energy-per-bit can be calculated as: $E_{ave}=E_{total}/512$.
 Figure~\ref{fig:energy}(b) shows the energy-per-bit of the multi-bit write
 operation. Compared with the single-bit write operation, as shown in
-Figure~\ref{fig:energy}(a),the results show that for large cross point
-array sizes, the multi-bit write operation is much more energy efficient.
-This is because the energy wasted at the unselected and half-selected
-cells are amortized by multiple bits and the average energy for one bit is
-therefore reduced. However, although the multi-bit write operation has the
-advantage of lower energy consumption, the maximum current requirement for
-each wordline also increases. As demonstrated in
-Figure~\ref{fig:drive_i}(b), although the maximum driven current for each
-bitline is almost the same as when writing one bit, the driving current
-requirement for each word line in multi-bit write scheme is $>10$ times
-larger than that of single-bit write scheme. Since the area of the voltage
-driver increases proportionally with its driving current, the area
-overhead for multi-bit writing is much larger than that of single-bit
-write scheme.
+Figure~\ref{fig:energy}(a), we conclude that, for large cross point array
+sizes, the multi-bit write operation is much more energy efficient. This
+is because the energy wasted at the unselected and half-selected cells are
+amortized by multiple bits and the average energy for one bit is therefore
+reduced. However, although the multi-bit write operation has the advantage
+of lower energy consumption, the maximum current requirement for each
+wordline also increases. As demonstrated in Figure~\ref{fig:drive_i}(b),
+although the maximum driven current for each bitline is almost the same as
+when writing one bit, the driving current requirement for each word line
+in multi-bit write scheme is $>10$ times larger than that of single-bit
+write scheme. Since the area of the voltage driver increases
+proportionally with its driving current, the area overhead for multi-bit
+writing is much larger than that of single-bit write scheme.
 
 
 %\begin{figure}%[!t]
