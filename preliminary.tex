@@ -49,9 +49,9 @@ particular $TiO_2$ based MIM structure ReRAM, named `memristor', was
 developed by HP Labs in 2008~\cite{memristor:missing}. The proposed
 memristor-based ReRAM is considered as the first experimental realization
 and a theoretical model of the fourth fundamental circuit element, which
-is predicted by Chua~\cite{memristor:chua} about 40 years ago. The
-memristor-based ReRAM has very small cell size with an access time of less
-than 50ns.
+is predicted by Chua~\cite{memristor:chua} about 40 years ago. It has been
+reported that the memristor-based ReRAM has very small cell size with an
+access time of less than 50ns.
 %/*(WHAT IS THE SIGNIFICANCE OF 50x50nm2 SIZE? AT WHAT TECHNOLOGY? */
 Another $H_fO_2$-based bipolar ReRAM prototype was fabricated by ITRI this year
 with an access time as low as 7.2ns~\cite{ReRAM_ISSCC2011_Sheu}.
@@ -83,23 +83,25 @@ In this study, we perform a detailed analysis of the design challenges of
 bipolar ReRAM cross-point arrays.
 
 \subsection{Cross-Point Architecture}
-There are two possible memory structures for a bipolar ReRAM
+There are two possible memory structures for a bipolar ReRAM array
 implementation: a traditional MOSFET-accessed structure and a cross-point
 structure. In the MOSFET-accessed memory array, a MOSFET is used as an
 access device for each memory cell. As the size of a MOSFET access device
 is typically much larger than the size of a ReRAM cell, the total area of
 memory array is primarily dominated by MOSFETs rather than ReRAM cells.
 Also, in order to provide enough driven current, lager than minimum-sized
-transistor should be used for writes. Hence, ReRAM's area advantage gets
-lost because of the access device.
+transistor should be used for write operations. Hence, ReRAM's area
+advantage gets lost because of the access devices.
 %The ReRAM's advantage of ultra small cell size will be offset by the access device.
 In contrast, the cross-point structure is more area-efficient for the
 ReRAM memory array~\cite{memristor:Cong}. A schematic view of a typical
-cross-point memory array is shown in Figure~\ref{fig:array}(a). As is shown, ReRAM cells are sandwiched between wordlines and bitlines.
-Figure~\ref{fig:array}(b) shows the top view of the array, which shows that each ReRAM cell occupies an area of $4F^2$, the
-theoretical lower limit for a single layer single level memory cell. The
-memory density can further be improved by using a multi-layer multi-level
-cross-point ReRAM
+cross-point memory array is shown in Figure~\ref{fig:array}(a). As is
+shown, ReRAM cells are sandwiched between wordlines and bitlines (top
+electrodes and bottom electrodes). Figure~\ref{fig:array}(b) shows a top
+view of the array, which shows that each ReRAM cell occupies an area of
+$4F^2$, the theoretical lower limit for a single layer single level memory
+cell. The memory density can be further improved by using a multi-layer
+multi-level cross-point ReRAM
 array~\cite{crossbar_unity}~\cite{memristor:IEDM08_3D}.
 %Besides, as aforementioned, the good stackability and the high resistance ratio provide the capability of building a multi-layer multi-level cross-point ReRAM array, which can further increase the area efficiency~\cite{ReRAM_ISSCC2011_Sheu}~\cite{memristor:IEDM08_3D}.
 
@@ -107,38 +109,32 @@ array~\cite{crossbar_unity}~\cite{memristor:IEDM08_3D}.
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/crossbar_array2.pdf}\\\vspace{-10pt}
-  \caption{A schematic view of a typical cross-point array. (a) The perspective of the cross-point array. 
+  \caption{A schematic view of a typical cross-point array. (a) The perspective of the cross-point array.
   (b) The top view of the array, from which we can clearly see that the size of each cell is $4F^2$. }\label{fig:array}
 \vspace{-12pt}
 \end{figure}
 
-In a cross-point structure, the write operation can write either one bit
-per access or several bits attached to a wordline at the same time.
-Although the second scheme has higher bandwidth, it requires a two-step
-write operation to prevent unintentional writing~\cite{memristor:Cong},
-which significantly increases the write latency.
+There are several write/read schemes for cross-point ReRAM array. For
+example, the write operation can write either one bit per access or
+several bits attached to a wordline at the same time. Although the second
+scheme has higher bandwidth, it requires a two-step write operation to
+prevent unintentional writing~\cite{memristor:Cong}, which significantly
+increases the write latency.
 %Therefore, the write latency for the multi bit write operation is much larger than the one bit operation.
-While writing to a cross-point array, the unselected wordlines and
-bitlines can be either left floating or half biased. On the other hand,
-while reading a cell, the selected wordline should be biased at read
-voltage and all the other wordlines and bitlines in the array are shunted to
-ground. The current in each bitline is then sensed and compared to a
+Besides, while writing to a cross-point array, the unselected wordlines
+and bitlines can be either left floating or half biased. On the other
+hand, while reading a cell, the selected wordline should be biased at read
+voltage and all the other wordlines and bitlines in the array are shunted
+to ground. The current in each bitline is then sensed and compared to a
 reference current to determine cell content. However, due to the sneak
 current existing in the cross-point array, the current in bitline also
-varies depending upon the values stored in unselected cells.
+varies depending upon the data patterns of unselected cells.
 %is impacted significantly by the data pattern of the unselected cells in the array.
-The read disturbance restricts the size of a cross-point
-array, since sneak current increases as the number of cells attached to
-wordlines and bitlines increases. In order to mitigate this problem, a two-step
-read operation was proposed: in the first step, the background current of
-the cross-point array  is sensed. Then the total current, comprising
-of both the background current and current at the selected cell, is able to be
-read out. The state of the selected cell can then be determined by
-computing the difference between the total current and background current.
-For this scheme to work, the cross-point array should be sized such that
-the difference between background current and current through the selected
-cell should be large enough for reliable sensing.
-
+The read disturbance restricts the size of a cross-point array, since
+sneak current increases as the number of cells attached to wordlines and
+bitlines increases. Therefore, the cross-point array should be sized such
+that the current difference of the selected cell at HRS and LRS is large
+enough for reliable sensing. 
 %Depending upon the read/write scheme, the size of the array can vary significantly. In this work, we propose a methodology to find the minimum array size that meets specific energy and area constraints based on the worst-case state of the array. This will help designers find an optimal memory organization early in the design flow. %t read/write schemes as well as array sizes can be chosen for the cross-point array, it is not straightforward to figure out how to design a workable memory array with the minimum energy consumption and area overheads. Thus, following sections will proposed a worst-case oriented methodology to help designer make the decision early in the design flow.
 
 
