@@ -190,7 +190,7 @@ the array are in LRS. In order to avoid the write failure and successfully
 program the selected ReRAM cell, the driven voltage should be boosted to a
 higher level, making sure that the voltage across the cell exceeds the
 threshold voltage even at the worst case. Figure~\ref{fig:worst_v} shows
-the lower bound of the driven voltage for different sizes of cross-point
+the lower bounds of the driven voltage for different sizes of cross-point
 array. The minimum wordline/bitline voltage increases from 2.01~V for a
 $32 \times 32$ array to nearly 7~V for a $1024 \times 1024$ cross-point
 array. In addition, for a memory capability, the cross-point array can be
@@ -198,7 +198,7 @@ organized with different number of wordlines and bitlines. For example, a
 256K bits cross-point array can be implemented either by a $512 \times
 512$ array or by a $64 \times 4096$ array. In the latter case, the voltage
 drops along the wordline will be much worse than along the bitline.
-Figure~\ref{fig:shape} examines the voltage requirement for different
+Figure~\ref{fig:shape} examines the voltage requirements for different
 array organizations with different write schemes. The result shows that
 from a reliability point of view, a cross-point array with same number of
 wordlines and bitlines is the best choice. Furthermore, we also notice
@@ -212,7 +212,7 @@ HWFB and FWHB schemes have the same minimum driven voltage.
 \hspace{-5pt}
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/worst_v_f.pdf}\\
-  \caption{Write voltage requirement (Threshold voltage = 2V.). }\label{fig:worst_v}
+  \caption{Required write voltages for different cross-point arrays (threshold voltage = 2V.). }\label{fig:worst_v}
   \vspace{-5pt}
 \end{figure}
 
@@ -221,7 +221,7 @@ HWFB and FWHB schemes have the same minimum driven voltage.
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/shape_f.pdf}\\
-  \caption{Write voltage requirement with different memory shape. (Array capacity = 256Kbits, Threshold voltage = 2V.)}\label{fig:shape}
+  \caption{Required write voltages with different memory shapes (array capacity = 256Kbits, threshold voltage = 2V).}\label{fig:shape}
     \vspace{-15pt}
 \end{figure}
 
@@ -302,7 +302,7 @@ a $32{\times}32$ array.
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/energy_f_tall2.pdf}\\
-  \caption{The normalized energy consumption with different array size. (a): One bit writing; (b): Multi-bit writing.}\label{fig:energy}
+  \caption{The normalized energy consumption with different array size. (a) Single-bit writing. (b) Multi-bit writing.}\label{fig:energy}
     \vspace{-10pt}
 \end{figure}
 
@@ -337,7 +337,7 @@ in the following section.
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/drive_i_f.pdf}\\
-  \caption{The driven current requirements for wordlines and bitlines. (a) One bit per write; (B) One wordline per write.}\label{fig:drive_i}
+  \caption{The requirements for wordline and bitline driven currents. (a) One bit per write. (b) One wordline per write.}\label{fig:drive_i}
 \end{figure}
 
 
@@ -346,7 +346,7 @@ in the following section.
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/area_comp_f.pdf}\\
-  \caption{Area overhead comparison. (a) One bit per write; (B) One wordline per write..}\label{fig:area_i}
+  \caption{Area overhead comparison. (a) One bit per write (B) One wordline per write.}\label{fig:area_i}
 \vspace{-10pt}
 \end{figure}
 
@@ -408,7 +408,7 @@ reliable write operation is about 130.
 \centering\label{fig:multiV}
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/multi_V.pdf}\\
-  \caption{Worst case voltage and write voltage requirment for multi-bit writing. (a) Writing all the bits on a wordline at the same time. (x-axis denote the different array size); (b) 512x512 array with various number of bits per writing.}\label{fig:reliable_region}
+  \caption{Worst case voltage and write voltage requirements for multi-bit writing. (a) Writing all the bits in a wordline at the same time (x-axis denote the different array sizes). (b) Writing various bits per operation in a 512$\times$512 array.}\label{fig:reliable_region}
     \vspace{-10pt}
 \end{figure}
 \subsection{Read Operation}

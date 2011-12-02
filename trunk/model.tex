@@ -30,7 +30,7 @@ end of the $i^{th}$ wordline is represented as $V'_{Wi}$.
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/model_f.pdf}\\
-  \caption{The basic model of typical cross-point array.}\label{fig:modeling}
+  \caption{The circuit model of the cross-point array.}\label{fig:modeling}
   \vspace{-12pt}
 \end{figure}
 
@@ -110,14 +110,14 @@ To validate our analytical model, we compared the results with the HSPICE
 simulations using a resistor model in cross-point memory arrays. DC
 analysis was performed by HSPICE which solved the voltage of every node in
 the array. The results of eight cross-point arrays with different array
-size and specific data pattern are shown in Figure~\ref{fig:reliable_region}, the voltage drop on
-the selected cell derived from our analytical model are consistent with the
-HSPICE simulation results.
+sizes and specific data patterns are shown in Figure~\ref{fig:validation}, 
+which shows that the voltage drop on the selected cell derived from our analytical 
+model are consistent with the HSPICE simulation results.
 \begin{figure}%[!t]
 \centering\label{fig:SPICE}
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/SPICE.pdf}\\
-  \caption{Analytical model verification of voltage drop comparing to HSPICE simulations (a) with non-linearity of 5; (b) without non-linearity.}\label{fig:reliable_region}
+  \caption{Validation of the analytical model against SPICE simulation. The two figures show the voltage drops obtained from our model and SPICE (a) with a non-linearity factor of 5 and (b) without non-linearity.}\label{fig:validation}
     \vspace{-10pt}
 \end{figure}
 %
