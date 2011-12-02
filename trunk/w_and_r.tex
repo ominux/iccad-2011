@@ -27,16 +27,20 @@ since it is unique for read operations.
 Table~\ref{table:parameter} shows the circuit parameters of our baseline
 50nm design. The data is derived from the recently published studies on
 ReRAM~\cite{ReRAM_overview,memristor:Cong,ReRAM_Renesas}. The
-non-linearity coefficient is defined as: $K_r(p,V) = p \times
-R(V/p)/R(V)$, where $R(V/p)$ and $R(V)$ are the equivalent resistance of
-the cell biased at $V/p$ and $V$~\cite{memristor:Cong}. Therefore, the
-resistance of a ReRAM cell with non-linearity is not constant but varies
-with the applied voltage. By using these parameters, we study reliability,
-energy consumption, and area overheads for four different write schemes,
-and discuss the sensitivities of these schemes to the data pattern of HRS
-and LRS ReRAM cells and cell non-linearity. In this section, the baseline
+non-linearity coefficient is defined as
+\begin{equation}
+K_r(p,V) = p \times R(V/p)/R(V),
+\end{equation}
+where $R(V/p)$ and $R(V)$ are the equivalent resistance of the cell biased
+at $V/p$ and $V$~\cite{memristor:Cong}. Therefore, the resistance of a
+ReRAM cell with non-linearity is not constant but varies with the applied
+voltage. By using these parameters, we study reliability, energy
+consumption, and area overheads for four different write schemes, and
+discuss the sensitivities of these schemes to the data pattern of HRS and
+LRS ReRAM cells and cell non-linearity. In this section, the baseline
 design uses the cell with write current of $40 uA$ and non-linearity
-$Kr=20$.
+$Kr=20$. A sensitivity study of the cell parameters of the non-linearity
+coefficient and the write current is presented in Section~\ref{sec:scale}.
 
 \begin{table}[!b]
   \centering
@@ -127,7 +131,7 @@ results of one wordline per access method are discussed.
 %combine all constraints to provide design guidelines for write operations.
 
 
-\vspace{6pt} \emph{Reliable Write Operation.} \vspace{6pt}
+\vspace{6pt} \emph{Reliable Write Operation.} \vspace{2pt}
 
 Write reliability is a serious concern in cross-point arrays. In an ideal
 condition, the resistance of wires and the sneak currents in unselected
@@ -259,7 +263,7 @@ be bounded by this constraint.
 %\end{figure}
 
 
-\vspace{6pt} \emph{Energy Consumption of Write Operation.} \vspace{6pt}
+\vspace{6pt} \emph{Energy Consumption of Write Operation.} \vspace{2pt}
 
 %The energy consumption of a write operation for a cross-point array can be calculated as:
 %\begin{equation}
@@ -350,7 +354,7 @@ in the following section.
 \vspace{-10pt}
 \end{figure}
 
-\vspace{6pt} \emph{Discussion on Multi-Bits Write Operation.} \vspace{6pt}
+\vspace{6pt} \emph{Discussion on Multi-Bits Write Operation.} \vspace{2pt}
 
 So far, we have only discussed the write operation with one bit per
 access. In this section, we consider the difference between single-bit per
