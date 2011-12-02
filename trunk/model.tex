@@ -5,24 +5,28 @@
 %arrays. By using this model, along with specific parameters and edge
 %conditions, the reliability, energy consumption, and area overheads of
 %different read/write schemes can be easily evaluated.
+In this section, we present a brief introduction of mathematical model of
+the cross-point array. More details can be found in Appendix.
 
 %\subsection{Basic model of Cross-Point Memory}
 The basic circuit model of an $M$ by $N$ cross-point ReRAM array is shown
-in Figure~\ref{fig:modeling}. The model is built upon Kirchhoff's Current
+in Figure~\ref{fig:modeling}. This model is built upon Kirchhoff's Current
 Law (KCL) and its validity can be guaranteed by deductions from the basic
 circuit theory. The horizontal lines are wordlines and vertical lines
 represent bitlines. The ReRAM cells are located at each cross-point of
-wordline and bitlines. The resistance of the ReRAM cell at the cross-point
-of $i^{th}$ wordline and $j^{th}$ bitline is represented by $R_{i,j}$. We
-assume the resistance of the wire connecting two cross-points to be
-$R_{line}$. The input resistance of each wordline and bitline is $R_v$ and
-the resistance of sense amplifier is $R_s$. In order to set up the KCL
-equations, the voltage at each cross-point is indicated as $V_{i,j}$ for
-wordline and $V'_{i,j}$ for bitline. A detailed cross-point is also shown
-in Figure~\ref{fig:modeling}(b). The input voltage for the $i^{th}$
-wordline is $V_{Wi}$ and the $i^{th}$ bitline is $V_{Bi}$. In the case
-where a wordline takes input from both the sides, the voltage at the other
-end of the $i^{th}$ wordline is represented as $V'_{Wi}$.
+wordline and bitlines.
+
+A detailed cross-point is also shown in Figure~\ref{fig:modeling}(b). The
+resistance of the ReRAM cell at the cross-point of $i^{th}$ wordline and
+$j^{th}$ bitline is represented by $R_{i,j}$. We assume the resistance of
+the wire connecting two cross-points to be $R_{line}$. The input
+resistance of each wordline or bitline driver is $R_v$ and the resistance
+of sense amplifier is $R_s$. In order to set up the KCL equations, the
+voltage at each cross-point is indicated as $V_{i,j}$ for wordline layer
+and $V'_{i,j}$ for bitline layer. In addition, the input voltage for the
+$i^{th}$ wordline is $V_{Wi}$ and for the $i^{th}$ bitline is $V_{Bi}$. In
+the case that a wordline takes input from both the sides, the voltage at
+the other end of the $i^{th}$ wordline is represented as $V'_{Wi}$.
 %Finally, the voltage at the sense amplifier is $V'_{Bi}$ during the read operation.
 %YOU MIGHT WANT TO CHANGE THE ABOVE PARA INTO A TABLE
 
@@ -35,70 +39,34 @@ end of the $i^{th}$ wordline is represented as $V'_{Wi}$.
 \end{figure}
 
 %\subsection{Mathematical Model of a Cross-Point Array}
-Based on this model, the current equations for each cross-point can be set
-following KCL: $ {\Sigma}_{I=1}^kI_k=0.$ All of the cross-points have
-similar structure with no more than three current branches and therefore
-it is very easy to set up the KCL equations for each cross-point. However,
-we should treat the cross-points at the edges of the array specifically
-because KCL equations for these cross-points vary with different
-write/read schemes. For example, the unselected wordline for write
-operation can be either half biased or left floating. Thus, the edge
+Based on this model, the current equations for each cross-point can be
+obtained. All of the cross-points have similar structure with no more than
+three current branches and therefore it is very easy to set up the KCL
+equations for each cross-point.
+
+However, we should treat the cross-points at the edges of the array
+specifically because KCL equations for these cross-points vary with
+different write/read schemes. For example, the unselected wordline for
+write operation can be either half biased or left floating. Thus, the edge
 conditions should be adjusted according to each write/read scheme. In
-particular, all of the cross-points in an array can be classified into
-three major categories: \emph{normal point}, \emph{activated point} and
-\emph{floating point}.
-
-The normal points are located inside the memory array. In other words, for
-all of the nodes with $1<i<m$ and $1<j<n$, the KCL equations take the form
-of
-\begin{equation}\label{equ:KCL1}
-R_l^{-1}V_{i,j-1} -(2R_l^{-1}+R_{i,j}^{-1})V_{i,j}+ R_l^{-1}V_{i,j+1}+R_{i,j}^{-1}V'_{i,j}=0,
-\end{equation}
-for the node at wordline layer and
-\begin{equation}\label{equ:KCL2}
-R_l^{-1}V'_{i-1,j} -(2R_l^{-1}+R_{i,j}^{-1})V'_{i,j}+ R_l^{-1}V'_{i+1,j}+R_{i,j}^{-1}V_{i,j}=0,
-\end{equation}
-for the node at bitline layer.
-
-The activated point and floating point represent the nodes at the edge of
+particular, according to their locations and write/read schemes, all of
+the cross-points in an array can be classified into three major
+categories: \emph{normal point}, \emph{activated point} and \emph{floating
+point}. The normal points are located inside the memory array. The
+activated point and floating point represent the nodes at the edge of
 cross-point array with different conditions: an edge point, which is
 directly connected to the voltage input or to the ground, can be
-considered as an activated point. Otherwise, it is a floating point. For
-example, consider the point located at the intersection of $i^{th}$
-wordline and $1^{st}$ bitline. If the $i^{th}$ wordline is activated by an
-input voltage of $V_{Wi}$, this cross-point is an activated point, and the
-KCL equation for this point is:
-\begin{equation}\label{equ:KCL3}
--(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=-R_v^{-1}V_{Wi}.
-\end{equation}
-Otherwise, it is floating and its KCL equation is
-\begin{equation}\label{equ:KCL4}
--(R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=0.
-\end{equation}
-
-For clarity, a ${2mn\times 1}$ vector ${V}$ is defined to represent all of the variables in the KCL equations:
-\begin{equation}\label{equ:V1}
-{V}=[{V_1}^T,{V_2}^T...{V_m}^T,{V'_1}^T,{V'_2}^T...{V'_m}^T]^T,
-\end{equation}
-where,
-%\begin{equation}\label{equ:V2}
-%{V_i} = [V_{i,1},V_{i,2}...V_{i,n}]^T,\\
-%\end{equation}
-%\begin{equation}\label{equ:V3}
-%{V'_i} = [V'_{i,1},V'_{i,2}...V'_{i,n}]^T,
-%\end{equation}
-\begin{equation}\label{equ:V2}
-{V_i} = [V_{i,1},V_{i,2}...V_{i,n}]^T,~~{V'_i} = [V'_{i,1},V'_{i,2}...V'_{i,n}]^T,
-\end{equation}
-for $i=1,2...m$. Then all of the KCL equations can be considered as a
-system of linear equations, which has the form
+considered as an activated point. Otherwise, it is a floating point. The
+detailed KCL equations for these points can be found at Appendix. Then all
+of the KCL equations can be considered as a system of linear equations,
+which has the following form
 \begin{equation}\label{equ:matrix}
 A\cdot V = C.
 \end{equation}
 $A$ is a ${2mn\times{2mn}}$ coefficient matrix, which is determined by
 Equations(\ref{equ:KCL1})-(\ref{equ:KCL4}). $C$ is a ${2mn\times{1}}$
-vector, containing the constant terms of these equations. As shown, all of
-the KCL equations have simple structure and are similar to each
+vector, containing the constant terms of these equations. As mentionedn,
+all of the KCL equations have simple structure and are similar to each
 other. Therefore, the linear equation system has a relatively fixed format
 and simple structure, making it easy to establish and adjust the
 coefficients and constants according to different design schemes. Besides,
@@ -110,8 +78,8 @@ To validate our analytical model, we compared the results with the HSPICE
 simulations using a resistor model in cross-point memory arrays. DC
 analysis was performed by HSPICE which solved the voltage of every node in
 the array. The results of eight cross-point arrays with different array
-sizes and specific data patterns are shown in Figure~\ref{fig:validation}, 
-which shows that the voltage drop on the selected cell derived from our analytical 
+sizes and specific data patterns are shown in Figure~\ref{fig:validation},
+which shows that the voltage drop on the selected cell derived from our analytical
 model are consistent with the HSPICE simulation results.
 \begin{figure}%[!t]
 \centering\label{fig:SPICE}
