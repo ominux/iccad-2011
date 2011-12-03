@@ -11,12 +11,12 @@ the cross-point array. More details can be found in Appendix.
 %\subsection{Basic model of Cross-Point Memory}
 The basic circuit model of an $M$ by $N$ cross-point ReRAM array is shown
 in Figure~\ref{fig:modeling}. This model is built upon Kirchhoff's Current
-Law (KCL) and its validity can be guaranteed by deductions from the basic
+Law (KCL)~\cite{KCL} and its validity can be guaranteed by deductions from the basic
 circuit theory. The horizontal lines are wordlines and vertical lines
 represent bitlines. The ReRAM cells are located at each cross-point of
 wordline and bitlines.
 
-A detailed cross-point is also shown in Figure~\ref{fig:modeling}(b). The
+A detailed cross-point structure is also shown in Figure~\ref{fig:modeling}(b). The
 resistance of the ReRAM cell at the cross-point of $i^{th}$ wordline and
 $j^{th}$ bitline is represented by $R_{i,j}$. We assume the resistance of
 the wire connecting two cross-points to be $R_{line}$. The input
@@ -44,9 +44,10 @@ obtained. All of the cross-points have similar structure with no more than
 three current branches and therefore it is very easy to set up the KCL
 equations for each cross-point.
 
-However, we should treat the cross-points at the edges of the array
+However, 
+\textbf{This sentence is not clear!!!???XY}\textbf{we should treat the cross-points at the edges of the array
 specifically because KCL equations for these cross-points vary with
-different write/read schemes. For example, the unselected wordline for
+different write/read schemes.} For example, the unselected wordline for
 write operation can be either half biased or left floating. Thus, the edge
 conditions should be adjusted according to each write/read scheme. In
 particular, according to their locations and write/read schemes, all of
