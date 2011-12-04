@@ -44,49 +44,46 @@ obtained. All of the cross-points have similar structure with no more than
 three current branches and therefore it is very easy to set up the KCL
 equations for each cross-point.
 
-However, 
-\textbf{This sentence is not clear!!!???XY}\textbf{we should treat the cross-points at the edges of the array
-specifically because KCL equations for these cross-points vary with
-different write/read schemes.} For example, the unselected wordline for
-write operation can be either half biased or left floating. Thus, the edge
-conditions should be adjusted according to each write/read scheme. In
-particular, according to their locations and write/read schemes, all of
-the cross-points in an array can be classified into three major
-categories: \emph{normal point}, \emph{activated point} and \emph{floating
-point}. The normal points are located inside the memory array. The
-activated point and floating point represent the nodes at the edge of
-cross-point array with different conditions: an edge point, which is
-directly connected to the voltage input or to the ground, can be
-considered as an activated point. Otherwise, it is a floating point. The
-detailed KCL equations for these points can be found at Appendix. Then all
-of the KCL equations can be considered as a system of linear equations,
-which has the following form
+However, it is important to note that KCL equations for cross-points at
+the edges of the array vary with different write/read schemes. For
+example, the unselected wordline for write operation can be either half
+biased or left floating. Thus, the edge conditions should be adjusted
+according to each write/read scheme. In particular, according to their
+locations and write/read schemes, all of the cross-points in an array can
+be classified into three major categories: \emph{normal point},
+\emph{activated point} and \emph{floating point}. The normal points are
+located inside the memory array. The activated point and floating point
+represent the nodes at the edge of cross-point array with different
+conditions: an edge point, which is directly connected to the voltage
+input or to the ground, can be considered as an activated point.
+Otherwise, it is a floating point. The detailed models for these points
+can be found at Appendix. All of the KCL equations can be considered as a
+system of linear equations, which has the following form
 \begin{equation}\label{equ:matrix}
-A\cdot V = C.
+A\cdot V = C,
 \end{equation}
-$A$ is a ${2mn\times{2mn}}$ coefficient matrix, which is determined by
-Equations(\ref{equ:KCL1})-(\ref{equ:KCL4}). $C$ is a ${2mn\times{1}}$
-vector, containing the constant terms of these equations. As mentionedn,
-all of the KCL equations have simple structure and are similar to each
-other. Therefore, the linear equation system has a relatively fixed format
-and simple structure, making it easy to establish and adjust the
+where $A$ is a ${2mn\times{2mn}}$ coefficient matrix and $C$ is a
+${2mn\times{1}}$ vector, containing the constant terms of these equations.
+We demonstrate that all of the KCL equations have simple and similar
+structures. Therefore, the linear equation system has a relatively fixed
+format and simple structure, making it easy to establish and adjust the
 coefficients and constants according to different design schemes. Besides,
 due to the simplicity of the KCL equation, $A$ is populated primarily with
 zeros and can be saved as a sparse matrix, which will further reduce the
 storage cost during the computation.
 
-To validate our analytical model, we compared the results with the HSPICE
+To validate our analytical model, we compare the results with the HSPICE
 simulations using a resistor model in cross-point memory arrays. DC
 analysis was performed by HSPICE which solved the voltage of every node in
 the array. The results of eight cross-point arrays with different array
 sizes and specific data patterns are shown in Figure~\ref{fig:validation},
-which shows that the voltage drop on the selected cell derived from our analytical
-model are consistent with the HSPICE simulation results.
+which shows that the voltage drop on the selected cell derived from our
+analytical model, are consistent with the HSPICE simulation results.
 \begin{figure}%[!t]
 \centering\label{fig:SPICE}
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.5\textwidth]{./figures/SPICE.pdf}\\
-  \caption{Validation of the analytical model against SPICE simulation. The two figures show the voltage drops obtained from our model and SPICE (a) with a non-linearity factor of 5 and (b) without non-linearity.}\label{fig:validation}
+  \caption{Validation of the analytical model against SPICE simulation. The two figures show the voltage drops obtained from our model and SPICE (a) with a nonlinearity factor of 5 and (b) without nonlinearity.}\label{fig:validation}
     \vspace{-10pt}
 \end{figure}
 %
@@ -104,7 +101,7 @@ model are consistent with the HSPICE simulation results.
 %All of these subblocks have the same size of $m\times n$. Subblock
 %$A2$ and $A3$ are diagonal matrixes and have the value of: $A2_{i,i} =
 %A3_{i,i} = R_{i,i}^{-1}$. $A2$ and $A3$ do not change their values
-%with different schemas. However, $A1$ and $A4$ are a little more
+%with different schemes. However, $A1$ and $A4$ are a little more
 %complex than $A2$ and $A3$. $A1$ is a tridiagonal matrix and has
 %nonzero elements only in the main diagonal, and the first line below
 %and above the diagonal. Similarly, $A_4$ is a special tridiagonal
