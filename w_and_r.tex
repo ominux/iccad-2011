@@ -26,20 +26,20 @@ since it is unique for read operations.
 
 Table~\ref{table:parameter} shows the circuit parameters of our baseline
 50nm design. The data is derived from the recently published studies on
-ReRAM~\cite{ReRAM_overview,memristor:Cong,ReRAM_Renesas}. The
-non-linearity coefficient is defined as
+ReRAM~\cite{ReRAM_overview,memristor:Cong,ReRAM_Renesas}. The nonlinearity
+coefficient is defined as
 \begin{equation}
 K_r(p,V) = p \times R(V/p)/R(V),
 \end{equation}
 where $R(V/p)$ and $R(V)$ are the equivalent resistance of the cell biased
 at $V/p$ and $V$~\cite{memristor:Cong}. Therefore, the resistance of a
-ReRAM cell with non-linearity is not constant but varies with the applied
+ReRAM cell with nonlinearity is not constant but varies with the applied
 voltage. By using these parameters, we study reliability, energy
 consumption, and area overheads for four different write schemes, and
 discuss the sensitivities of these schemes to the data pattern of HRS and
-LRS ReRAM cells and cell non-linearity. In this section, the baseline
-design uses the cell with write current of $40 uA$ and non-linearity
-$Kr=20$. A sensitivity study of the cell parameters of the non-linearity
+LRS ReRAM cells and cell nonlinearity. In this section, the baseline
+design uses the cell with write current of $40 uA$ and nonlinearity
+$Kr=20$. A sensitivity study of the cell parameters of the nonlinearity
 coefficient and the write current is presented in Section~\ref{sec:scale}.
 
 \begin{table}[!b]
@@ -96,8 +96,8 @@ following discussion, we only compare the results between FWHB, HWFB and
 HWHB schemes. For each of these three schemes, we can either write several
 cells at one wordline at the same time or write only one bit per access
 and distribute the write operation to several arrays. In the following
-discussion, we start from single-bit per access write operation, then the
-results of multi-bit per access method are discussed.
+discussion, we start from single-bit per access write operation, and then
+the results of multi-bit per access method are discussed.
 
 %Since several potential read/write schemes can be used to program a memory array, it is difficult to identify the ideal scheme that meets the design constraints in terms of area, energy, and reliability.
 %However, the FWFB scheme has inherent problem that may result in severe
@@ -236,13 +236,13 @@ increase the voltage applied at unselected cells. Therefore, a write
 disturbance may occur when the voltage applied at an unselected cell
 exceeds the threshold voltage for SET or RESET operation. Specifically,
 the maximum voltage applied at unselect cells is exactly the same as half
-of the driven voltage. Thus, only the array with driven voltage less than
-4V are allowable.  Otherwise, the array is unreliable because it can not
-avoid write failure and write disturbance at the same time. The unreliable
-array sizes are denoted as red bars in Figure~\ref{fig:worst_v}. The array
-size limitation provied by Figure~\ref{fig:worst_v} is a hard constraint,
-and all of the following energy and area tradeoffs should be bounded by
-this constraint.
+of the driven voltage. Thus, only arrays with driven voltage less than 4V
+are allowable. Otherwise, the array is unreliable because it cannot avoid
+write failure and write disturbance at the same time. The unreliable array
+sizes are denoted as red bars in Figure~\ref{fig:worst_v}. The array size
+limitation provided by Figure~\ref{fig:worst_v} is a hard constraint, and
+all of the following energy and area tradeoffs should be bounded by this
+constraint.
 
 
 %Figure~\ref{fig:half} shows the maximum voltage applied at unselected
@@ -292,7 +292,7 @@ unselected cells ($E_{unselect}$), as well as the energy consumed by the
 interconnect lines ($E_{line}$). Notice that since the impact of sneak
 paths for floating schemes (FWHB and HWFB) is more serious, the energy
 consumed at unselected cells for floating schemes is larger than the
-half-biased scheme. However, we found that compared to the total energy
+half-biased scheme. However, we find that compared to the total energy
 consumption, the energy consumed by unselected cells are negligible.
 Therefore, the total energy consumptions for FWHB and HWFB schemes are
 almost the same as that of HWHB scheme. In the following discussion, we
@@ -319,7 +319,7 @@ The write operation for a $M \times N$ array requires $M$ wordline voltage
 drivers and $N$ bitline multiplexes. The drivers and multiplexes should be
 sized such that they can provide the worst-case current of wordline
 current and bitline current. The transistor sizing of the wordline/bitline
-circuitry are achieved using HSPICE simulations. We further calculate the
+circuitry is achieved using HSPICE simulations. We further calculate the
 area overhead for the drivers and multiplexes by referring to the CACTI
 area model. Figure~\ref{fig:drive_i}(a) shows the maximum write current
 with different ReRAM array sizes. Not surprisingly, the current
@@ -425,8 +425,8 @@ view, single-bit write operation is essential.
 \end{figure}
 
 \subsection{Read Operation}
-In this section we applied the similar sensing scheme as
-\cite{crossbar_TED_2010} and \cite{crossbar_NANO08_Flocke}. In order to
+In this section we apply the similar sensing scheme as
+\cite{crossbar_NANO08_Flocke} and \cite{crossbar_TED_2010}. In order to
 read cell $R_{i,j}$, the $i^{th}$ wordline is biased at $V_{READ}$ and all
 of the other wordlines and bitlines are grounded. Then the state of the
 selected cell is read out by measuring the voltage across $R_s$. The
@@ -440,14 +440,11 @@ of the current-to-voltage converter is extracted from HSPICE simulation
 results. Read sensing margin is defined as $\Delta V = \Delta I \times
 R_{converter}$ where $R_{converter}$ is input resistance of the converter.
 The read reliability is determined by the voltage swing for reading HRS
-and LRS cells. In order to improve the reliability of the read operation,
-a two-step sensing scheme can be applied~\cite{memristor:Cong}, which
-senses the current of an unselected cell first, then the overall current
-is sensed, and after that the current difference is converted to the
-output voltage. More detailed results will be shown in
-Section~\ref{sec:scale}.
+and LRS cells.
+%In order to improve the reliability of the read operation, a two-step sensing scheme can be applied~\cite{memristor:Cong}, which senses the current of an unselected cell first, then the overall current is sensed, and after that the current difference is converted to the output voltage.
+Detailed results will be shown in Section~\ref{sec:scale}.
 
-%Additionally, since the read voltage/current is much lower than the write voltage/current, we believe that the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Therefore, we can conclude that the area overhead of voltage drivers is determined by the write current. However, the reliability of read operation is different from the write operation. Figure~\ref{fig:sense_margin_basic} (a) shows the voltage swing with different array sizes. Specifically, larger cross-point array have more sneak paths, making the output voltage very sensitive to the data pattern of unselected cell. Therefore, the sense margin decreases with the increase of array size.  The voltage swing of this two-step sensing scheme is shown in Figure~\ref{fig:sense_margin_basic} (b). By using this two-step sensing schemes, the voltage swing for a given array size and non-linearity coefficient is doubled.
+%Additionally, since the read voltage/current is much lower than the write voltage/current, we believe that the voltage drivers can always provide enough current for the read operation if they meet the current requirement for write operation. Therefore, we can conclude that the area overhead of voltage drivers is determined by the write current. However, the reliability of read operation is different from the write operation. Figure~\ref{fig:sense_margin_basic} (a) shows the voltage swing with different array sizes. Specifically, larger cross-point array have more sneak paths, making the output voltage very sensitive to the data pattern of unselected cell. Therefore, the sense margin decreases with the increase of array size.  The voltage swing of this two-step sensing scheme is shown in Figure~\ref{fig:sense_margin_basic} (b). By using this two-step sensing schemes, the voltage swing for a given array size and nonlinearity coefficient is doubled.
 
 
 %\begin{figure}%[!t]
@@ -476,9 +473,9 @@ Section~\ref{sec:scale}.
 %The read reliability is determined by the voltage swing for reading HRS
 %and LRS cells. Figure~\ref{fig:sense_margin} (a) shows the voltage swing
 %with different array sizes and $K_r$ values. Large array sizes and large
-%non-linearity are harmful to the voltage swing: on the one hand, a larger
+%nonlinearity are harmful to the voltage swing: on the one hand, a larger
 %array has more sneak paths, making the output voltage very sensitive to
-%the data pattern of unselected cells; on the other hand, the non-linearity
+%the data pattern of unselected cells; on the other hand, the nonlinearity
 %increases the resistance of LRS and therefore the resistance difference
 %between HRS and LRS cells is reduced. In order to improve the reliability
 %of the read operation, a two-step sensing scheme can be applied, which
@@ -486,7 +483,7 @@ Section~\ref{sec:scale}.
 %is sensed, and after that the current difference is converted to the
 %output voltage. The voltage swing of this two-step sensing scheme is shown
 %in Figure~\ref{fig:sense_margin} (b). By using this two-step sensing
-%schemes, the voltage swing for a given array size and non-linearity
+%schemes, the voltage swing for a given array size and nonlinearity
 %coefficient is doubled.
 %
 %%\begin{figure}%[!t]
@@ -515,5 +512,5 @@ Section~\ref{sec:scale}.
 %\centering
 %  % Requires \usepackage{graphicx}
 %  \includegraphics[width=0.5\textwidth]{./figures/sense_margin_f}\\
-%  \caption{Relationships among the voltage swing, array size and non-linearity. (a) Normal sensing scheme; (b) Two-step sensing scheme}\label{fig:sense_margin}
+%  \caption{Relationships among the voltage swing, array size and nonlinearity. (a) Normal sensing scheme; (b) Two-step sensing scheme}\label{fig:sense_margin}
 %\end{figure}
