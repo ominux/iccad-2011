@@ -129,16 +129,38 @@ Similarly, $A4$ is a special tridiagonal matrix, which has nonzero
 elements in the main diagonal, and the $n^{th}$ line below and above
 the diagonal, where $n$ is the number of bitlines in the cross-point
 model. The coefficients of normal points in $A1$ and $A4$ can be
-easily derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}).
+easily derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}) as
+
+\begin{equation}\label{equ:A12}
+\left\{
+    \begin{array}{ll}
+    A1(k,k-1) = R_l^{-1}\\
+    A1(k,k)~~~~~ = -(2R_l^{-1}+R_{i,j}^{-1})~~~~,\\
+    A1(k,k+1) = R_l^{-1}\\
+    \end{array} \right.
+    \end{equation}
+
+and
+\begin{equation}\label{equ:A122}
+\left\{
+    \begin{array}{ll}
+    A4(k,k-n) = R_l^{-1}\\
+    A4(k,k)~~~~~ = -(2R_l^{-1}+R_{i,j}^{-1})~~~~,\\
+    A4(k,k+n) = R_l^{-1}\\
+    \end{array} \right.
+    \end{equation}
+where $ k=(i-1)n+j$, $1<i<m$, and $1<j<n$.
+
 However, since the edge conditions vary with different program
 schemes, the coefficients of points at the edge of the array may be
-different. Therefore, these coefficients related to the edge
-conditions should be set to proper value according to the program
-schemes. Clearly, the four edges shown in Figure~\ref{fig:modeling}
-correspond to different coefficients in $A1$ and $A4$. Take the nodes
-at the left edge of the array ($V_{i,1}, 1\leq i \leq n$) as an
-example. All of the coefficients related to these nodes located in
-$A1$, which can be set as:
+different. Clearly, the four edges shown in Figure~\ref{fig:modeling}
+correspond to different coefficients in $A1$ and $A4$. Therefore,
+after initializing matrix $A1$ and $A4$ following
+Equations(\ref{equ:A12}) and (\ref{equ:A122}), the coefficients
+related to edge points should be updated to proper value according to
+the program schemes. Take the nodes at the left edge of the array
+($V_{i,1}, 1\leq i \leq n$) as an example. All of the coefficients
+related to these nodes located in $A1$, which should be set as:
 
     \begin{equation}
     A1(k,k) = \left\{
@@ -147,7 +169,7 @@ $A1$, which can be set as:
     -(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})& \text{if } activated
     \end{array} \right.
     \end{equation}
-    where $k=(n-1)i+1$ for $i=1,2...m$.
+    where $k=(n-1)i+1$ for $1\leq i\leq m$.
 
 Similar procedures can be performed to initiate the coefficients of
 other edges.
@@ -158,14 +180,23 @@ other edges.
     only the following elements in $C$ may have non-zero value:
     $C((i-1)n+1)$, $C(in)$, $C(mn+i)$ and $C((2m-1)n+i)$ for
     $i=1,2...m$, corresponding to the nodes at the four edges
-    respectively. Likewise, as an example, we consider nodes
-    $V_{i,1}$. The constant corresponding to these nodes can be
-    defined as:
-    \begin{equation}
+    respectively. If the wordline is driven from one side, only nodes
+    $V_{i,1}$ and $V_{1,j}$ can be activated. Therefore, the constant
+    corresponding to these nodes can be defined as:
+\begin{equation}
     C((i-1)n+1) = \left\{
     \begin{array}{ll}
     0   & \text{if } floating\\
     -R_v^{-1}V_{Wi}& \text{if } activated
     \end{array} \right.
     \end{equation}
+for wordline layer and
+\begin{equation}
+    C(mn+j) = \left\{
+    \begin{array}{ll}
+    0   & \text{if } floating\\
+    -R_s^{-1}V_{Bj}& \text{if } activated
+    \end{array} \right.
+    \end{equation}
+for bitline layer, with $1\leq i\leq m$, and $1\leq j\leq n$.
 \end{enumerate}
