@@ -6,7 +6,7 @@
 %conditions, the reliability, energy consumption, and area overheads of
 %different read/write schemes can be easily evaluated.
 In this section, we present a brief introduction of mathematical model of
-the cross-point array. \textit{More details can be found in the Appendix.}
+the cross-point array. More details can be found in the Appendix.
 
 %\subsection{Basic model of Cross-Point Memory}
 The basic circuit model of an $M$ by $N$ cross-point ReRAM array is shown
@@ -16,12 +16,18 @@ circuit theory. The horizontal lines are wordlines and the vertical lines
 represent bitlines. The ReRAM cells are located at each wordline and
 bitline cross-point.
 
-A detailed cross-point structure is also shown in Figure~\ref{fig:modeling}(b). The resistance of the ReRAM cell at the cross-point of $i^{th}$ wordline and
-$j^{th}$ bitline is represented by $R_{i,j}$. We assume the resistance of
-the wire connecting two cross-points to be $R_{line}$. The input
-resistance of each wordline or bitline driver is $R_v$ and the resistance
-of a sense amplifier is $R_s$. In order to set up the KCL equations, the
-voltage at each cross-point is indicated as $V_{i,j}$ for the wordline layer and $V'_{i,j}$ for the bitline layer. In addition, the input voltage for the $i^{th}$ wordline is $V_{Wi}$ and for the $i^{th}$ bitline is $V_{Bi}$. In the case that a wordline is driven from both sides, the voltage at the other end of the $i^{th}$ wordline is represented as $V'_{Wi}$.
+A detailed cross-point structure is also shown in
+Figure~\ref{fig:modeling}(b). The resistance of the ReRAM cell at the
+cross-point of $i^{th}$ wordline and $j^{th}$ bitline is represented by
+$R_{i,j}$. We assume the resistance of the wire connecting two
+cross-points to be $R_{line}$. The input resistance of each wordline or
+bitline driver is $R_v$ and the resistance of a sense amplifier is $R_s$.
+In order to set up the KCL equations, the voltage at each cross-point is
+indicated as $V_{i,j}$ for the wordline layer and $V'_{i,j}$ for the
+bitline layer. In addition, the input voltage for the $i^{th}$ wordline is
+$V_{Wi}$ and for the $i^{th}$ bitline is $V_{Bi}$. In the case that a
+wordline is driven from both sides, the voltage at the other end of the
+$i^{th}$ wordline is represented as $V'_{Wi}$.
 
 %Finally, the voltage at the sense amplifier is $V'_{Bi}$ during the read operation.
 %YOU MIGHT WANT TO CHANGE THE ABOVE PARA INTO A TABLE
@@ -30,7 +36,7 @@ voltage at each cross-point is indicated as $V_{i,j}$ for the wordline layer and
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=0.45\textwidth]{./figures/model_f.pdf}\\
-  \caption{The circuit model of the cross-point array ($m\times{n}$ array).}\label{fig:modeling}
+  \caption{The circuit model of the cross-point array.}\label{fig:modeling}
   \vspace{-12pt}
 \end{figure}
 
@@ -58,7 +64,7 @@ can be found in the Appendix. All of the KCL equations can be considered as a sy
 A\cdot V = C,
 \end{equation}
 where $A$ is a ${2mn\times{2mn}}$ coefficient matrix and $C$ is a
-${2mn\times{1}}$ vector (for $m\times{n}$ array as shown in Figure 2), containing the constant terms of these equations.
+${2mn\times{1}}$ vector, containing the constant terms of these equations.
 We demonstrate that all of the KCL equations have simple and similar
 structures. Therefore, the linear equation system has a relatively fixed
 format and simple structure, making it easy to establish and adjust the
