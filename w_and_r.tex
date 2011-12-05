@@ -76,15 +76,15 @@ To write a ReRAM cell, an external voltage is applied across the cell for
 a certain duration. Intuitively, there are four possible schemes for the
 write operation:
 \begin{enumerate}
-  \item According to the location of a selected cell, activate one
-      wordline and one bitline and leave all of other lines floating
-      (FWFB scheme).
-  \item Activate the selected wordline and bitline. Leave all the
+  \item \textbf{FWFB scheme.} According to the location of a selected cell, activate one
+      wordline and one bitline and leave all of other lines floating.
+      %(FWFB scheme).
+  \item \textbf{FWHB scheme.} Activate the selected wordline and bitline. Leave all the
       unselected wordlines floating and half bias the unselected
-      bitlines (FWHB scheme).
-  \item In contrast to the scheme 2), activate the selected wordline
-      and bitline. Leave all the unselected bitlines floating and half       bias the unselected wordlines (HWFB scheme).
-  \item Activate the selected wordline and bitline. Then half bias the       unselected wordlines and bitlines (HWHB scheme).
+      bitlines.% (FWHB scheme).
+  \item \textbf{HWFB scheme.} In contrast to the scheme 2), activate the selected wordline
+      and bitline. Leave all the unselected bitlines floating and half       bias the unselected wordlines. % (HWFB scheme).
+  \item \textbf{HWHB scheme.} Activate the selected wordline and bitline. Then half bias the       unselected wordlines and bitlines. % (HWHB scheme).
 \end{enumerate}
 Unfortunately, the FWFB scheme has an inherent problem that may result in
 severe write disturbance~\cite{crossbar_NANO2003_Ziegler}. Therefore, in
