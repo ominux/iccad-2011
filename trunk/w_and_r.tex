@@ -86,11 +86,14 @@ write operation:
       and bitline. Leave all the unselected bitlines floating and half       bias the unselected wordlines (HWFB scheme).
   \item Activate the selected wordline and bitline. Then half bias the       unselected wordlines and bitlines (HWHB scheme).
 \end{enumerate}
-Unfortunately, the FWFB scheme has an inherent problem that may result in severe write disturbance~\cite{crossbar_NANO2003_Ziegler}. Therefore, in the following discussion, we only compare the results of FWHB, HWFB and
-HWHB schemes. For each of these three schemes, we can either write several cells on one wordline at the same time or write only one bit per access
-and distribute the write operation to several arrays. In the following
-discussion, we start from single-bit per access write operation, and then
-the results of multi-bit per access method are discussed.
+Unfortunately, the FWFB scheme has an inherent problem that may result in
+severe write disturbance~\cite{crossbar_NANO2003_Ziegler}. Therefore, in
+the following discussion, we only compare the results of the FWHB, HWFB
+and HWHB schemes. For each of these three schemes, we can either write
+several cells on one wordline at the same time or write only one bit per
+access and distribute the write operation to several arrays. In the
+following discussion, we start from single-bit per access write operation,
+and then the results of multi-bit per access method are discussed.
 
 %Since several potential read/write schemes can be used to program a memory array, it is difficult to identify the ideal scheme that meets the design constraints in terms of area, energy, and reliability.
 %However, the FWFB scheme has inherent problem that may result in severe
@@ -124,7 +127,7 @@ the results of multi-bit per access method are discussed.
 %combine all constraints to provide design guidelines for write operations.
 
 
-\vspace{5pt}\noindent\textbf{Reliable Write Operations.} 
+\vspace{5pt}\noindent\textbf{Reliable Write Operations.}
 Write reliability is a serious concern in cross-point arrays. In an ideal
 condition, the resistance of wires and the sneak currents in unselected
 cells are negligible. In such a scenario, all the write schemes discussed
@@ -174,19 +177,26 @@ disturbance}, an undesirable write to an unselected cell. It is necessary to ens
 %The worse case scenario for FWFB write disturbance can be defined as: all of unselected cells in the activated wordline (or all of unselected cells in the activated bitline) are at HRS and other cells are in LRS. In this case, the voltage drop at unselected cells are mainly applied at the HRS cells at the wordline (or bitline).
 
 Write failure typically results from the voltage drop at the interconnect
-wires along the wordline and bitline. It has been shown
-that, for single-bit write operation, the worst
-case voltage drop occurs when writing the cell at the cross point of the
-$M^{th}$ wordline and the $N^{th}$ bitline with all of the other cells in
-the array are in LRS~\cite{crossbar_TED_2010}. In order to avoid write failure and successfully program the selected ReRAM cell, the driven voltage should be boosted to a higher level, making sure that the voltage across the cell exceeds the threshold voltage even at the worst case. Figure~\ref{fig:worst_v} shows the lower bounds of the driven voltage for different sizes of cross-point array. The minimum wordline/bitline voltage increases from 2.01~V for a
-$32 \times 32$ array to nearly 7~V for a $1024 \times 1024$ cross-point
-array. Additionally, the cross-point array can be
-organized with different number of wordlines and bitlines. For example, a
-256K bits cross-point array can be implemented either by a $512 \times
-512$ array or by a $64 \times 4096$ array. In the latter case, the voltage drops along the wordline will be much worse than along the bitline.
+wires along the wordline and bitline. It has been shown that, for
+single-bit write operation, the worst case voltage drop occurs when
+writing the cell at the cross point of the $M^{th}$ wordline and the
+$N^{th}$ bitline with all of the other cells in the array are in
+LRS~\cite{crossbar_TED_2010}. In order to avoid write failure and
+successfully program the selected ReRAM cell, the driven voltage should be
+boosted to a higher level, making sure that the voltage across the cell
+exceeds the threshold voltage even at the worst case.
+Figure~\ref{fig:worst_v} shows the lower bounds of the driven voltage for
+different sizes of cross-point array. The minimum wordline/bitline voltage
+increases from 2.01~V for a $32 \times 32$ array to nearly 7~V for a $1024
+\times 1024$ cross-point array. Additionally, the cross-point array can be
+organized with a different number of wordlines and bitlines. For example,
+a 256K bit cross-point array can be implemented either by a $512 \times
+512$ array or by a $64 \times 4096$ array. In the latter case, the voltage
+drops along the wordline will be much worse than along the bitline.
 Figure~\ref{fig:shape} examines the voltage requirements for different
 array organizations with different write schemes. This result shows that
-from a reliability point of view, a cross-point array with the same number of wordlines and bitlines is the best choice. Furthermore, we also notice
+from a reliability point of view, a cross-point array with the same number
+of wordlines and bitlines is the best choice. Furthermore, we also notice
 that when the array has the same number of wordlines and bitlines, FWFB,
 HWFB and FWHB schemes have the same minimum driven voltage.
 
@@ -196,7 +206,7 @@ HWFB and FWHB schemes have the same minimum driven voltage.
 \centering
 \hspace{-5pt}
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.45\textwidth]{./figures/worst_v_f.pdf}\\
+  \includegraphics[width=0.45\textwidth]{./figures/worst_v_f1.pdf}\\
   \caption{Required write voltages for different cross-point arrays (threshold voltage = 2V.). }\label{fig:worst_v}
   \vspace{-5pt}
 \end{figure}
@@ -293,13 +303,19 @@ writing a $512{\times}512$ array is more than 15 times larger than that of a $32
 %\vspace{6pt}
 %
 The write operation for a $M \times N$ array requires $M$ wordline voltage
-drivers and $N$ bitline multiplexors. The drivers and multiplexors should be sized such that they can provide the worst-case current of wordline
+drivers and $N$ bitline multiplexors. The drivers and multiplexors should
+be sized such that they can provide the worst-case current of wordline
 current and bitline current. The transistor sizing of the wordline/bitline
 circuitry is achieved using HSPICE simulations. We further calculate the
-area overhead for the drivers and multiplexes by referring to the CACTI
+area overhead for the drivers and multiplexors by referring to the CACTI
 area model. Figure~\ref{fig:drive_i}(a) shows the maximum write current
 with different ReRAM array sizes. Not surprisingly, the current
-requirement increases as the array size increases. Figure~\ref{fig:area_i}(a) illustrates the area overhead for the wordline and bitline circuitry. This show that drivers and multiplexors occupy a smaller area than the cross-point array. Only in this case can voltage drivers and multiplexors be implemented beneath the array, resulting an ideal cell size of $4F^2$.
+requirement increases as the array size increases.
+Figure~\ref{fig:area_i}(a) illustrates the area overhead for the wordline
+and bitline circuitry. This show that drivers and multiplexors occupy a
+smaller area than the cross-point array. Only in this case can voltage
+drivers and multiplexors be implemented beneath the array, resulting an
+ideal cell size of $4F^2$.
 
 
 %\begin{figure}%[!t]
@@ -320,8 +336,8 @@ requirement increases as the array size increases. Figure~\ref{fig:area_i}(a) il
 \begin{figure}%[!t]
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/area_comp_f.pdf}\\
-  \caption{Area overhead comparison. (a) One bit per write (B) One wordline per write.}\label{fig:area_i}
+  \includegraphics[width=0.5\textwidth]{./figures/area_comp_f1.pdf}\\
+  \caption{Area overhead comparison. (a) One bit per write. (b) One wordline per write.}\label{fig:area_i}
 \vspace{-10pt}
 \end{figure}
 
