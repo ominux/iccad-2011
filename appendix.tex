@@ -5,12 +5,12 @@ therefore, the current equations for each cross-point can be set following
 \begin{equation}\label{equ:KCL0}
  {\Sigma}_{I=1}^kI_k=0.
 \end{equation}
-Besides, for the sake of brevity, we assume that the wordline voltage
-drivers only locate at the edge of $V_{W1} \sim V_{Wm}$ and bitline
-multiplexes locate at the edge of $V_{B1} \sim V_{Bn}$. Points locate at
+For the sake of brevity, we assume that the wordline voltage
+drivers only are located at the edge of $V_{W1} \sim V_{Wm}$ and bitline
+multiplexes or are locate at the edge of $V_{B1} \sim V_{Bn}$. Points locate at
 the other two edges are left floating.
 
-First of all, for normal points, which located inside the memory array,
+First of all, for normal points which are located inside the memory array,
 the KCL equations take the form of
 \begin{equation}\label{equ:KCL1}
 R_l^{-1}V_{i,j-1} -(2R_l^{-1}+R_{i,j}^{-1})V_{i,j}+ R_l^{-1}V_{i,j+1}+R_{i,j}^{-1}V'_{i,j}=0,
@@ -21,9 +21,9 @@ R_l^{-1}V'_{i-1,j} -(2R_l^{-1}+R_{i,j}^{-1})V'_{i,j}+ R_l^{-1}V'_{i+1,j}+R_{i,j}
 \end{equation}
 for all of the nodes with $1<i<m$ and $1<j<n$ in a $m \times n$ array.
 
-For all of the points $V_{i,1}$ ($1\leq i\leq m$), according to different
-write scheme, they can be connected to the voltage driver $V_{Wi}$ (as
-activated points) or left floating (as floating points). For the activated
+For all of the points $V_{i,1}$ ($1\leq i\leq m$) according to different
+write schemes, they can be connected to the voltage driver $V_{Wi}$ (as
+activated points) or left floating (as floating points). For activated
 points, we have
 \begin{equation}\label{equ:KCL3}
  -(R_v^{-1}+R_l^{-1}+R_{i,1}^{-1})V_{i,1}+ R_l^{-1}V_{i,2}+R_{i,1}^{-1}V'_{i,1}=-R_v^{-1}V_{Wi},
@@ -76,10 +76,10 @@ A\cdot V = C.
 $A$ is a ${2mn\times{2mn}}$ coefficient matrix, which is determined by
 Equations(\ref{equ:KCL1})-(\ref{equ:KCL8}). $C$ is a ${2mn\times{1}}$
 vector, containing the constant terms of these equations. Obviously, the
-KCL equation for each point have relatively simple structure and are
+KCL equation for each point has a relatively simple structure and they are
 similar to each other. Thus, the linear equation system has a fixed format
 and simple structure, which is easy to establish and adjust according to
-different design schemes and cell parameters. Besides, matrix $A$ is
+different design schemes and cell parameters. Moreover, matrix $A$ is
 populated primarily with zeros and can be saved as a sparse matrix, which
 will further reduce the storage cost during the computation.
 
@@ -110,15 +110,15 @@ A3_{i,i} = R_{i,i}^{-1}$.
 $A2$ and $A3$ do not change their values with different schemes.
 
 However, $A1$ and $A4$ are a little more complex than $A2$ and $A3$.
-$A1$ is a tridiagonal matrix and nonzero elements only locate in the
+$A1$ is a tridiagonal matrix and has nonzero elements only located in the
 main diagonal, and the first line below and above the diagonal.
 Similarly, $A_4$ is a special tridiagonal matrix, which has nonzero
 elements in the main diagonal, and the $n^{th}$ line below and above
 the diagonal, where $n$ is the number of bitline in the cross-point
 model. The value of the elements in $A1$ and $A4$ can be easily
 derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}). However,
-the edge condition varies with different program schemes. Therefore,
-the coefficients related to the edge condition should be set according
+the edge conditions vary with different program schemes. Therefore,
+the coefficients related to the edge conditions should be set according
 to the program schemes.
 
 
@@ -126,7 +126,7 @@ Clearly, the four edges shown in Figure~\ref{fig:modeling} correspond
 to different coefficients in $A1$ and $A4$. Due to the space
 limitations, we consider the nodes at the left edge of the array as an
 example. A similar procedure can be followed to initiate the
-coefficients of other edge. The coefficients of nodes at the left edge
+coefficients of other edges. The coefficients of nodes at the left edge
 of the array ($V_{i,1}$) can be set as:
 
     \begin{equation}
@@ -138,7 +138,7 @@ of the array ($V_{i,1}$) can be set as:
     \end{equation}
     where $k=(n-1)i+1$ for $i=1,2...m$.
 
-\item The constant terms $C$ is a $2mn{\times}1$ vector.
+\item The constant terms $C$ are $2mn{\times}1$ vector.
     Equation(\ref{equ:KCL1})-(\ref{equ:KCL8}) show that only KCL
     equations of the activated points have constant terms. Therefore,
     only the following elements in $C$ may have non-zero value:
