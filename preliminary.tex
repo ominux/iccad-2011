@@ -4,7 +4,7 @@
 This section provides background of ReRAM and cross-point architecture,
 and discusses their advantages and limitations.
 
-\subsection{Background of ReRAM technology}
+\subsection{Background of ReRAM Technology}
 %Table~\ref{table:compare} compares the properties of state-of-art
 %non-volatile memory technologies. ReRAM and STT-RAM are better than PCM or
 %FeRAM due to their faster access time and high endurance. Although STT-RAM
@@ -38,8 +38,8 @@ and discusses their advantages and limitations.
 %Different from the traditional memory technologies, which use the electron stored in the cell to represent the information, the non-volatile memory use the the phase/state/resistance of the memory cell itself to store the data. Therefore, the nonvolatile memory can retain the stored information without pow supply. This kind of non-volatility make it a potential candidate as the alternative memory technology to replace the DRAM even SRAM technologies.
 
 As implied by its name, a ReRAM cell uses its resistance to represent the
-stored information. A ReRAM cell can be switched between high resistance
-state (HRS) and low resistance state (LRS) by applying an external voltage
+stored information. A ReRAM cell can be switched between a high resistance
+state (HRS) and a low resistance state (LRS) by applying an external voltage
 across the cell.
 %The resistance switching behavior of ReRAM has been noticed for several years and attracted great research interests recently for the potential application as the next generation non-volatile memory technology.
 In general, a ReRAM cell is built on a Metal-Insulator-Metal (MIM)
@@ -89,7 +89,7 @@ structure. In the MOSFET-accessed memory array, a MOSFET is used as an
 access device for each memory cell. As the size of a MOSFET access device
 is typically much larger than the size of a ReRAM cell, the total area of
 memory array is primarily dominated by MOSFETs rather than ReRAM cells.
-Also, in order to provide enough driven current, lager than minimum-sized
+Also, in order to provide enough driven current, larger than minimum-sized
 transistor should be used for write operations. Hence, ReRAM's area
 advantage gets lost because of the access devices.
 %The ReRAM's advantage of ultra small cell size will be offset by the access device.
@@ -100,15 +100,15 @@ demonstrated in these fabricated devices shows that the resistance of
 ReRAM significantly increases as the voltage applied on it increases. Such
 observation basically indicates effective cut off of the leakage current
 from the unselected cells in the sneak paths. Therefore, the
-area-efficient cross-point structure to build a ReRAM memory
-array~\cite{memristor:Cong} without extra fabrication cost is enabled by
+area-efficient cross-point ReRAM memory
+array~\cite{memristor:Cong} is enabled by
 the intrinsic property of the device. A schematic view of a typical
-cross-point memory array is shown in Figure~\ref{fig:array}(a). As is
+cross-point memory array is shown in Figure~\ref{fig:array}(a). As 
 shown, ReRAM cells are sandwiched between wordlines and bitlines (top
 electrodes and bottom electrodes). Figure~\ref{fig:array}(b) shows a top
 view of the array, which shows that each ReRAM cell occupies an area of
 $4F^2$, the theoretical lower limit for a single layer single level memory
-cell. The memory density can be further improved by using a multi-layer
+cell. This memory density can be further improved by using a multi-layer
 multi-level cross-point ReRAM
 array~\cite{crossbar_unity}~\cite{memristor:IEDM08_3D}.
 %Besides, as aforementioned, the good stackability and the high resistance ratio provide the capability of building a multi-layer multi-level cross-point ReRAM array, which can further increase the area efficiency~\cite{ReRAM_ISSCC2011_Sheu}~\cite{memristor:IEDM08_3D}.
@@ -122,33 +122,33 @@ array~\cite{crossbar_unity}~\cite{memristor:IEDM08_3D}.
 \vspace{-12pt}
 \end{figure}
 
-There are several write/read schemes for cross-point ReRAM array. For
-example, the write operation can write either single-bit per access or
-several bits attached to a wordline at the same time. Although the second
+There are several write/read schemes for cross-point ReRAM arrays. For
+example, the write operation can write either a single-bit per access or
+several bits attached to the same wordline at the same time. Although the second
 scheme has higher bandwidth, it requires a two-step write operation to
 prevent unintentional writing~\cite{memristor:Cong}, which significantly
 increases the write latency.
 %Therefore, the write latency for the multi bit write operation is much larger than the one bit operation.
-Besides, while writing to a cross-point array, the unselected wordlines
-and bitlines can be either left floating or half-biased. On the other
-hand, while reading a cell, the selected wordline should be biased at read
+Furthermore, while writing to a cross-point array, the unselected wordlines
+and bitlines can be either left floating or half-biased. In contrast, while reading 
+a cell, the selected wordline should be biased with a read
 voltage and all the other wordlines and bitlines in the array are shunted
 to ground. The current in each bitline is then sensed and compared to a
-reference current to determine cell content. However, due to the sneak
-current existing in the cross-point array, the current in bitline also
+reference current to determine the cell content. However, due to the sneak
+current existing in the cross-point array, the current in bitlines also
 varies depending upon the data patterns of unselected cells.
 %is impacted significantly by the data pattern of the unselected cells in the array.
-The read disturbance restricts the size of a cross-point array, since
+This read disturbance restricts the size of a cross-point array, since
 sneak current increases as the number of cells attached to wordlines and
-bitlines increases. Therefore, the cross-point array should be sized such
+bitlines increases. Therefore, a cross-point array should be sized such
 that the current difference of the selected cell at HRS and LRS is large
 enough for reliable sensing. In addition to all of these write/read
 schemes, different cell parameters will also impact the reliability,
 energy consumption, and area efficiency of the cross-point ReRAM array. In
 this case, it is not straightforward for a designer to figure out how to
 design a workable memory array with the minimum energy consumption and
-area overheads. Thus, following sections will proposed a worst-case
-oriented methodology to help designer make the decision early in the
+area overheads. Thus, the following sections will propose a worst-case
+oriented methodology to help designers make decisions early in the
 design flow.
 
 %Depending upon the read/write scheme, the size of the array can vary significantly. In this work, we propose a methodology to find the minimum array size that meets specific energy and area constraints based on the worst-case state of the array. This will help designers find an optimal memory organization early in the design flow. %t read/write schemes as well as array sizes can be chosen for the cross-point array, it is not straightforward to figure out how to design a workable memory array with the minimum energy consumption and area overheads. Thus, following sections will proposed a worst-case oriented methodology to help designer make the decision early in the design flow.
