@@ -124,8 +124,7 @@ the results of multi-bit per access method are discussed.
 %combine all constraints to provide design guidelines for write operations.
 
 
-\vspace{6pt} \emph{Reliable Write Operations} \vspace{2pt}
-
+\vspace{5pt}\noindent\textbf{Reliable Write Operations.} 
 Write reliability is a serious concern in cross-point arrays. In an ideal
 condition, the resistance of wires and the sneak currents in unselected
 cells are negligible. In such a scenario, all the write schemes discussed
@@ -245,8 +244,8 @@ constraint.
 %\end{figure}
 
 
-\vspace{6pt} \emph{Energy Consumption of Write Operations} \vspace{2pt}
-
+\vspace{5pt}\noindent\textbf{Energy Consumption of Write Operations.}
+%
 %The energy consumption of a write operation for a cross-point array can be calculated as:
 %\begin{equation}
 %E_{write} = E_{select} + E_{unselect} + E_{halfselect} + E_{line},
@@ -290,9 +289,9 @@ writing a $512{\times}512$ array is more than 15 times larger than that of a $32
     \vspace{-10pt}
 \end{figure}
 
-\vspace{6pt} \emph{Write Current and Area Overhead of Write Operations}
-\vspace{6pt}
-
+\vspace{5pt}\noindent\textbf{Write Current and Area Overhead of Write Operations.}
+%\vspace{6pt}
+%
 The write operation for a $M \times N$ array requires $M$ wordline voltage
 drivers and $N$ bitline multiplexors. The drivers and multiplexors should be sized such that they can provide the worst-case current of wordline
 current and bitline current. The transistor sizing of the wordline/bitline
@@ -326,8 +325,8 @@ requirement increases as the array size increases. Figure~\ref{fig:area_i}(a) il
 \vspace{-10pt}
 \end{figure}
 
-\vspace{6pt} \emph{Discussion on Multi-Bits Write Operation} \vspace{2pt}
-
+\vspace{5pt}\noindent\textbf{Discussion on Multi-Bits Write Operation.} %\vspace{2pt}
+%
 So far, we have only discussed the write operation with one bit per
 access. In this section, we compare the difference between single-bit per
 access and multi-bit per access write operations.
@@ -388,7 +387,7 @@ more energy efficient, from the standpoint of reliability and area overhead, sin
     \vspace{-10pt}
 \end{figure}
 
-\subsection{Read Operation}
+\vspace{5pt}\noindent\textbf{Read Operation.}
 In this section we apply a similar sensing scheme as
 \cite{crossbar_NANO08_Flocke} and \cite{crossbar_TED_2010}. In order to
 read cell $R_{i,j}$, the $i^{th}$ wordline is biased at $V_{READ}$ and all of the other wordlines and bitlines are grounded. Then the state of the
