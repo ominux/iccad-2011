@@ -5,10 +5,10 @@ therefore, the current equations for each cross-point can be set following
 \begin{equation}\label{equ:KCL0}
  {\Sigma}_{I=1}^kI_k=0.
 \end{equation}
-For the sake of brevity, we assume that the wordline voltage
-drivers only are located at the edge of $V_{W1} \sim V_{Wm}$ and bitline
-multiplexes or are locate at the edge of $V_{B1} \sim V_{Bn}$. Points locate at
-the other two edges are left floating.
+For the sake of brevity, we assume that the wordline voltage drivers are
+only located at the edge of $V_{W1} \sim V_{Wm}$ and bitline multiplexors
+or are located at the edge of $V_{B1} \sim V_{Bn}$. Points located at the
+other two edges are left floating.
 
 First of all, for normal points which are located inside the memory array,
 the KCL equations take the form of
@@ -110,24 +110,24 @@ A3_{i,i} = R_{i,i}^{-1}$.
 $A2$ and $A3$ do not change their values with different schemes.
 
 However, $A1$ and $A4$ are a little more complex than $A2$ and $A3$.
-$A1$ is a tridiagonal matrix and has nonzero elements only located in the
-main diagonal, and the first line below and above the diagonal.
+$A1$ is a tridiagonal matrix and has nonzero elements only located in
+the main diagonal, and the first line below and above the diagonal.
 Similarly, $A_4$ is a special tridiagonal matrix, which has nonzero
 elements in the main diagonal, and the $n^{th}$ line below and above
-the diagonal, where $n$ is the number of bitline in the cross-point
+the diagonal, where $n$ is the number of bitlines in the cross-point
 model. The value of the elements in $A1$ and $A4$ can be easily
 derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}). However,
 the edge conditions vary with different program schemes. Therefore,
-the coefficients related to the edge conditions should be set according
-to the program schemes.
+the coefficients related to the edge conditions should be set
+according to the program schemes.
 
 
 Clearly, the four edges shown in Figure~\ref{fig:modeling} correspond
 to different coefficients in $A1$ and $A4$. Due to the space
 limitations, we consider the nodes at the left edge of the array as an
 example. A similar procedure can be followed to initiate the
-coefficients of other edges. The coefficients of nodes at the left edge
-of the array ($V_{i,1}$) can be set as:
+coefficients of other edges. The coefficients of nodes at the left
+edge of the array $V_{i,1}$ can be set as:
 
     \begin{equation}
     A1(k,k) = \left\{
@@ -138,7 +138,7 @@ of the array ($V_{i,1}$) can be set as:
     \end{equation}
     where $k=(n-1)i+1$ for $i=1,2...m$.
 
-\item The constant terms $C$ are $2mn{\times}1$ vector.
+\item The constant term $C$ is a $2mn{\times}1$ vector.
     Equation(\ref{equ:KCL1})-(\ref{equ:KCL8}) show that only KCL
     equations of the activated points have constant terms. Therefore,
     only the following elements in $C$ may have non-zero value:

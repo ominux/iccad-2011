@@ -10,7 +10,11 @@ the cross-point array. More details can be found in the Appendix.
 
 %\subsection{Basic model of Cross-Point Memory}
 The basic circuit model of an $M$ by $N$ cross-point ReRAM array is shown
-in Figure~\ref{fig:modeling}. This model is built upon Kirchhoff's Current Law (KCL)~\cite{KCL} and its validity can be guaranteed by deductions from basic circuit theory. The horizontal lines are wordlines and the vertical lines represent bitlines. The ReRAM cells are located at each wordline and bitline cross-point.
+in Figure~\ref{fig:modeling}. This model is built upon Kirchhoff's Current
+Law (KCL) and its validity can be guaranteed by deductions from basic
+circuit theory. The horizontal lines are wordlines and the vertical lines
+represent bitlines. The ReRAM cells are located at each wordline and
+bitline cross-point.
 
 A detailed cross-point structure is also shown in Figure~\ref{fig:modeling}(b). The resistance of the ReRAM cell at the cross-point of $i^{th}$ wordline and
 $j^{th}$ bitline is represented by $R_{i,j}$. We assume the resistance of
@@ -33,7 +37,7 @@ voltage at each cross-point is indicated as $V_{i,j}$ for the wordline layer and
 %\subsection{Mathematical Model of a Cross-Point Array}
 Based on this model, the current equations for each cross-point can be
 obtained. All of the cross-points have similar structure with no more than
-three current branches and therefore it is very easy to set up the KCL
+three current branches, and therefore it is very easy to set up the KCL
 equations for each cross-point.
 
 However, it is important to note that KCL equations for cross-points at
@@ -63,17 +67,18 @@ due to the simplicity of the KCL equation, $A$ is populated primarily with
 zeros and can be saved as a sparse matrix, which will further reduce the
 storage cost during the computation.
 
-To validate our analytical model, we compare the results with HSPICE
-simulations using a resistor model in cross-point memory arrays. DC
-analysis was performed by HSPICE which solved the voltage of every node in
-the array. The results of eight cross-point arrays with different array
-sizes and specific data patterns are shown in Figure~\ref{fig:validation},
-which shows that the voltage drop on the selected cell derived from our
-analytical model are consistent with the HSPICE simulation results.
+To validate our analytical model, we compare the results with
+HSPICE~\cite{HSPICE} simulations using a resistor model in cross-point
+memory arrays. DC analysis was performed by HSPICE which solved the
+voltage of every node in the array. The results of eight cross-point
+arrays with different array sizes and specific data patterns are shown in
+Figure~\ref{fig:validation}, which shows that the voltage drop on the
+selected cell derived from our analytical model are consistent with the
+HSPICE simulation results.
 \begin{figure}%[!t]
 \centering\label{fig:SPICE}
   % Requires \usepackage{graphicx}
-  \includegraphics[width=0.5\textwidth]{./figures/SPICE.pdf}\\
+  \includegraphics[width=0.5\textwidth]{./figures/SPICE1.pdf}\\
   \caption{Validation of the analytical model against SPICE simulation. The two figures show the voltage drops obtained from our model and SPICE (a) with a nonlinearity factor of 5 and (b) without nonlinearity.}\label{fig:validation}
     \vspace{-10pt}
 \end{figure}
