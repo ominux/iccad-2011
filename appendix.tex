@@ -97,37 +97,48 @@ The characteristics of the linear system can be summarized as:
     \end{equation}
 All of these subblocks have the same size of $mn\times mn$. Subblock
 $A2$ and $A3$ are diagonal matrixes and have the value of: $A2_{i,i} =
-A3_{i,i} = R_{i,i}^{-1}$.
+A3_{i,i}$ and have the form of
+%\begin{equation}\label{equ:A2A3}
+%        A2 = A3 = \left[
+%        \begin{array}{cccc}
+%            R_{1,1}^{-1}    & 0             & \ldots    & 0 \\
+%            0               & R_{2,2}^{-1}  & \ddots    & \vdots  \\
+%            \vdots          & \ddots        & \ddots    & 0 \\
+%            0               & \ldots        & 0         & R_{mn,mn}^{-1} \\
+%        \end{array} \right].
+%    \end{equation}
 \begin{equation}\label{equ:A2A3}
         A2 = A3 = \left[
-        \begin{array}{cccc}
-            R_{1,1}^{-1}    & 0             & \ldots    & 0 \\
-            0               & R_{2,2}^{-1}  & \ddots    & \vdots  \\
-            \vdots          & \ddots        & \ddots    & 0 \\
-            0               & \ldots        & 0         & R_{mn,mn}^{-1} \\
+        \begin{array}{ccccccc}
+            R_{1,1}^{-1}    & 0             & 0             & ~         & \ldots    & ~             & 0    \\
+            0               & \ddots        & 0             & ~         & ~         & ~             & ~    \\
+            0               & 0             & R_{1,n}^{-1}  & ~         & \ddots    & ~             & \vdots    \\
+            ~               & ~             & ~             & \ddots    & ~         & ~             & ~    \\
+            \vdots          & ~        & \ddots             & ~         & R_{m,1}^{-1}    & 0       & 0   \\
+            ~               & ~             & ~             & ~         & 0         & \ddots        & 0    \\
+            0               & 0             & \ldots              & ~         & 0    & 0             & R_{m,n}^{-1}    \\
+
         \end{array} \right].
-    \end{equation}
+\end{equation}
 $A2$ and $A3$ do not change their values with different schemes.
 
 However, $A1$ and $A4$ are a little more complex than $A2$ and $A3$.
 $A1$ is a tridiagonal matrix and has nonzero elements only located in
 the main diagonal, and the first line below and above the diagonal.
-Similarly, $A_4$ is a special tridiagonal matrix, which has nonzero
+Similarly, $A4$ is a special tridiagonal matrix, which has nonzero
 elements in the main diagonal, and the $n^{th}$ line below and above
 the diagonal, where $n$ is the number of bitlines in the cross-point
-model. The value of the elements in $A1$ and $A4$ can be easily
-derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}). However,
-the edge conditions vary with different program schemes. Therefore,
-the coefficients related to the edge conditions should be set
-according to the program schemes.
-
-
-Clearly, the four edges shown in Figure~\ref{fig:modeling} correspond
-to different coefficients in $A1$ and $A4$. Due to the space
-limitations, we consider the nodes at the left edge of the array as an
-example. A similar procedure can be followed to initiate the
-coefficients of other edges. The coefficients of nodes at the left
-edge of the array $V_{i,1}$ can be set as:
+model. The coefficients of normal points in $A1$ and $A4$ can be
+easily derived from Equation (\ref{equ:KCL1}) and (\ref{equ:KCL2}).
+However, since the edge conditions vary with different program
+schemes, the coefficients of points at the edge of the array may be
+different. Therefore, these coefficients related to the edge
+conditions should be set to proper value according to the program
+schemes. Clearly, the four edges shown in Figure~\ref{fig:modeling}
+correspond to different coefficients in $A1$ and $A4$. Take the nodes
+at the left edge of the array ($V_{i,1}, 1\leq i \leq n$) as an
+example. All of the coefficients related to these nodes located in
+$A1$, which can be set as:
 
     \begin{equation}
     A1(k,k) = \left\{
@@ -137,6 +148,9 @@ edge of the array $V_{i,1}$ can be set as:
     \end{array} \right.
     \end{equation}
     where $k=(n-1)i+1$ for $i=1,2...m$.
+
+Similar procedures can be performed to initiate the coefficients of
+other edges.
 
 \item The constant term $C$ is a $2mn{\times}1$ vector.
     Equation(\ref{equ:KCL1})-(\ref{equ:KCL8}) show that only KCL
