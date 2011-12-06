@@ -1,6 +1,6 @@
 \label{sec:app}
 
-As mentioned in Section~\label{sec:model}, the model is built upon KCL,
+As mentioned in Section~\ref{sec:model}, the model is built upon KCL,
 therefore, the current equations for each cross-point can be set following
 \begin{equation}\label{equ:KCL0}
  {\Sigma}_{I=1}^kI_k=0.
@@ -83,11 +83,11 @@ different design schemes and cell parameters. Moreover, matrix $A$ is
 populated primarily with zeros and can be saved as a sparse matrix, which
 will further reduce the storage cost during the computation.
 
-The characteristics of the linear system can be summarized as:
+The characteristics of the linear system can be summarized as
 \begin{enumerate}
   \item As shown in Equation~(\ref{equ:blockedmatrix}), the
       coefficient matrix $A$ can be further partitioned into four
-      subblocks :
+      subblocks
     \begin{equation}\label{equ:blockedmatrix}
         \mathbf{A} = \left[
         \begin{array}{cc}
@@ -96,8 +96,7 @@ The characteristics of the linear system can be summarized as:
         \end{array} \right].
     \end{equation}
 All of these subblocks have the same size of $mn\times mn$. Subblock
-$A2$ and $A3$ are diagonal matrixes and have the value of: $A2_{i,i} =
-A3_{i,i}$ and have the form of
+$A2$ and $A3$ are diagonal matrixes and have the same form of
 %\begin{equation}\label{equ:A2A3}
 %        A2 = A3 = \left[
 %        \begin{array}{cccc}
@@ -160,7 +159,7 @@ Equations(\ref{equ:A12}) and (\ref{equ:A122}), the coefficients
 related to edge points should be updated to proper value according to
 the program schemes. Take the nodes at the left edge of the array
 ($V_{i,1}, 1\leq i \leq n$) as an example. All of the coefficients
-related to these nodes located in $A1$, which should be set as:
+related to these nodes are located in $A1$, which should be set as
 
     \begin{equation}
     A1(k,k) = \left\{
@@ -171,8 +170,8 @@ related to these nodes located in $A1$, which should be set as:
     \end{equation}
     where $k=(n-1)i+1$ for $1\leq i\leq m$.
 
-Similar procedures can be performed to initiate the coefficients of
-other edges.
+Similar procedures can be performed to initiate the coefficients
+related to other edges.
 
 \item The constant term $C$ is a $2mn{\times}1$ vector.
     Equation(\ref{equ:KCL1})-(\ref{equ:KCL8}) show that only KCL
@@ -182,7 +181,7 @@ other edges.
     $i=1,2...m$, corresponding to the nodes at the four edges
     respectively. If the wordline is driven from one side, only nodes
     $V_{i,1}$ and $V_{1,j}$ can be activated. Therefore, the constant
-    corresponding to these nodes can be defined as:
+    corresponding to these nodes can be defined as
 \begin{equation}
     C((i-1)n+1) = \left\{
     \begin{array}{ll}
